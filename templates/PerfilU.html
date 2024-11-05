@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>perfil-Usuario</title>
+  <link rel="stylesheet" href="../static/css/PerfilU.css">
+</head>
+<body>
+  <button onclick="toggleInfo()"><img src="../static/images/icono-usuario-con-mascotas.png"></button>
+  <div id="info" class="hidden">
+    <div class="contenedor" >
+      <h1>perfil de cliente</h1>
+      <label>NomUsuario Apellido</label> <!--en este lugar ponemos el nombre del usuario o cliente-->
+    </div>
+    <div class="contenedor">
+        <label>correoUsuario123.@ejemplo.com</label>
+    </div>
+    <div class="contenedor">
+        <button onclick="redirigir()">Editar perfil</button>
+    </div>
+    <div class="contenedor">
+        <button>Historial de compras</button>
+    </div>
+  </div>
+
+  <script src="../static/js/PerfilU.js"></script>
+</body>
+</html>
