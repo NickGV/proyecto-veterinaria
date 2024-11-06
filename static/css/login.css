@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a743f;
+}
+
+.container {
+  width: 330px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 18pt;
+  color: black;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.image-container {
+  margin-bottom: 20px;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14pt;
+  color: black;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.forgot-password {
+  margin-top: 20px;
+  font-size: 12pt;
+  color: black;
+}
+
+.image-container {
+  margin-bottom: 20px;
+  display: flex; /* Usar flex para centrar el contenido */
+  justify-content: center; /* Centra el contenido horizontalmente */
+}
+
+.image {
+  width: 100px; /* Ancho de la imagen */
+  height: 100px; /* Alto de la imagen */
+  border-radius: 50%; /* Hace que la imagen sea circular */
+  object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin distorsionarse */
+  border: 3px solid white; /* Añadir un borde blanco alrededor */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para la imagen */
+}

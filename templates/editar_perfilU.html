@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar perfil de Usuario</title>
+    <link rel="stylesheet" href="/static/css/editar_perfilU.css" />
+    <link rel="stylesheet" href="/static/css/globals.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Editar Perfil de Usuario</h1>
+      <form>
+        <label for="nombre_completo">Cambiar nombre :</label>
+        <input
+          type="text"
+          id="nombre_completo"
+          name="nombre_completo"
+          required
+        />
+
+        <label for="telefono">Cambiar teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required />
+
+        <label for="password">cambiar contraseña</label>
+        <input type="password" id="Contraseña" name="Contraseña" required />
+
+        <label for="repetir_password">Confirmar nueva contraseña</label>
+        <input
+          type="password"
+          id="repetir_password"
+          name="repetir_password"
+          required
+        />
+
+        <div class="botones">
+          <button type="submit" class="boton-registrar">REGISTRAR</button>
+          <button type="reset" class="boton-limpiar">LIMPIAR</button>
+        </div>
+      </form>
+      <button class="boton-cerrar"><a href="{% url 'menu' %}">✖</a></button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+/* General */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos del body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Contenedor del formulario */
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 20px;
+  max-height: 80vh; /* Altura máxima */
+  overflow-y: auto; /* Habilitar scroll vertical */
+  position: relative;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Estilos del formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Estilos de los labels */
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Estilo de los campos de input, select, y textarea */
+input,
+select,
+textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 90%;
+  max-width: 90%;
+  align-self: center;
+}
+
+/* Estilo del textarea */
+textarea {
+  height: 100px;
+}
+
+/* Contenedor de botones */
+.botones {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Estilo de los botones */
+.buton-registrar,
+.boton-limpiar {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Botón de registrar (verde) */
+.boton-registrar {
+  background-color: green;
+  color: white;
+}
+
+/* Botón de limpiar (gris) */
+.boton-limpiar {
+  background-color: gray;
+  color: white;
+}
+
+/* Estilo del botón de cerrar */
+.boton-cerrar {
+  position: absolute; /* Posicionamiento absoluto */
+  top: 10px; /* Espaciado desde la parte superior */
+  right: 10px; /* Espaciado desde la derecha */
+  background: none; /* Sin fondo */
+  border: none; /* Sin borde */
+  color: red; /* Color de la X */
+  font-size: 24px; /* Tamaño de la X */
+  cursor: pointer; /* Cambiar cursor al pasar */
+}
+
+.boton-cerrar:hover a {
+  color: red;
+}
+
+.boton-cerrar {
+  padding: 0; /* Sin padding */
+  width: auto; /* Ancho automático */
+  height: auto; /* Alto automático */
+}
+
+/* Hover en los botones */
+.button-registrar:hover,
+.boton-limpiar:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
