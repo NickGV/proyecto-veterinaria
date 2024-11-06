@@ -22,6 +22,3 @@ function toggleInfo() {
   info.classList.toggle("hidden");
   seccionPerfilU.classList.toggle("hidden");
 }
-function redirigir() {
-  window.location.href = "../editar_perfilU/editar_perfilU.html";
-}

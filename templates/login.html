@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INGRESAR AL SISTEMA</title>
-    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/globals.css">
 </head>
 <body>
     <div class="container">
         <h1>INICIAR SESIÓN</h1>
 
         <div class="image-container">
-            <img src="../static/images/Sonrisas y patitas logo.jfif" alt="Imagen Proyecto" class="image">
+            <img src="/static/images/Sonrisas y patitas logo.jfif" alt="Imagen Proyecto" class="image">
         </div>
 
         <form id="loginForm">
@@ -27,9 +28,9 @@
         </form>
 
         <p class="forgot-password">⬇ ¿Olvidó su contraseña? ⬇</p>
-        <button type="button" id="recuperarButton" class="button gray">RECUPERAR CONTRASEÑA</button>
+        <button  type="button" id="recuperarButton" class="button gray"><a href="{% url 'recuperar' %}">RECUPERAR CONTRASEÑA</a><button/>
     </div>
     
-    <script src="../static/js/login.js"></script>
+    <script src="/static/js/login.js"></script>
 </body>
 </html>
