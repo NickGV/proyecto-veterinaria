@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proveedores y Orden de Compra</title>
+    <link rel="stylesheet" href="/static/css/GestionYCompras.css">
+</head>
+<body>
+    <h1>Gestión de Proveedores y Orden de Compra</h1>
+
+    <!-- Registro de Proveedores -->
+    <section id="registro-proveedores">
+        <h2>Registro de Proveedores</h2>
+        <form id="form-proveedores">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required>
+
+            <label for="contacto">Contacto:</label>
+            <input type="text" id="contacto" required>
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" required>
+
+            <label for="catalogo">Catálogo de Productos:</label>
+            <input type="text" id="catalogo" required>
+
+            <button type="submit">Registrar Proveedor</button>
+        </form>
+    </section>
+
+    <!-- Administración de Proveedores -->
+    <section id="administracion-proveedores">
+        <h2>Administración de Proveedores</h2>
+        <table id="tabla-proveedores">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Contacto</th>
+                    <th>Dirección</th>
+                    <th>Catálogo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Las filas de proveedores se agregarán dinámicamente con JS -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Orden de Compra -->
+    <section id="orden-compra">
+        <h2>Orden de Compra</h2>
+        <form id="form-orden-compra">
+            <label for="proveedor">Proveedor:</label>
+            <input type="text" id="proveedor" required>
+
+            <label for="producto">Producto:</label>
+            <input type="text" id="producto" required>
+
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" required>
+
+            <label for="fecha">Fecha de Recepción:</label>
+            <input type="date" id="fecha" required>
+
+            <button type="submit">Crear Orden</button>
+        </form>
+    </section>
+    <!-- Sección para mostrar detalles de la orden de compra -->
+    <section id="detalles-orden">
+        <h2>Detalles de la Orden de Compra</h2>
+        <div id="orden-info" style="display: none;">
+            <p><strong>Proveedor:</strong> <span id="orden-proveedor"></span></p>
+            <p><strong>Producto:</strong> <span id="orden-producto"></span></p>
+            <p><strong>Cantidad:</strong> <span id="orden-cantidad"></span></p>
+            <p><strong>Fecha de Recepción:</strong> <span id="orden-fecha"></span></p>
+        </div>
+    </section>
+
+
+    <script src="/static/js/GestionYCompras.js"></script>
+</body>
+</html>
