@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tienda_veterinaria',
         'USER': 'root',
-        'PASSWORD': '121256.juandv',
+        'PASSWORD': '1018230592',
         'HOST': 'localhost',
         'PORT': '3306',
     }
