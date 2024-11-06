@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="../static/css/recuperar.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Recuperar Contraseña</h1>
+    <img src="../static/images/ImagenProyecto.png" alt="Imagen del proyecto" class="project-image">
+    <div class="form-group">
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" placeholder="Ingresa tu DNI">
+    </div>
+    <div class="note">*Seleccione una pregunta y brinde la respuesta correcta.</div>
+    <div class="form-group">
+        <label for="pregunta">Pregunta:</label>
+        <select id="pregunta">
+            <option>¿Nombre de tu primera mascota?</option>
+            <option>¿Lugar dónde fuiste al colegio?</option>
+            <option>¿En qué ciudad naciste?</option>
+            <option>¿Cómo se llama tu equipo favorito?</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="respuesta">Respuesta:</label>
+        <input type="text" id="respuesta" placeholder="Ingresa tu respuesta">
+    </div>
+    <div class="form-group">
+        <label for="nueva-password">Nueva Contraseña:</label>
+        <input type="password" id="nueva-password" placeholder="Ingresa la nueva contraseña">
+    </div>
+    <div class="form-group">
+        <label for="repetir-password">Repetir Contraseña:</label>
+        <input type="password" id="repetir-password" placeholder="Repite la nueva contraseña">
+    </div>
+    <div class="buttons">
+        <button onclick="recoverPassword()" class="btn-recover">Recuperar</button>
+        <button id="cancelarButton" class="btn-cancel">Cancelar</button>
+    </div>
+</div>
+
+<script src="../static/js/recuperar.js"></script>
+</body>
+</html>
