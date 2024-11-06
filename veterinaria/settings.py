@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuario',
     'tienda',
+    'dashboard_admin',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'veterinaria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'TiendaVeterinaria',
+        'NAME': 'tienda_veterinaria',
         'USER': 'root',
         'PASSWORD': '1018230592',
         'HOST': 'localhost',
