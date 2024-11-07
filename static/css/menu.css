@@ -26,68 +26,6 @@ a {
   text-decoration: none;
 }
 
-/* Estilo de la barra lateral */
-.sidebar {
-  width: 250px;
-  background-color: #1a743f; /* Verde veterinaria */
-  color: white;
-  padding: 20px;
-  position: fixed;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  right: -250px; /* Ocultamos la barra lateral por defecto a la derecha */
-  transition: right 0.3s ease;
-}
-
-/* Estilo del botón de toggle */
-.toggle-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 20px;
-  right: 20px; /* Mover el botón a la derecha */
-  font-size: 30px;
-  background-color: #1a743f;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 1000; /* Para que el botón esté encima de la barra lateral */
-  transition: background-color 0.3s;
-  width: 50px;
-}
-
-.toggle-btn.close {
-  right: 40;
-  top: 0;
-  font-size: 15px;
-  background-color: none;
-  padding: 0;
-  width: 0;
-  font-weight: bold;
-}
-
-.toggle-btn.close:hover {
-  transform: scale(1.1);
-}
-
-.toggle-btn:hover {
-  background-color: #39a165;
-}
-
-/* Menú de la barra lateral */
-.welcome-message {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 40px;
-  text-align: center;
-}
-
 .menu {
   list-style-type: none;
   padding: 0;
@@ -113,28 +51,24 @@ a {
   transform: scale(1.1);
 }
 
-/* Estilo para la sección principal */
 .main-content {
-  margin: auto; /* Elimina el margen derecho para centrar mejor */
+  margin: auto;
   padding: 20px;
   flex-grow: 1;
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  flex-direction: column; /* Mantiene la dirección vertical */
-  align-items: center; /* Centra horizontalmente el contenido dentro de la columna */
-  height: calc(
-    100vh - 100px
-  ); /* Ajusta la altura según sea necesario, restando el tamaño del encabezado */
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 100px);
 }
 
-/* Estilo del contenido principal */
 .info {
   text-align: center;
   background-size: cover;
   padding: 25px;
   border-radius: 10px;
   position: relative;
-  margin-bottom: 20px; /* Espacio abajo */
+  margin-bottom: 20px;
 }
 
 .info h1 {
@@ -148,19 +82,17 @@ a {
   color: #666;
 }
 
-/* Estilo de los botones en la sección principal */
-
 .btn {
-  margin: 10px; /* Espacio entre los botones */
-  padding: 12px 25px; /* Relleno dentro de los botones */
-  background-color: #1a743f; /* Color de fondo de los botones */
-  color: white; /* Color del texto de los botones */
-  border: none; /* Sin borde */
-  border-radius: 30px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  font-size: 16px; /* Tamaño de fuente */
-  text-transform: uppercase; /* Texto en mayúsculas */
-  transition: background-color 0.3s, transform 0.3s; /* Transición suave */
+  margin: 10px;
+  padding: 12px 25px;
+  background-color: #1a743f;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn a {
@@ -169,16 +101,15 @@ a {
 }
 
 .btn:hover {
-  transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+  transform: scale(1.05);
 }
 
-/* Estilo del footer */
 .references {
-  background-color: #ffffff; /* Fondo blanco para el footer */
+  background-color: #ffffff;
   padding: 20px;
   text-align: center;
-  margin-top: auto; /* Coloca el footer al final de la página */
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior del footer */
+  margin-top: auto;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .references h2 {
@@ -190,8 +121,6 @@ a {
   font-size: 16px;
   color: #666;
 }
-/* Estilo del encabezado */
-/* Estilo del encabezado */
 
 /* Estilo del contenedor del logo */
 .logo-container {
@@ -220,18 +149,6 @@ button {
   cursor: pointer;
   border-radius: 90px;
 }
-.btn-togleus {
-  width: 85px;
-  height: 85px;
-  padding: auto;
-  cursor: pointer;
-  border-radius: 90px;
-  transition: all 0.3s ease;
-}
-
-.btn-togleus:hover {
-  transform: scale(1.1);
-}
 
 img {
   width: 100%; /* Ajusta el ancho al 100% del contenedor */
@@ -245,63 +162,9 @@ img {
 .columna {
   color: black;
   display: flex;
-  flex-direction: column; /* Coloca los elementos en una columna */
+  flex-direction: column;
   position: absolute;
   top: 0;
   left: 0;
-  padding: 10px; /* Ajusta el espacio alrededor de los divs */
-}
-.infusuario {
-  position: fixed; /* Fija la posición */
-  top: 0; /* Alineado al borde superior */
-  left: 0; /* Alineado al borde izquierdo */
-  width: 250px; /* Ancho del div */
-  height: 100%; /* Altura completa de la pantalla */
-  color: white; /* Color del texto */
-  padding: 20px; /* Espaciado interno */
-}
-.perfilU {
-  border-radius: 50px;
-}
-.seccion-perfilU {
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #1a743f;
-}
-
-.seccion-perfilU-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 10px;
-  font-size: 16px;
-  color: #1a743f;
-}
-
-.seccion-perfilU-info p {
-  font-size: 12px;
-  color: #1a743f;
-  font-weight: 700;
-}
-
-.seccion-perfilU-info button {
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.seccion-perfilU-info button:hover {
-  background-color: #1a743f;
-  color: white;
-}
-
-.seccion-perfilU.hidden {
-  display: none;
+  padding: 10px;
 }

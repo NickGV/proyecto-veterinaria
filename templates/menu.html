@@ -1,70 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clínica Veterinaria</title>
-    <link rel="stylesheet" href="/static/css/menu.css" />
-    <link rel="stylesheet" href="/static/css/globals.css">
-  </head>
-  <body>
-    <!-- Botón para abrir/cerrar la barra lateral -->
-
-    <button class="toggle-btn" onclick="toggleSidebar()">
-      <span> ☰ </span>
-    </button>
-
-    <div class="sidebar">
-      <div class="welcome-message">Bienvenido a la tienda Veterinaria</div>
-      <ul class="menu">
-        <li><a href="{% url 'login' %}">Iniciar sesión </a></li>
-        <li><a href="{% url 'registro'%}">Registrarse </a></li>
-        <li><a href="{% url 'acercaC' %}">Acerca de la clínica</a></li>
-      </ul>
-    </div>
-
-    <div class="main-content">
-      <header class="header">
-        <section class="info">
-          <div class="logo-container">
-            <img
-              src="/static/images/Sonrisas y patitas logo.jfif"
-              alt="Logo de la Veterinaria"
-              class="logo"
-            />
-          </div>
-          <h1>Bienvenidos a la Clínica Veterinaria SONRISAS Y PATITAS</h1>
-          <p>
-            Nos dedicamos a cuidar a tus mascotas con mucho amor y
-            profesionalismo.
-          </p>
-        </section>
-      </header>
-
-      <button class="btn">
-        <a href="{% url 'tienda' %}">Tienda</a>
-      </button>
-    </div>
-    <!-- Botón de información del usuario -->
-    <div id="infusuario" class="infusuario">
-      <button onclick="toggleInfo()" class="btn-togleus">
-        <img
-          src="/static/images/icono-usuario-con-mascotas.png"
-          alt="Perfil Usuario"
-        />
-      </button>
-      <section id="inf-user" class="seccion-perfilU hidden">
-        <div id="info" class="seccion-perfilU-info hidden">
-          <h1>Perfil de cliente</h1>
-          <label>NomUsuario Apellido</label>
-          <p>correoUsuario123.@ejemplo.com</p>
-          <button>
-            <a href="{% url 'editar_perfilU' %}">Editar perfil</a>
-          </button>
-          <button>Historial de compras</button>
-        </div>
-      </section>
-    </div>
-    <script src="/static/js/menu.js"></script>
-  </body>
-</html>
+{% extends 'base.html' %} {% load static %} {%block extra_css %}
+<link rel="stylesheet" href="/static/css/menu.css" />
+{% endblock %} {% block content %}
+<section class="info">
+  <div class="logo-container">
+    <img
+      src="/static/images/Sonrisas y patitas logo.jfif"
+      alt="Logo de la Veterinaria"
+      class="logo"
+    />
+  </div>
+  <h1>Bienvenidos a la Clínica Veterinaria SONRISAS Y PATITAS</h1>
+  <p>Nos dedicamos a cuidar a tus mascotas con mucho amor y profesionalismo.</p>
+</section>
+{% endblock %} {% block extra_js %}
+<script src="/static/js/menu.js"></script>
+{% endblock %}
