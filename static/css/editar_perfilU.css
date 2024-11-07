@@ -47,6 +47,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align:center;
 }
 
 /* Estilos de los labels */
@@ -74,15 +75,13 @@ textarea {
   height: 100px;
 }
 
-/* Contenedor de botones */
-.botones {
+.boton-editar {
+  background-color: green;
+  color: white;
   display: flex;
-  justify-content: space-between;
-}
-
-/* Estilo de los botones */
-.buton-registrar,
-.boton-limpiar {
+  margin: auto;
+  padding:8px;
+  border-radius:5%;
   padding: 10px 15px;
   font-size: 16px;
   border: none;
@@ -90,19 +89,9 @@ textarea {
   cursor: pointer;
   width: 30%;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  justify-content:center;
 }
 
-/* Botón de registrar (verde) */
-.boton-registrar {
-  background-color: green;
-  color: white;
-}
-
-/* Botón de limpiar (gris) */
-.boton-limpiar {
-  background-color: gray;
-  color: white;
-}
 
 /* Estilo del botón de cerrar */
 .boton-cerrar {
@@ -118,6 +107,7 @@ textarea {
 
 .boton-cerrar:hover a {
   color: red;
+  transform: scale(1.1);
 }
 
 .boton-cerrar {
@@ -127,8 +117,19 @@ textarea {
 }
 
 /* Hover en los botones */
-.button-registrar:hover,
-.boton-limpiar:hover {
+.button-editar:hover{
   opacity: 0.9;
   transform: translateY(-2px);
+}
+
+.image-container-edit {
+  margin-bottom: 10px;
+  text-align:center;
+} 
+
+.image-edit{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
 }

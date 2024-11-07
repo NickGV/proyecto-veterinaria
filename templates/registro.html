@@ -10,15 +10,15 @@
   </head>
   <body>
     <div class="container">
-      <h1>Registro de Clientes - Veterinaria</h1>
+      <h1>Registro</h1>
+
+      <div class="image-container-register">
+        <img src="/static/images/Sonrisas y patitas logo.jfif" alt="Imagen Proyecto" class="image-register">
+      </div>
+
       <form action="/registrar" method="POST">
         <label for="nombre_completo">Nombre completo:</label>
-        <input
-          type="text"
-          id="nombre_completo"
-          name="nombre_completo"
-          required
-        />
+        <input type="text" id="nombre_completo" name="nombre_completo" required/>
 
         <label for="correo">Correo electrónico:</label>
         <input type="email" id="correo" name="correo" required />
@@ -30,17 +30,12 @@
         <input type="password" id="password" name="password" required />
 
         <label for="repetir_password">Repetir Contraseña:</label>
-        <input
-          type="password"
-          id="repetir_password"
-          name="repetir_password"
-          required
-        />
+        <input type="password" id="repetir_password" name="repetir_password" required/>
 
         <div class="botones">
           <button type="submit" class="boton-registrar">REGISTRAR</button>
-          <button type="reset" class="boton-limpiar">LIMPIAR</button>
         </div>
+        
       </form>
       <button class="boton-cerrar"><a href="{% url 'menu' %}'">✖</a></button>
     </div>

@@ -26,16 +26,6 @@ h1 {
   font-weight: bold;
 }
 
-.image-container {
-  margin-bottom: 20px;
-}
-
-.image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
 label {
   display: block;
   margin-top: 10px;
