@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clínica Veterinaria</title>
     <link rel="stylesheet" href="/static/css/navbar.css" />
+    <link rel="stylesheet" href="/static/css/globals.css" />
     {% block extra_css %}{% endblock %}
   </head>
   <body>
     <div class="navbar">
       <div class="left">
-        <img
-          src="/static/images/Sonrisas y patitas logo.jfif"
-          alt="Logo de la tienda"
-          class="navbar__logo"
-        />
+        <a href="{% url 'menu' %}">
+          <img
+            src="/static/images/Sonrisas y patitas logo.jfif"
+            alt="Logo de la tienda"
+            class="navbar__logo"
+          />
+        </a>
       </div>
       <div class="center">
         <a href="{% url 'tienda' %}">Tienda</a>
