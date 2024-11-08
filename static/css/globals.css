@@ -6,9 +6,13 @@
 
 html,
 body {
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background-color: rgb(23, 23, 23);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    rgb(23, 23, 23),
+    rgb(20, 20, 20)
+  );
 }
 
 img {
@@ -37,6 +41,13 @@ textarea {
   font-size: inherit;
 }
 
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80%;
+}
+
 .navbar {
   display: flex;
   justify-content: space-evenly;
@@ -45,7 +56,7 @@ textarea {
   padding: 10px;
 }
 
-.navbar a {
+.nav-link {
   color: white;
   padding: 14px 20px;
   text-decoration: none;
@@ -54,7 +65,7 @@ textarea {
   border-radius: 5px;
 }
 
-.navbar a:hover {
+.nav-link:hover {
   background-color: #4caf50;
 }
 
@@ -69,6 +80,7 @@ textarea {
   flex-grow: 1;
   justify-content: center;
   gap: 10px;
+  margin-left: 8rem;
 }
 
 .navbar .right {
@@ -120,6 +132,7 @@ textarea {
   width: 250px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  padding: 1rem;
 }
 
 .seccion-perfilU-info {

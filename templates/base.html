@@ -20,12 +20,13 @@
         </a>
       </div>
       <div class="center">
-        <a href="{% url 'tienda' %}">Tienda</a>
-        <a href="{% url 'acercaC' %}">Acerca de</a>
+        <a href="{% url 'menu' %}" class="nav-link">Inicio</a>
+        <a href="{% url 'tienda' %}" class="nav-link">Tienda</a>
+        <a href="{% url 'acercaC' %}" class="nav-link">Acerca de</a>
       </div>
       <div class="right">
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'registro'%}">Registro</a>
+        <a href="{% url 'login' %}" class="nav-link">Login</a>
+        <a href="{% url 'registro'%}" class="nav-link">Registro</a>
         <div id="infusuario" class="infusuario">
           <button onclick="toggleInfo()" class="btn-togleus">
             <img
@@ -50,9 +51,9 @@
       </div>
     </div>
 
-    <div>{% block content %}{% endblock %}</div>
+    <main>{% block content %}{% endblock %}</main>
 
-    <script src="{% static '/js/menu.js' %}"></script>
+    <script src="{% static '/js/global.js' %}"></script>
     {% block extra_js %}{% endblock %}
   </body>
 </html>
