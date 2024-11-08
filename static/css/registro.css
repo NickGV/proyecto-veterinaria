@@ -70,6 +70,7 @@ textarea {
   color: white;
   display: flex;
   margin: auto;
+  justify-content: center;
 }
 
 .boton-cerrar {
@@ -78,16 +79,17 @@ textarea {
   right: 10px;
   background: none;
   border: none;
-  color: white;
+  color: red;
   font-size: 24px;
   cursor: pointer;
   padding: 0;
   width: auto;
   height: auto;
+  transition: all 0.3s ease;
 }
 
 .boton-cerrar:hover a {
-  color: red;
+  transform: scale(1.1);
 }
 
 .boton-registrar:hover {

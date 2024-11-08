@@ -23,6 +23,7 @@ img {
 a {
   text-decoration: none;
   color: inherit;
+  background-color: inherit;
 }
 
 ul,
@@ -33,6 +34,12 @@ ol {
 button {
   cursor: pointer;
   border: none;
+}
+
+a button {
+  background-color: transparent;
+  color: inherit;
+  font-size: inherit;
 }
 
 input,
@@ -157,7 +164,7 @@ main {
   gap: 0.5rem;
 }
 
-.seccion-perfilU-info button {
+.user-button {
   width: 50%;
   border: none;
   cursor: pointer;
@@ -170,10 +177,28 @@ main {
   font-size: 16px;
 }
 
-.seccion-perfilU-info button:hover {
+.user-button:hover {
   background-color: #45a049;
 }
 
 .seccion-perfilU.hidden {
   display: none;
+}
+
+.logout-btn,
+.admin-btn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.logout-btn:hover,
+.admin-btn:hover {
+  background-color: #e65a50;
 }

@@ -1,89 +1,91 @@
 .container {
-    display:flex;
-    flex-direction:column;
-    width: 400px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align:center;
-    justify-content:center;
-    align-items:center;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-h1 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom:10px;
-    margin-top:20px;
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .form-group {
-    margin: 10px 0;
-    text-align: center;
+  margin: 10px 0;
+  text-align: center;
 }
 
 .form-group label {
-    font-size: 13px;
-    font-weight: bold;
-    color: #333;
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
 }
 
-.form-group input, .form-group select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .note {
-    color: blue;
-    font-size: 12px;
+  color: blue;
+  font-size: 12px;
 }
 
 .btn-recover {
-    background-color: green;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 13px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width:30%;
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 30%;
 }
 
 .boton-cerrar {
-    background-color: red;
+  background-color: red;
 }
 .image-container-recuperar {
   margin-bottom: 10px;
-} 
+}
 
-.image-recuperar{
+.image-recuperar {
   width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
 }
 .boton-cerrar {
-    top: 0; 
-    right: 0; 
-    background: none;
-    border: none;
-    color: white; 
-    font-size: 24px;
-    cursor: pointer;
-    padding: 0; 
-    width: auto;
-    height: auto; 
-    position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: red;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: auto;
+  height: auto;
+  position: absolute;
+  transition: all 0.3s ease;
 }
 .boton-cerrar:hover a {
-    color: red;
+  transform: scale(1.1);
 }

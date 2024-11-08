@@ -8,7 +8,7 @@
 {%block content%}
 <div>
     <div class="container">
-        <h1>INICIAR SESIÓN</h1>
+        <h1 class="title">INICIAR SESIÓN</h1>
 
         <div class="image-container">
             <img src="{% static '/images/Sonrisas y patitas logo.jfif' %}" alt="Imagen Proyecto" class="image">
@@ -22,12 +22,16 @@
             <input type="password" id="password" name="password" required>
 
             <button type="button" id="ingresarButton" class="button green">INGRESAR</button>
-            <button type="button" id="registrarButton" class="button blue">REGISTRAR</button>
-        
+            <a href="{% url 'registro' %}">
+                <button type="button" id="registrarButton" class="button blue">REGISTRAR</button>
+            </a>
         </form>
 
         <p class="forgot-password">⬇ ¿Olvidó su contraseña? ⬇</p>
-        <button  type="button" id="recuperarButton" class="button gray"><a href="{% url 'recuperar' %}">RECUPERAR CONTRASEÑA</a><button/>
+        <a href="{% url 'recuperar' %}">
+        <button  type="button" id="recuperarButton" class="button gray">RECUPERAR CONTRASEÑA<button/></a>
+        <a href="{% url 'menu' %}" class="boton-cerrar"><button>✖</button></a>
+            
     </div>
 </div>   
 

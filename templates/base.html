@@ -37,14 +37,20 @@
           <section id="inf-user" class="seccion-perfilU">
             <div id="info" class="seccion-perfilU-info">
               <h1>Perfil de cliente</h1>
-              <label>NomUsuario Apellido</label>
+              <p>NomUsuario Apellido</p>
               <p>correoUsuario123.@ejemplo.com</p>
               <div class="user-buttons">
-                <button>
-                  <a href="{% url 'editar_perfilU' %}">Editar</a>
-                </button>
-                <button>compras</button>
+                <a href="{% url 'editar_perfilU' %}" class="user-button">
+                  <button>Editar</button>
+                </a>
+                <button class="user-button">compras</button>
               </div>
+              <a href="{% url 'menu' %}">
+                <button class="logout-btn">Cerrar Sesión</button>
+              </a>
+              <a href="{% url 'modulo_admin' %}">
+                <button class="admin-btn">modulo admin</button>
+              </a>
             </div>
           </section>
         </div>
