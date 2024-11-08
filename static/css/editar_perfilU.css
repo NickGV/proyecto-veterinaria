@@ -1,26 +1,3 @@
-/* General */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Estilos del body */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-/* Contenedor del formulario */
 .container {
   background-color: white;
   padding: 20px;
@@ -29,12 +6,11 @@ a {
   width: 100%;
   max-width: 500px;
   margin: 20px;
-  max-height: 80vh; /* Altura máxima */
-  overflow-y: auto; /* Habilitar scroll vertical */
+  max-height: 80vh;
+  overflow-y: auto; 
   position: relative;
 }
 
-/* Título */
 h1 {
   text-align: center;
   margin-bottom: 20px;
@@ -42,7 +18,6 @@ h1 {
   font-size: 24px;
 }
 
-/* Estilos del formulario */
 form {
   display: flex;
   flex-direction: column;
@@ -50,13 +25,11 @@ form {
   text-align:center;
 }
 
-/* Estilos de los labels */
 label {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* Estilo de los campos de input, select, y textarea */
 input,
 select,
 textarea {
@@ -70,7 +43,6 @@ textarea {
   align-self: center;
 }
 
-/* Estilo del textarea */
 textarea {
   height: 100px;
 }
@@ -93,16 +65,15 @@ textarea {
 }
 
 
-/* Estilo del botón de cerrar */
 .boton-cerrar {
-  position: absolute; /* Posicionamiento absoluto */
-  top: 10px; /* Espaciado desde la parte superior */
-  right: 10px; /* Espaciado desde la derecha */
-  background: none; /* Sin fondo */
-  border: none; /* Sin borde */
-  color: red; /* Color de la X */
-  font-size: 24px; /* Tamaño de la X */
-  cursor: pointer; /* Cambiar cursor al pasar */
+  position: absolute; 
+  top: 10px; 
+  right: 10px;
+  background: none; 
+  border: none;
+  color: red; 
+  font-size: 24px; 
+  cursor: pointer; 
 }
 
 .boton-cerrar:hover a {
@@ -111,12 +82,11 @@ textarea {
 }
 
 .boton-cerrar {
-  padding: 0; /* Sin padding */
-  width: auto; /* Ancho automático */
-  height: auto; /* Alto automático */
+  padding: 0; 
+  width: auto; 
+  height: auto; 
 }
 
-/* Hover en los botones */
 .button-editar:hover{
   opacity: 0.9;
   transform: translateY(-2px);

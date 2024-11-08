@@ -2,7 +2,7 @@
 {% load static %}
  
 {% block extra_css %}
-<link rel="stylesheet" href="/static/css/hisCompras.css">
+<link rel="stylesheet" href="{% static '/css/hisCompras.css' %}">
 {% endblock %}
 {%block content%}
 <div>
@@ -101,7 +101,7 @@
 {% endblock %} 
 
 {% block extra_js %}
-<script src="/static/js/hisCompras.js"></script>
+<script src="{% static '/js/hisCompras.js' %}"></script>
 
 {% endblock %}
 

@@ -1,21 +1,3 @@
-/* General */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Estilos del body */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #1a743f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-/* Contenedor del formulario */
 .container {
   background-color: white;
   padding: 20px;
@@ -24,14 +6,12 @@ body {
   width: 100%;
   max-width: 500px;
   margin: 20px;
-  max-height: 80vh; /* Altura máxima */
-  overflow-y: auto; /* Habilitar scroll vertical */
   position: relative;
   text-align: center;
 }
 .image-container-register {
   margin-bottom: 10px;
-} 
+}
 
 .image-register {
   width: 100px;
@@ -40,29 +20,24 @@ body {
   border-radius: 50%;
 }
 
-
-/* Título */
-h1 {
+.registro-title {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
   font-size: 24px;
 }
 
-/* Estilos del formulario */
-form {
+.registro-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* Estilos de los labels */
 label {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* Estilo de los campos de input, select, y textarea */
 input,
 select,
 textarea {
@@ -76,13 +51,11 @@ textarea {
   align-self: center;
 }
 
-/* Estilo del textarea */
 textarea {
   height: 100px;
 }
 
-/* Estilo de los botones */
-button {
+.boton-registrar {
   padding: 10px 15px;
   font-size: 16px;
   border: none;
@@ -92,35 +65,34 @@ button {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Botón de registrar (verde) */
 .boton-registrar {
   background-color: green;
   color: white;
   display: flex;
-  margin:auto;
+  margin: auto;
+  justify-content: center;
 }
 
 .boton-cerrar {
-  position: absolute; /* Posicionamiento absoluto */
-  top: 10px; /* Espaciado desde la parte superior */
-  right: 10px; /* Espaciado desde la derecha */
-  background: none; /* Sin fondo */
-  border: none; /* Sin borde */
-  color: red; /* Color de la X */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: red;
   font-size: 24px;
   cursor: pointer;
-  padding: 0; /* Sin padding */
-  width: auto; /* Ancho automático */
-  height: auto; /* Alto automático */
+  padding: 0;
+  width: auto;
+  height: auto;
+  transition: all 0.3s ease;
 }
 
 .boton-cerrar:hover a {
-  color: red;
+  transform: scale(1.1);
 }
 
-
-/* Hover en los botones */
-button:hover {
+.boton-registrar:hover {
   opacity: 0.9;
   transform: translateY(-2px);
 }

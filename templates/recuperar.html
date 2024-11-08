@@ -1,64 +1,65 @@
-{% extends 'base.html' %}
-{% load static %}
- 
-{% block extra_css %}
-<link rel="stylesheet" href="/static/css/recuperar.css">
-<link rel="stylesheet" href="/static/css/globals.css">
-{% endblock %}
-{%block content%}
+{% extends 'base.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static '/css/recuperar.css' %}" />
+{% endblock %} {%block content%}
 <div>
-    <div class="container">
-        <h1>Recuperar Contraseña</h1>
+  <div class="container">
+    <h1 class="title">Recuperar Contraseña</h1>
 
-        <div class="image-container-recuperar">
-            <img src="/static/images/Sonrisas y patitas logo.jfif" alt="Imagen Proyecto" class="image-recuperar">
-        </div>
-
-        <div class="form-group">
-            <label for="dni">Identificación</label>
-            <input type="text" id="dni" placeholder="Ingresa tu DNI">
-        </div>
-
-        <div class="note">*Seleccione una pregunta y brinde la respuesta correcta.</div>
-        <div class="form-group">
-            <label for="pregunta">Pregunta:</label>
-            <select id="pregunta">
-                <option>¿Nombre de tu primera mascota?</option>
-                <option>¿Lugar dónde fuiste al colegio?</option>
-                <option>¿En qué ciudad naciste?</option>
-                <option>¿Cómo se llama tu equipo favorito?</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="respuesta">Respuesta:</label>
-            <input type="text" id="respuesta" placeholder="Ingresa tu respuesta">
-        </div>
-
-        <div class="form-group">
-            <label for="nueva-password">Nueva Contraseña:</label>
-            <input type="password" id="nueva-password" placeholder="Ingresa la nueva contraseña">
-        </div>
-
-        <div class="form-group">
-            <label for="repetir-password">Repetir Contraseña:</label>
-            <input type="password" id="repetir-password" placeholder="Repite la nueva contraseña">
-        </div>
-
-        <button onclick="recoverPassword()" class="btn-recover">Recuperar</button>
-        <button class="boton-cerrar"><a href="{% url 'menu' %}'">✖</a></button>
+    <div class="image-container-recuperar">
+      <img
+        src="{% static '/images/Sonrisas y patitas logo.jfif' %}"
+        alt="Imagen Proyecto"
+        class="image-recuperar"
+      />
     </div>
+
+    <div class="form-group">
+      <label for="dni">Identificación</label>
+      <input type="text" id="dni" placeholder="Ingresa tu DNI" />
+    </div>
+
+    <div class="note">
+      *Seleccione una pregunta y brinde la respuesta correcta.
+    </div>
+    <div class="form-group">
+      <label for="pregunta">Pregunta:</label>
+      <select id="pregunta">
+        <option>¿Nombre de tu primera mascota?</option>
+        <option>¿Lugar dónde fuiste al colegio?</option>
+        <option>¿En qué ciudad naciste?</option>
+        <option>¿Cómo se llama tu equipo favorito?</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="respuesta">Respuesta:</label>
+      <input type="text" id="respuesta" placeholder="Ingresa tu respuesta" />
+    </div>
+
+    <div class="form-group">
+      <label for="nueva-password">Nueva Contraseña:</label>
+      <input
+        type="password"
+        id="nueva-password"
+        placeholder="Ingresa la nueva contraseña"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="repetir-password">Repetir Contraseña:</label>
+      <input
+        type="password"
+        id="repetir-password"
+        placeholder="Repite la nueva contraseña"
+      />
+    </div>
+
+    <button onclick="recoverPassword()" class="btn-recover">Recuperar</button>
+    <a href="{% url 'menu' %}" class="boton-cerrar"><button>✖</button></a>
+  </div>
 </div>
 
-{% endblock %} 
-
-{% block extra_js %}
-<script src="/static/js/recuperar.js"></script>
+{% endblock %} {% block extra_js %}
+<script src="{% static '/js/recuperar.js' %}"></script>
 
 {% endblock %}
-
-
-
-
-
-

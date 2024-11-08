@@ -6,9 +6,13 @@
 
 html,
 body {
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background-color: rgb(23, 23, 23);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    rgb(23, 23, 23),
+    rgb(20, 20, 20)
+  );
 }
 
 img {
@@ -19,6 +23,7 @@ img {
 a {
   text-decoration: none;
   color: inherit;
+  background-color: inherit;
 }
 
 ul,
@@ -31,10 +36,23 @@ button {
   border: none;
 }
 
+a button {
+  background-color: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
 input,
 textarea {
   font-family: inherit;
   font-size: inherit;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80%;
 }
 
 .navbar {
@@ -45,7 +63,7 @@ textarea {
   padding: 10px;
 }
 
-.navbar a {
+.nav-link {
   color: white;
   padding: 14px 20px;
   text-decoration: none;
@@ -54,7 +72,7 @@ textarea {
   border-radius: 5px;
 }
 
-.navbar a:hover {
+.nav-link:hover {
   background-color: #4caf50;
 }
 
@@ -69,6 +87,7 @@ textarea {
   flex-grow: 1;
   justify-content: center;
   gap: 10px;
+  margin-left: 8rem;
 }
 
 .navbar .right {
@@ -120,6 +139,7 @@ textarea {
   width: 250px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  padding: 1rem;
 }
 
 .seccion-perfilU-info {
@@ -144,7 +164,7 @@ textarea {
   gap: 0.5rem;
 }
 
-.seccion-perfilU-info button {
+.user-button {
   width: 50%;
   border: none;
   cursor: pointer;
@@ -157,10 +177,28 @@ textarea {
   font-size: 16px;
 }
 
-.seccion-perfilU-info button:hover {
+.user-button:hover {
   background-color: #45a049;
 }
 
 .seccion-perfilU.hidden {
   display: none;
+}
+
+.logout-btn,
+.admin-btn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.logout-btn:hover,
+.admin-btn:hover {
+  background-color: #e65a50;
 }

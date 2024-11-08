@@ -1,59 +1,52 @@
-{% extends 'base.html' %}
-{% load static %}
- 
-{% block extra_css %}
-<link rel="stylesheet" href="/static/css/GestionUsuarios.css">
-{% endblock %}
-{%block content%}
+{% extends 'base.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static '/css/GestionUsuarios.css' %}" />
+{% endblock %} {%block content%}
 <div>
-    <h1>Gestión de Usuarios</h1>
+  <h1>Gestión de Usuarios</h1>
 
-    <section class="contenedor">
-        <!-- Registro de usuarios -->
-        <div class="registro">
-            <h2 class="titulo-seccion">Registro de Usuario</h2>
-            <form id="form-usuarios">
-                <label for="nombre">Nombre Completo:</label>
-                <input type="text" id="nombre" name="nombre" required>
+  <section class="contenedor">
+    <!-- Registro de usuarios -->
+    <div class="registro">
+      <h2 class="titulo-seccion">Registro de Usuario</h2>
+      <form id="form-usuarios">
+        <label for="nombre">Nombre Completo:</label>
+        <input type="text" id="nombre" name="nombre" required />
 
-                <label for="correo">Correo Electrónico:</label>
-                <input type="email" id="correo" name="correo" required>
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required />
 
-                <button type="submit">Registrar Usuario</button>
-            </form>
-        </div>
-
-        <!-- Tabla de usuarios -->
-        <div class="usuarios">
-            <h2 class="titulo-seccion">Lista de Usuarios</h2>
-            <table id="tabla-usuarios">
-                <thead>
-                    <tr>
-                        <th>Nombre Completo</th>
-                        <th>Correo</th>
-                        <th>Historial de Compras</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Filas de usuarios se insertarán aquí -->
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Botón de Volver -->
-    <div class="boton-volver">
-        <button onclick="volverAlMenu()">Volver al Menú Principal</button>
+        <button type="submit">Registrar Usuario</button>
+      </form>
     </div>
+
+    <!-- Tabla de usuarios -->
+    <div class="usuarios">
+      <h2 class="titulo-seccion">Lista de Usuarios</h2>
+      <table id="tabla-usuarios">
+        <thead>
+          <tr>
+            <th>Nombre Completo</th>
+            <th>Correo</th>
+            <th>Historial de Compras</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filas de usuarios se insertarán aquí -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Botón de Volver -->
+  <div class="boton-volver">
+    <a href="{% url 'menu' %}">
+      <button>Volver al Menú Principal</button>
+    </a>
+  </div>
 </div>
 
-{% endblock %} 
-
-{% block extra_js %}
-<script src="/static/js/GestionUsuarios.js"></script>
+{% endblock %} {% block extra_js %}
+<script src="{% static '/js/GestionUsuarios.js' %}"></script>
 
 {% endblock %}
-
-
-

@@ -1,32 +1,29 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block extra_css %}
-<link rel="stylesheet" href='/static/css/moduloadmin.css'>
-<link rel="stylesheet" href="/static/css/globals.css">
-{% endblock %}
-{%block content%}
+{% extends 'base.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static '/css/moduloadmin.css' %}" />
+<link rel="stylesheet" href="{% static '/css/globals.css' %}" />
+{% endblock %} {%block content%}
 <div>
-    <section>
-        <label>dashboard administrativo</label>
-    </section>
-    <div>
-        <button onclick="inventario()">inventario</button>
-        <button onclick="hisVentas()">historial de ventas</button>
-        <button onclick="hisCompras()">historial de compras</button>
-        <button >info clientes</button>
-        <button onclick="GestionUsuarios()">gestion de usuarios</button>
-    </div>
+  <header>
+    <h1>dashboard administrativo</h1>
+  </header>
+  <div class="container">
+    <a href="{% url 'inventario' %}" class="admin-buttons">
+      <button>inventario</button>
+    </a>
+    <a href="{% url 'hisVentas' %}" class="admin-buttons">
+      <button>historial de ventas</button>
+    </a>
+    <a href="{% url 'hisCompras' %}" class="admin-buttons">
+      <button>historial de compras</button>
+    </a>
+    <button class="admin-buttons">info clientes</button>
+    <a href="{% url 'GestionUsuarios' %}" class="admin-buttons">
+      <button>gestion de usuarios</button>
+    </a>
+  </div>
 </div>
 
-{% endblock %} 
-
-{% block extra_js %}
-<script src="/static/js/moduloadmin.js"></script>
+{% endblock %} {% block extra_js %}
+<script src="{% static '/js/moduloadmin.js' %}"></script>
 
 {% endblock %}
-
-
-
-
-

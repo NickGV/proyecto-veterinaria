@@ -1,82 +1,56 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0; /* Fondo general */
-}
-
 .main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: rgba(107, 142, 35, 0.2); /* Fondo verde militar tenue */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(106, 142, 35, 0.702);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 h2 {
-    margin-top: 30px;
-    color: #4a4a4a;
+  margin-top: 30px;
+  color: white;
 }
 
 p {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
+  color: #dcdcdc;
 }
 
 hr {
-    border: 0;
-    height: 2px;
-    background-image: linear-gradient(to right, rgba(107, 142, 35, 0.5), rgba(255, 255, 255, 0.5), rgba(107, 142, 35, 0.5));
-    border-radius: 5px;
-    margin: 20px 0;
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(
+    to right,
+    rgba(107, 142, 35, 0.5),
+    rgba(255, 255, 255, 0.5),
+    rgba(107, 142, 35, 0.5)
+  );
+  border-radius: 5px;
+  margin: 20px 0;
 }
 
 .header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .image-container {
-    width: 150px; /* Ajusta el tamaño según tu necesidad */
-    height: 150px; /* Igual que el ancho para mantener la forma circular */
-    border-radius: 50%; /* Hace que el contenedor sea circular */
-    overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
-    margin: 0 auto; /* Centra el contenedor en la página */
-    border: 3px solid white; /* Borde blanco alrededor */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el contenedor */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .header-image {
-    width: 100%; /* Asegúrate de que la imagen llene el contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-}
-
-button {
-    background-color: rgba(26, 131, 113, 0.8); /* Verde militar más tenue */
-    color: white; /* Color del texto del botón */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    display: block; /* Para que el margen funcione correctamente */
-    margin-left: auto; /* Centrar el botón */
-    margin-right: auto; /* Centrar el botón */
-}
-
-/* Añadir estilos para los enlaces */
-a {
-    color: #4CAF50; /* Color de los enlaces */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+  width: 100%;
+  height: auto;
 }
