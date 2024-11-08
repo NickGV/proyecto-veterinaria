@@ -2,8 +2,8 @@
 {% load static %}
  
 {% block extra_css %}
-<link rel="stylesheet" href="/static/css/tienda.css" />
-<link rel="stylesheet" href="/static/css/globals.css" />
+<link rel="stylesheet" href="{% static '/css/tienda.css' %}" />
+<link rel="stylesheet" href="{% static '/css/globals.css' %}" />
 {% endblock %}
 {%block content%}
 <div>
@@ -30,7 +30,7 @@
     <h2>Productos Disponibles</h2>
     <div class="product" data-categoria="perros">
       <img
-        src="/static/images/cepillo-para-perros-grandes-de-pelo-largo_1_g.jpeg"
+        src="{% static '/images/cepillo-para-perros-grandes-de-pelo-largo_1_g.jpeg' %}"
         alt="Producto 1"
       />
       <h3>Cepillo para perros</h3>
@@ -45,7 +45,7 @@
       </button>
     </div>
     <div class="product" data-categoria="gatos">
-      <img src="/static/images/petscar_2.png" alt="Producto 2" />
+      <img src="{% static '/images/petscar_2.png' %}" alt="Producto 2" />
       <h3>Comida para gato</h3>
       <p>$15.00</p>
       <button
@@ -58,7 +58,7 @@
       </button>
     </div>
     <div class="product" data-categoria="perros">
-      <img src="/static/images/petscar_2.png" alt="Producto 3" />
+      <img src="{% static '/images/petscar_2.png' %}" alt="Producto 3" />
       <h3>Comida para perro</h3>
       <p>$18.00</p>
       <button
@@ -71,7 +71,7 @@
       </button>
     </div>
     <div class="product" data-categoria="perros">
-      <img src="/static/images/petscar_2.png" alt="Producto 4" />
+      <img src="{% static '/images/petscar_2.png' %}" alt="Producto 4" />
       <h3>Juguete para perros</h3>
       <p>$18.00</p>
       <button
@@ -89,7 +89,7 @@
 {% endblock %} 
 
 {% block extra_js %}
-<script src="/static/js/tienda.js"></script>
+<script src="{% static '/js/tienda.js' %}"></script>
 
 {% endblock %}
 

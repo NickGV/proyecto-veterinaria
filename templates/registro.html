@@ -2,8 +2,8 @@
 {% load static %}
  
 {% block extra_css %}
-<link rel="stylesheet" href="/static/css/registro.css" />
-<link rel="stylesheet" href="/static/css/globals.css">
+<link rel="stylesheet" href="{% static '/css/registro.css' %}" />
+<link rel="stylesheet" href="{% static '/css/globals.css' %}">
 {% endblock %}
 {%block content%}
 <div>
@@ -11,7 +11,7 @@
     <h1>Registro</h1>
 
     <div class="image-container-register">
-      <img src="/static/images/Sonrisas y patitas logo.jfif" alt="Imagen Proyecto" class="image-register">
+      <img src="{% static '/images/Sonrisas y patitas logo.jfif' %}" alt="Imagen Proyecto" class="image-register">
     </div>
 
     <form action="/registrar" method="POST">
@@ -42,7 +42,7 @@
 {% endblock %} 
 
 {% block extra_js %}
-<script src="/static/js/registro.js"></script>
+<script src="{% static '/js/registro.js' %}"></script>
 
 {% endblock %}
 

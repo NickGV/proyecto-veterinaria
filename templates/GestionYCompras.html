@@ -3,7 +3,7 @@
 {% load static %}
  
 {% block extra_css %}
-<link rel="stylesheet" href="/static/css/GestionYCompras.css">
+<link rel="stylesheet" href="{% static '/css/GestionYCompras.css' %}">
 {% endblock %}
 {%block content%}
 <div>
@@ -80,7 +80,7 @@
 </div>
 {% endblock %} 
 {% block extra_js %}
-<script src="/static/js/GestionYCompras.js"></script>
+<script src="{% static '/js/GestionYCompras.js' %}"></script>
 {% endblock %}
 
 

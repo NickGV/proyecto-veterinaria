@@ -1,14 +1,14 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {%block extra_css %}
-<link rel="stylesheet" href="/static/css/menu.css" />
-<link rel="stylesheet" href="/static/css/globals.css">
+<link rel="stylesheet" href="{% static '/css/menu.css' %}" />
+<link rel="stylesheet" href="{% static '/css/globals.css' %}">
 {% endblock %} 
 {% block content %}
 <section class="info">
   <div class="logo-container">
     <img
-      src="/static/images/Sonrisas y patitas logo.jfif"
+      src="{% static '/images/Sonrisas y patitas logo.jfif' %}"
       alt="Logo de la Veterinaria"
       class="logo"
     />
@@ -18,5 +18,5 @@
 </section>
 {% endblock %} 
 {% block extra_js %}
-<script src="/static/js/menu.js"></script>
+<script src="{% static '/js/menu.js' %}"></script>
 {% endblock %}
