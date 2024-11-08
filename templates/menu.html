@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{%block extra_css %}
+<link rel="stylesheet" href="/static/css/menu.css" />
+<link rel="stylesheet" href="/static/css/globals.css">
+{% endblock %} 
+{% block content %}
+<section class="info">
+  <div class="logo-container">
+    <img
+      src="/static/images/Sonrisas y patitas logo.jfif"
+      alt="Logo de la Veterinaria"
+      class="logo"
+    />
+  </div>
+  <h1>Bienvenidos a la Clínica Veterinaria SONRISAS Y PATITAS</h1>
+  <p>Nos dedicamos a cuidar a tus mascotas con mucho amor y profesionalismo.</p>
+</section>
+{% endblock %} 
+{% block extra_js %}
+<script src="/static/js/menu.js"></script>
+{% endblock %}

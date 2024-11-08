@@ -1,0 +1,50 @@
+/* Estilos para ocultar el contenido */
+.hidden {
+    display: none;
+  }
+  
+  body {
+    font-family: Arial, sans-serif; /*cambia la fuente de la letra*/
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start; /*centra en el eje y*/
+    height: 50vh;
+    margin: 0;
+  }
+  button {
+    width: auto;
+    height: auto;
+    padding:auto;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50px;
+    height: auto;
+    justify-content: left;
+    background-color: #16f6c9;
+  }
+  .contenedor {
+    color: black;
+      width: auto; /* Ancho de cada div */
+      height: auto; /* Alto de cada div */
+      margin-bottom: 1px; /* Espacio entre los divs */
+      background-color: #135c44; /* Color de fondo (puedes cambiarlo) */
+      text-align: center;
+      line-height: 50px; /* Centra el texto verticalmente */
+      border: 1px solid #333; /* Bordes para los divs */
+  }
+
+  .columna {
+      color: black;
+      display: flex;
+      flex-direction: column; /* Coloca los elementos en una columna */
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px; /* Ajusta el espacio alrededor de los divs */
+  }
+  

@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/AcercaC.css" />
+{% endblock %} 
+{%block content%}
+
+<div class="main container">
+  <div class="header">
+    <div class="image-container">
+      <img
+        src="/static/images/Sonrisas y patitas logo.jfif"
+        alt="Imagen de la tienda"
+        class="header-image"
+      />
+    </div>
+  </div>
+  <h1>Acerca de nosotros!</h1>
+  <hr />
+  <h2>Misión</h2>
+  <p>
+    Somos una tienda veterinaria encargada de ofrecer los mejores productos para
+    el cuidado y la diversión de nuestros queridos amigos peludos. Nuestro
+    conocimiento sobre animales nos permite saber sus gustos y necesidades para
+    así ofrecer servicios de calidad a nuestros clientes y darles la
+    tranquilidad de tener una mascota feliz y sana.
+  </p>
+  <hr />
+  <h2>¿Dónde nos encontramos?</h2>
+  <p>Nos encontramos en el poblado calle 87 sur avenida 12</p>
+  <hr />
+  <h2>¿Cómo puedes contactarnos?</h2>
+  <p>
+    En Instagram como: @Sonrisas y patitas_oficial <br />
+    En Facebook como: @Sonrisas y patitasofi<br />
+    Teléfono: 2786757<br />
+    WhatsApp: 3145756798
+  </p>
+
+</div>
+{% endblock %} 
+{% block extra_js %}
+<scrip src="/static/js/AcercaC.js"></scrip>
+
+{% endblock %}

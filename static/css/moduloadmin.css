@@ -1,0 +1,114 @@
+/* Estilo global para el cuerpo de la página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: linear-gradient(135deg, #6f42c1, #007bff); /* Fondo gris claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column; /* Cambié la dirección de los elementos a columna */
+}
+
+/* Estilo para la sección que contiene el título */
+section {
+    background: linear-gradient(135deg, #6f42c1, #007bff); /* Gradiente de colores */
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    width: 100%; /* Asegura que el título ocupe todo el ancho */
+    max-width: 600px; /* Limita el ancho máximo del título */
+}
+
+/* Título del Dashboard */
+section label {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Contenedor de los botones, usando flexbox para centrarlos */
+div {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Permite que los botones se acomoden en varias filas si es necesario */
+    width: 100%; /* Asegura que el contenedor de botones ocupe todo el ancho */
+    max-width: 600px; /* Limita el ancho máximo de los botones */
+}
+
+/* Estilo general para los botones */
+button {
+    background-color: #28a745; /* Color verde brillante */
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 180px;
+    margin: 10px;
+    text-align: center;
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+button:hover {
+    background-color: #218838; /* Fondo más oscuro cuando el cursor pasa sobre el botón */
+    transform: scale(1.05);
+}
+
+/* Efecto al hacer clic en el botón */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Efecto de deshabilitado para los botones */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Estilo para botones específicos con colores personalizados */
+button:nth-child(1) {
+    background-color: #007bff; /* Azul para "Inventario" */
+}
+
+button:nth-child(2) {
+    background-color: #ff851b; /* Naranja para "Historial de Ventas" */
+}
+
+button:nth-child(3) {
+    background-color: #17a2b8; /* Cyan para "Historial de Compras" */
+}
+
+button:nth-child(4) {
+    background-color: #ffc107; /* Amarillo para "Info Clientes" */
+}
+
+button:nth-child(5) {
+    background-color: #6c757d; /* Gris para "Gestión de Usuarios" */
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+    section {
+        padding: 20px;
+    }
+
+    div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        width: 100%; /* Los botones ocupan el 100% del ancho en dispositivos pequeños */
+        margin: 10px 0;
+    }
+}

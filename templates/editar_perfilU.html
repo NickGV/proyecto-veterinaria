@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block extra_css %}
+ <link rel="stylesheet" href="/static/css/editar_perfilU.css" />
+ <link rel="stylesheet" href="/static/css/globals.css" />
+{% endblock %}
+{%block content%}
+<div>
+  <div class="container">
+    <h1>Editar Perfil de Usuario</h1>
+
+    <div class="image-container-edit">
+      <img src="/static/images/Sonrisas y patitas logo.jfif" alt="Imagen Proyecto" class="image-edit">
+    </div>
+
+    <form>
+      <label for="nombre_completo">Cambiar nombre</label>
+      <input type="text" id="nombre_completo" name="nombre_completo" required/>
+
+      <label for="telefono">Cambiar teléfono</label>
+      <input type="tel" id="telefono" name="telefono" required />
+
+      <label for="password">cambiar contraseña</label>
+      <input type="password" id="Contraseña" name="Contraseña" required />
+
+      <label for="repetir_password">Confirmar nueva contraseña</label>
+      <input type="password" id="repetir_password" name="repetir_password" required/>
+
+      <button type="submit" class="boton-editar">EDITAR</button> 
+
+    </form>
+    <button class="boton-cerrar"><a href="{% url 'menu' %}">✖</a></button>
+  </div>
+</div>
+{% endblock %} 
+
+
+
+
+
+
+
+
+
+

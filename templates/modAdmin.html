@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href='/static/css/moduloadmin.css'>
+<link rel="stylesheet" href="/static/css/globals.css">
+{% endblock %}
+{%block content%}
+<div>
+    <section>
+        <label>dashboard administrativo</label>
+    </section>
+    <div>
+        <button onclick="inventario()">inventario</button>
+        <button onclick="hisVentas()">historial de ventas</button>
+        <button onclick="hisCompras()">historial de compras</button>
+        <button >info clientes</button>
+        <button onclick="GestionUsuarios()">gestion de usuarios</button>
+    </div>
+</div>
+
+{% endblock %} 
+
+{% block extra_js %}
+<script src="/static/js/moduloadmin.js"></script>
+
+{% endblock %}
+
+
+
+
+
