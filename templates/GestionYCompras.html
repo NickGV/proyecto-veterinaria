@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Proveedores y Orden de Compra</title>
-    <link rel="stylesheet" href="/static/css/GestionYCompras.css">
-</head>
-<body>
+
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/GestionYCompras.css">
+{% endblock %}
+{%block content%}
+<div>
     <h1>Gestión de Proveedores y Orden de Compra</h1>
 
     <!-- Registro de Proveedores -->
@@ -77,8 +77,12 @@
             <p><strong>Fecha de Recepción:</strong> <span id="orden-fecha"></span></p>
         </div>
     </section>
+</div>
+{% endblock %} 
+{% block extra_js %}
+<script src="/static/js/GestionYCompras.js"></script>
+{% endblock %}
 
 
-    <script src="/static/js/GestionYCompras.js"></script>
-</body>
-</html>
+
+
