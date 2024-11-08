@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Contraseña</title>
-    <link rel="stylesheet" href="/static/css/recuperar.css">
-    <link rel="stylesheet" href="/static/css/globals.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/recuperar.css">
+<link rel="stylesheet" href="/static/css/globals.css">
+{% endblock %}
+{%block content%}
+<div>
     <div class="container">
         <h1>Recuperar Contraseña</h1>
 
@@ -49,7 +48,17 @@
         <button onclick="recoverPassword()" class="btn-recover">Recuperar</button>
         <button class="boton-cerrar"><a href="{% url 'menu' %}'">✖</a></button>
     </div>
-   
-    <script src="/static/js/recuperar.js"></script>
-</body>
-</html>
+</div>
+
+{% endblock %} 
+
+{% block extra_js %}
+<script src="/static/js/recuperar.js"></script>
+
+{% endblock %}
+
+
+
+
+
+

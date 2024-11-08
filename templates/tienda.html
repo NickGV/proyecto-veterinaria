@@ -1,94 +1,101 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tienda de Mascotas</title>
-    <link rel="stylesheet" href="/static/css/tienda.css" />
-    <link rel="stylesheet" href="/static/css/globals.css" />
-  </head>
-  <body>
-    <header>
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/tienda.css" />
+<link rel="stylesheet" href="/static/css/globals.css" />
+{% endblock %}
+{%block content%}
+<div>
+  <header>
+    <img
+      src="/static/images/dog-face-logo-free-vector.jpg"
+      alt="logo de la tienda"
+      class="logo"
+    />
+    <h1>Tienda de Mascotas</h1>
+    <a href="{% url 'carrito' %}" class="carrito">
+      <img src="/static/images/petscar_3.png" alt="Carrito de Compras" />
+    </a>
+    <select id="categoria-select">
+      <option value="todas">Todas</option>
+      <option value="perros">Perros</option>
+      <option value="gatos">Gatos</option>
+    </select>
+  </header>
+  <nav>
+    <a href=" " class="menu-button">Menu</a>
+  </nav>
+  <div class="container">
+    <h2>Productos Disponibles</h2>
+    <div class="product" data-categoria="perros">
       <img
-        src="/static/images/dog-face-logo-free-vector.jpg"
-        alt="logo de la tienda"
-        class="logo"
+        src="/static/images/cepillo-para-perros-grandes-de-pelo-largo_1_g.jpeg"
+        alt="Producto 1"
       />
-      <h1>Tienda de Mascotas</h1>
-      <a href="{% url 'carrito' %}" class="carrito">
-        <img src="/static/images/petscar_3.png" alt="Carrito de Compras" />
-      </a>
-      <select id="categoria-select">
-        <option value="todas">Todas</option>
-        <option value="perros">Perros</option>
-        <option value="gatos">Gatos</option>
-      </select>
-    </header>
-    <nav>
-      <a href=" " class="menu-button">Menu</a>
-    </nav>
-    <div class="container">
-      <h2>Productos Disponibles</h2>
-      <div class="product" data-categoria="perros">
-        <img
-          src="/static/images/cepillo-para-perros-grandes-de-pelo-largo_1_g.jpeg"
-          alt="Producto 1"
-        />
-        <h3>Cepillo para perros</h3>
-        <p>$16.00</p>
-        <button
-          class="add-to-cart"
-          data-id="1"
-          data-name="Cepillo para perros"
-          data-price="16.00"
-        >
-          Comprar Ahora
-        </button>
-      </div>
-      <div class="product" data-categoria="gatos">
-        <img src="/static/images/petscar_2.png" alt="Producto 2" />
-        <h3>Comida para gato</h3>
-        <p>$15.00</p>
-        <button
-          class="add-to-cart"
-          data-id="2"
-          data-name="Comida para gato"
-          data-price="15.00"
-        >
-          Comprar Ahora
-        </button>
-      </div>
-      <div class="product" data-categoria="perros">
-        <img src="/static/images/petscar_2.png" alt="Producto 3" />
-        <h3>Comida para perro</h3>
-        <p>$18.00</p>
-        <button
-          class="add-to-cart"
-          data-id="3"
-          data-name="Comida para perro"
-          data-price="18.00"
-        >
-          Comprar Ahora
-        </button>
-      </div>
-      <div class="product" data-categoria="perros">
-        <img src="/static/images/petscar_2.png" alt="Producto 4" />
-        <h3>Juguete para perros</h3>
-        <p>$18.00</p>
-        <button
-          class="add-to-cart"
-          data-id="4"
-          data-name="Juguete para perros"
-          data-price="20.00"
-        >
-          Comprar Ahora
-        </button>
-      </div>
+      <h3>Cepillo para perros</h3>
+      <p>$16.00</p>
+      <button
+        class="add-to-cart"
+        data-id="1"
+        data-name="Cepillo para perros"
+        data-price="16.00"
+      >
+        Comprar Ahora
+      </button>
     </div>
-    <footer class="footer">
-      <p>Tienda de Mascotas don pacho y cachucho</p>
-    </footer>
-    <script src="/static/js/tienda.js"></script>
-  </body>
-</html>
+    <div class="product" data-categoria="gatos">
+      <img src="/static/images/petscar_2.png" alt="Producto 2" />
+      <h3>Comida para gato</h3>
+      <p>$15.00</p>
+      <button
+        class="add-to-cart"
+        data-id="2"
+        data-name="Comida para gato"
+        data-price="15.00"
+      >
+        Comprar Ahora
+      </button>
+    </div>
+    <div class="product" data-categoria="perros">
+      <img src="/static/images/petscar_2.png" alt="Producto 3" />
+      <h3>Comida para perro</h3>
+      <p>$18.00</p>
+      <button
+        class="add-to-cart"
+        data-id="3"
+        data-name="Comida para perro"
+        data-price="18.00"
+      >
+        Comprar Ahora
+      </button>
+    </div>
+    <div class="product" data-categoria="perros">
+      <img src="/static/images/petscar_2.png" alt="Producto 4" />
+      <h3>Juguete para perros</h3>
+      <p>$18.00</p>
+      <button
+        class="add-to-cart"
+        data-id="4"
+        data-name="Juguete para perros"
+        data-price="20.00"
+      >
+        Comprar Ahora
+      </button>
+    </div>
+  </div>
+</div>
+
+{% endblock %} 
+
+{% block extra_js %}
+<script src="/static/js/tienda.js"></script>
+
+{% endblock %}
+
+
+
+
+
+
+

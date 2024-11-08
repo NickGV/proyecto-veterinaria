@@ -1,86 +1,92 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de Ventas | Tienda Veterinaria</title>
-    <link rel="stylesheet" href="/static/css/hisVentas.css"> <!-- Enlace al archivo CSS -->
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/hisVentas.css">
+{% endblock %}
+{%block content%}
+<div>
+    <div class="container">
+        <h1>Historial de Ventas</h1>
 
-<div class="container">
-    <h1>Historial de Ventas</h1>
+        <!-- Filtros de búsqueda -->
+        <div class="search-section">
+            <input type="text" id="search-client" placeholder="Buscar por Cliente" oninput="filterTable()">
+            <button onclick="clearFilters()">Limpiar Filtro</button>
+        </div>
 
-    <!-- Filtros de búsqueda -->
-    <div class="search-section">
-        <input type="text" id="search-client" placeholder="Buscar por Cliente" oninput="filterTable()">
-        <button onclick="clearFilters()">Limpiar Filtro</button>
-    </div>
+        <!-- Resumen del Cliente -->
+        <div class="client-info">
+            <p><strong>Cliente:</strong> Juan Pérez</p>
+            <p><strong>Teléfono:</strong> 123-456-789</p>
+            <p><strong>Correo:</strong> juan@example.com</p>
+            <p><strong>Mascota(s):</strong> Rocky (Perro)</p>
+        </div>
 
-    <!-- Resumen del Cliente -->
-    <div class="client-info">
-        <p><strong>Cliente:</strong> Juan Pérez</p>
-        <p><strong>Teléfono:</strong> 123-456-789</p>
-        <p><strong>Correo:</strong> juan@example.com</p>
-        <p><strong>Mascota(s):</strong> Rocky (Perro)</p>
-    </div>
+        <!-- Historial de compras -->
+        <table id="purchase-history">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Número de Orden</th>
+                    <th>Producto(s)</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Método de Pago</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-category="alimentos">
+                    <td>01/11/2024</td>
+                    <td>12345</td>
+                    <td>Alimento para perros</td>
+                    <td>2</td>
+                    <td>$50.00</td>
+                    <td>Tarjeta de crédito</td>
+                    <td class="action-buttons">
+                        <a href="#" onclick="viewDetails(12345)">Ver Detalles</a>
+                    </td>
+                </tr>
+                <tr data-category="accesorios">
+                    <td>20/10/2024</td>
+                    <td>12344</td>
+                    <td>Juguete para gatos</td>
+                    <td>1</td>
+                    <td>$15.00</td>
+                    <td>Efectivo</td>
+                    <td class="action-buttons">
+                        <a href="#" onclick="viewDetails(12344)">Ver Detalles</a>
+                    </td>
+                </tr>
+                <tr data-category="medicamentos">
+                    <td>15/09/2024</td>
+                    <td>12343</td>
+                    <td>Medicamento para perros</td>
+                    <td>3</td>
+                    <td>$90.00</td>
+                    <td>Transferencia</td>
+                    <td class="action-buttons">
+                        <a href="#" onclick="viewDetails(12343)">Ver Detalles</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <!-- Historial de compras -->
-    <table id="purchase-history">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Número de Orden</th>
-                <th>Producto(s)</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th>Método de Pago</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr data-category="alimentos">
-                <td>01/11/2024</td>
-                <td>12345</td>
-                <td>Alimento para perros</td>
-                <td>2</td>
-                <td>$50.00</td>
-                <td>Tarjeta de crédito</td>
-                <td class="action-buttons">
-                    <a href="#" onclick="viewDetails(12345)">Ver Detalles</a>
-                </td>
-            </tr>
-            <tr data-category="accesorios">
-                <td>20/10/2024</td>
-                <td>12344</td>
-                <td>Juguete para gatos</td>
-                <td>1</td>
-                <td>$15.00</td>
-                <td>Efectivo</td>
-                <td class="action-buttons">
-                    <a href="#" onclick="viewDetails(12344)">Ver Detalles</a>
-                </td>
-            </tr>
-            <tr data-category="medicamentos">
-                <td>15/09/2024</td>
-                <td>12343</td>
-                <td>Medicamento para perros</td>
-                <td>3</td>
-                <td>$90.00</td>
-                <td>Transferencia</td>
-                <td class="action-buttons">
-                    <a href="#" onclick="viewDetails(12343)">Ver Detalles</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Pie de página -->
-    <div class="footer">
-        <p>Resumen de compras: 3 órdenes, Total gastado: $155.00</p>
+        <!-- Pie de página -->
+        <div class="footer">
+            <p>Resumen de compras: 3 órdenes, Total gastado: $155.00</p>
+        </div>
     </div>
 </div>
 
-<script src=""></script> <!-- Enlace al archivo JS -->
-</body>
-</html>
+{% endblock %} 
+
+{% block extra_js %}
+
+<script src=""></script>
+{% endblock %}
+
+
+
+

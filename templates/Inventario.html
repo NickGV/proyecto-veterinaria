@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Inventario</title>
-    <link rel="stylesheet" href="/static/css/Inventario.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/Inventario.css">
+{% endblock %}
+{%block content%}
+<div>
     <h1>Gestión de Inventario</h1>
 
     <section class="contenedor">
@@ -62,9 +61,17 @@
     <div class="boton-volver">
         <button onclick="volverAlMenu()">Volver al Menú Administrativo</button>
     </div>
+</div>
+
+
+{% endblock %} 
+
+{% block extra_js %}
+<script src="/static/js/Inventario.js"></script>
+
+{% endblock %}
 
 
 
-    <script src="/static/js/Inventario.js"></script>
-</body>
-</html>
+
+
