@@ -3,8 +3,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Clínica Veterinaria</title>
     <link rel="stylesheet" href="{% static '/css/globals.css' %}" />
     {% block extra_css %}{% endblock %}
@@ -20,42 +19,49 @@
           />
         </a>
       </div>
-      <div class="center">
-        <a href="{% url 'menu' %}" class="nav-link">Inicio</a>
-        <a href="{% url 'tienda' %}" class="nav-link">Tienda</a>
-        <a href="{% url 'acercaC' %}" class="nav-link">Acerca de</a>
-      </div>
-      <div class="right">
-        <a href="{% url 'login' %}" class="nav-link">Login</a>
-        <a href="{% url 'registro'%}" class="nav-link">Registro</a>
-        <div id="infusuario" class="infusuario">
-          <button onclick="toggleInfo()" class="btn-togleus">
-            <img
-              src="{% static '/images/icono-usuario-con-mascotas.png' %}"
-              alt="Perfil Usuario"
-            />
-          </button>
-          <section id="inf-user" class="seccion-perfilU">
-            <div id="info" class="seccion-perfilU-info">
-              <h1>Perfil de cliente</h1>
-              <p>NomUsuario Apellido</p>
-              <p>correoUsuario123.@ejemplo.com</p>
-              <div class="user-buttons">
-                <a href="{% url 'editar_perfilU' %}" class="user-button">
-                  <button>Editar</button>
+      <div class="nav-content">
+        <div class="center">
+          <a href="{% url 'menu' %}" class="nav-link">Inicio</a>
+          <a href="{% url 'tienda' %}" class="nav-link">Tienda</a>
+          <a href="{% url 'acercaC' %}" class="nav-link">Acerca de</a>
+        </div>
+        <div class="right">
+          <a href="{% url 'login' %}" class="nav-link">Login</a>
+          <a href="{% url 'registro'%}" class="nav-link">Registro</a>
+          <div id="infusuario" class="infusuario">
+            <button onclick="toggleInfo()" class="btn-togleus">
+              <img
+                src="{% static '/images/icono-usuario-con-mascotas.png' %}"
+                alt="Perfil Usuario"
+              />
+            </button>
+            <section id="inf-user" class="seccion-perfilU hidden">
+              <div id="info" class="seccion-perfilU-info">
+                <h1>Perfil de cliente</h1>
+                <p>NomUsuario Apellido</p>
+                <p>correoUsuario123.@ejemplo.com</p>
+                <div class="user-buttons">
+                  <a href="{% url 'editar_perfilU' %}" class="user-button">
+                    <button>Editar</button>
+                  </a>
+                  <button class="user-button">compras</button>
+                </div>
+                <a href="{% url 'menu' %}">
+                  <button class="logout-btn">Cerrar Sesión</button>
                 </a>
-                <button class="user-button">compras</button>
+                <a href="{% url 'modulo_admin' %}">
+                  <button class="admin-btn">modulo admin</button>
+                </a>
               </div>
-              <a href="{% url 'menu' %}">
-                <button class="logout-btn">Cerrar Sesión</button>
-              </a>
-              <a href="{% url 'modulo_admin' %}">
-                <button class="admin-btn">modulo admin</button>
-              </a>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
+      <button class="hamburger-menu" onclick="toggleMenu()" aria-label="Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
     </div>
 
     <main>{% block content %}{% endblock %}</main>
