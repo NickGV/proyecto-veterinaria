@@ -3,6 +3,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clínica Veterinaria</title>
     <link rel="stylesheet" href="{% static '/css/globals.css' %}" />
@@ -25,8 +26,7 @@
         <a href="{% url 'acercaC' %}" class="nav-link">Acerca de</a>
       </div>
       <div class="right">
-        <a href="{% url 'login' %}" class="nav-link">Login</a>
-        <a href="{% url 'registro'%}" class="nav-link">Registro</a>
+        <a href="{% url 'auth' %}" class="nav-link">Login</a>
         <div id="infusuario" class="infusuario">
           <button onclick="toggleInfo()" class="btn-togleus">
             <img
