@@ -26,6 +26,18 @@ document.querySelectorAll(".nav-link").forEach((link) => {
   });
 });
 
+const closeBtn = document.querySelector(".close-btn");
+
+closeBtn.addEventListener("click", () => {
+  const info = document.getElementById("info");
+  const seccionPerfilU = document.getElementById("inf-user");
+
+  if (info && seccionPerfilU) {
+    info.classList.toggle("hidden");
+    seccionPerfilU.classList.toggle("hidden");
+  }
+});
+
 window.addEventListener("resize", () => {
   const navbar = document.querySelector(".navbar");
   if (window.innerWidth > 768 && navbar.classList.contains("active")) {

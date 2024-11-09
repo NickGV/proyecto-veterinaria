@@ -303,6 +303,19 @@ main {
   width: 100%;
 }
 
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
 @media (max-width: 768px) {
   .hamburger-menu {
     display: flex;
@@ -316,7 +329,6 @@ main {
     flex-direction: column;
     background-color: #333;
     width: 100%;
-    height: calc(100vh - 70px);
     transition: 0.3s;
     padding: 1rem;
     margin-left: 0;
