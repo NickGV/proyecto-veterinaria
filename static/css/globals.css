@@ -57,10 +57,11 @@ main {
 
 .navbar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   background-color: #333;
-  padding: 10px;
+  padding: 1rem;
+  position: relative;
 }
 
 .nav-link {
@@ -201,4 +202,161 @@ main {
 .logout-btn:hover,
 .admin-btn:hover {
   background-color: #e65a50;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar .left,
+  .navbar .center,
+  .navbar .right {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .navbar .center {
+    margin-left: 0;
+    gap: 5px;
+  }
+
+  .navbar .right {
+    gap: 5px;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+  }
+
+  .btn-togleus {
+    width: 40px;
+    height: 40px;
+  }
+
+  .seccion-perfilU {
+    width: 100%;
+    right: 0;
+    left: 0;
+    top: auto;
+    bottom: 0;
+  }
+
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .navbar .center,
+  .navbar .right {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar.active .center,
+  .navbar.active .right {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+  }
+
+  .seccion-perfilU {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+  }
+}
+
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.hamburger-menu .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .nav-content {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background-color: #333;
+    width: 100%;
+    height: calc(100vh - 70px);
+    transition: 0.3s;
+    padding: 1rem;
+    margin-left: 0;
+    z-index: 999;
+  }
+
+  .navbar.active .nav-content {
+    left: 0;
+  }
+
+  .navbar.active .hamburger-menu .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .navbar.active .hamburger-menu .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar.active .hamburger-menu .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  .center, .right {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .infusuario {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .seccion-perfilU {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+  }
 }
