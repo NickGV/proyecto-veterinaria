@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         categoriaSeleccionada === "todas" ||
         producto.getAttribute("data-categoria") === categoriaSeleccionada
       ) {
-        producto.style.display = "block";
+        producto.style.display = "flex";
       } else {
         producto.style.display = "none";
       }
