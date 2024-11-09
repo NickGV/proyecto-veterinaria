@@ -7,7 +7,7 @@ header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
 }
 
 header h1 {
@@ -23,7 +23,7 @@ header h1 {
   gap: 15px;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
 }
 
 .admin-buttons {
@@ -46,7 +46,7 @@ header h1 {
 }
 
 .admin-buttons:hover {
-  background-color: #218838;
+  background-color: #22c0c0;
   transform: scale(1.05);
 }
 
@@ -59,24 +59,9 @@ header h1 {
   cursor: not-allowed;
 }
 
-.admin-buttons:nth-child(1) {
-  background-color: #007bff;
-}
-
-.admin-buttons:nth-child(2) {
-  background-color: #ff851b;
-}
-
-.admin-buttons:nth-child(3) {
-  background-color: #17a2b8;
-}
-
-.admin-buttons:nth-child(4) {
-  background-color: #ffc107;
-}
-
-.admin-buttons:nth-child(5) {
+.admin-buttons {
   background-color: #6c757d;
+  border: 1px solid #ffffff;
 }
 
 @media (max-width: 768px) {

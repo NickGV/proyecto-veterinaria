@@ -77,6 +77,6 @@ function eliminarProducto(index) {
 // Función para redirigir al menú administrativo
 function volverAlMenu() {
     // Aquí puedes cambiar la ruta a la que debe redirigir el botón
-    window.location.href = "menu_administrativo.html";
+    window.location.href = "../templates/modAdmin.html";
 }
 
