@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/css/auth.css' %}">
+<link rel="stylesheet" href="{% static '/css/globals.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% endblock %}
+{%block content%}
+<div>
+    <div class="container">
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="front">
+                <img src="/static/images/auth.jfif" alt="">
+                <div class="text">
+                <span class="text-1">Cada nuevo amigo peludo <br> es una nueva aventura</span>
+                <span class="text-2">conectate ahora</span>
+            </div>
+        </div>
+        <div class="back">
+            <img class="backImg" src="/static/images/auth.jfif" alt="">
+            <div class="text">
+                <span class="text-1">Disfruta cada momento <br> con tus mascotas</span>
+                <span class="text-2">Comienza ahora</span>
+            </div>
+        </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+        <div class="login-form">
+            <div class="title">Inicio de sesión </div>
+        <form action="#">
+            <div class="input-boxes">
+            <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" placeholder="Ingresa tu email" required>
+            </div>
+            <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Ingresa tu contraseña" required>
+            </div>
+            <div class="text"><a href="{% url 'recuperar' %}">Olvidaste tu contraseña?</a></div>
+            <div class="button input-box">
+                <input type="submit" value="Iniciar sesión">
+            </div>
+            <div class="text sign-up-text">No tienes una cuenta? <label for="flip">Registrate ahora</label></div>
+            </div>
+        </form>
+    </div>
+    <div class="signup-form">
+        <div class="title">Registro</div>
+        <form action="#">
+            <div class="input-boxes">
+                <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Ingresa tu nombre" required>
+                </div>
+                <div class="input-box">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" placeholder="Ingresa tu email" required>
+                </div>
+                <div class="input-box">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Ingresa tu contraseña" required>
+                </div>
+                <div class="button input-box">
+                    <input type="submit" value="Registrate">
+                </div>
+                <div class="text sign-up-text">Ya tienes una cuenta? <label for="flip">Login now</label></div>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %} 
+
+{% block extra_js %}
+
+
+{% endblock %}
+
+
+
+
+

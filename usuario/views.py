@@ -3,11 +3,8 @@ from .models import Usuario
 from django.contrib import messages
 
 # Create your views here.
-def login_view(request):
-  return render(request, 'login.html')
-
-def register_view(request):
-  return render(request, 'registro.html')
+def auth_view(request):
+  return render(request, 'auth.html')
 
 def editar_view(request):
   return render(request, 'editar_perfilU.html')
