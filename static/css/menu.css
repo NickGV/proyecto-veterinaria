@@ -57,6 +57,37 @@
   height: auto;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .info {
+    padding: 15px;
+  }
+
+  .menu-title {
+    font-size: 1.5em;
+  }
+
+  .menu-subtitle {
+    font-size: 1em;
+  }
+
+  .logo-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .menu {
+    margin-top: 10px;
+  }
+
+  .menu a {
+    font-size: 14px;
+  }
+=======
+
 
 .carrusel-container {
   position: relative;
@@ -130,4 +161,4 @@
 
 .active {
   background-color: rgba(0, 0, 0, 0.8);
-}
+  }

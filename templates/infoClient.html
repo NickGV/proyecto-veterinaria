@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/css/infoClient.css' %}">
+{% endblock %}
+{%block content%}
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>nombre</th>
+                <th>correo</th>
+                <th>compras</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Juan Uribe Cordoba</td>
+                <td>juanitolindo@gmail.com</td>
+                <td class="action-buttons">
+                    <a href="#" onclick="viewBuys(00)">Ver Compras</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Juan Manuel Castaño Quiroz</td>
+                <td>juanmacq123@gmail.com</td>
+                <td class="action-buttons">
+                    <a href="#" onclick="viewBuys(01)">Ver Compras</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Nicolas Gomez Velez</td>
+                <td>nicogv321@gmail.com</td>
+                <td class="action-buttons">
+                    <a href="#" onclick="viewBuys(02)">Ver Compras</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Pedrito Peres Pelaes</td>
+                <td>ppp344@gmail.com</td>
+                <td class="action-buttons">
+                    <a href="#" onclick="viewBuys(03)">Ver Compras</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %} 
+{% block extra_js %}
+{% endblock %}

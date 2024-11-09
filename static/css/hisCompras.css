@@ -62,7 +62,13 @@ table td {
 table th {
     background-color: #f1f1f1;
 }
-
+.action-buttons {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 .action-buttons a {
     margin-right: 5px;
     padding: 8px 2px;
@@ -70,6 +76,10 @@ table th {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .action-buttons a:hover {
@@ -81,4 +91,18 @@ table th {
     text-align: center;
     font-size: 14px;
     color: #555;
+}
+.btn-regresar {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+.btn-regresar:hover {
+    background-color: #0056b3;
 }
