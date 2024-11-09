@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
- 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static '/css/hisCompras.css' %}">
 {% endblock %}
@@ -94,20 +93,12 @@
         <!-- Pie de página -->
         <div class="footer">
             <p>Resumen de compras: 3 órdenes, Total gastado: $155.00</p>
+            <button class="btn-regresar" onclick="history.back()">Regresar</button>
         </div>
     </div>
 </div>
 
 {% endblock %} 
-
 {% block extra_js %}
 <script src="{% static '/js/hisCompras.js' %}"></script>
-
 {% endblock %}
-
-
-
-
-
-
-

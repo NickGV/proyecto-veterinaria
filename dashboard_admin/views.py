@@ -15,3 +15,5 @@ def hisCompras_view(request):
 
 def GestionUsusarios_view(request):
      return render(request, 'GestionUsuarios.html')
+def infoClientes_view(request):
+     return render(request, 'infoClient.html')
