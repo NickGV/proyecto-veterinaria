@@ -100,3 +100,54 @@ table th {
 .btn-regresar:hover {
     background-color: #0056b3;
 }
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 100%; /* Ajuste del ancho del contenedor para que no quede cortado */
+        padding: 15px;
+        margin: 0; /* Elimina el margen para que ocupe el ancho completo de la pantalla */
+    }
+    
+    .search-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .search-section input,
+    .search-section select,
+    .search-section button {
+        width: 100%; /* Los elementos de búsqueda se apilan en pantallas pequeñas */
+    }
+
+    table th,
+    table td {
+        font-size: 8px; /* Reducimos un poco el tamaño de fuente en pantallas pequeñas */
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-wrap: nowrap; /* Evita que los enlaces se dividan en varias líneas */
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em; /* Ajusta el tamaño del título para pantallas muy pequeñas */
+    }
+
+    .search-section input,
+    .search-section select,
+    .search-section button {
+        padding: 8px;
+    }
+
+    .footer p {
+        font-size: 12px; /* Disminuye el tamaño de texto en el pie de página */
+    }
+
+    .action-buttons a {
+        padding: 6px 8px; /* Ajusta el tamaño de los botones de acción */
+    }
+}

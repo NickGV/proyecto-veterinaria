@@ -118,3 +118,57 @@ td img {
 .boton-volver button:hover {
   background-color: #005f73;
 }
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .contenedor {
+    padding: 10px;
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+  table {
+    width: 80%;
+    height: 80%;
+  }
+  
+  th, td {
+    font-size: 6px;
+    width: 60%;
+    height: 60%;
+  }
+  .productos {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .title {
+    padding: 15px;
+  }
+
+  .title h1 {
+    font-size: 1.5em;
+  }
+
+  .boton-volver {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 10px;
+  }
+
+  .inventario-table {
+    font-size: 14px;
+  }
+
+  .inventario-table th, .inventario-table td {
+    padding: 5px;
+  }
+
+  /* Cambiar el orden de los divs en la versión responsive */
+  .contenedor {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
