@@ -195,3 +195,37 @@ input[type="button"].button-primary:focus {
 .imagen {
   height: 200px;
 }
+
+.category {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  color: white;
+}
+
+#categoria-select {
+  width: 100%;
+  max-width: 250px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 14px;
+}
+
+#categoria-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#categoria-select option {
+  padding: 10px;
+  font-size: 16px;
+}
