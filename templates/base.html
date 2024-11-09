@@ -19,7 +19,6 @@
           />
         </a>
       </div>
-
       <div class="nav-content">
         <div class="center">
           <a href="{% url 'menu' %}" class="nav-link">Inicio</a>
@@ -27,8 +26,7 @@
           <a href="{% url 'acercaC' %}" class="nav-link">Acerca de</a>
         </div>
         <div class="right">
-          <a href="{% url 'login' %}" class="nav-link">Login</a>
-          <a href="{% url 'registro'%}" class="nav-link">Registro</a>
+          <a href="{% url 'auth' %}" class="nav-link">Login</a>
           <div id="infusuario" class="infusuario">
             <button onclick="toggleInfo()" class="btn-togleus">
               <img
@@ -52,28 +50,6 @@
                 </a>
                 <a href="{% url 'modulo_admin' %}">
                   <button class="admin-btn">modulo admin</button>
-   <div class="center">
-        <a href="{% url 'menu' %}" class="nav-link">Inicio</a>
-        <a href="{% url 'tienda' %}" class="nav-link">Tienda</a>
-        <a href="{% url 'acercaC' %}" class="nav-link">Acerca de</a>
-      </div>
-      <div class="right">
-        <a href="{% url 'auth' %}" class="nav-link">Login</a>
-        <div id="infusuario" class="infusuario">
-          <button onclick="toggleInfo()" class="btn-togleus">
-            <img
-              src="{% static '/images/icono-usuario-con-mascotas.png' %}"
-              alt="Perfil Usuario"
-            />
-          </button>
-          <section id="inf-user" class="seccion-perfilU">
-            <div id="info" class="seccion-perfilU-info">
-              <h1>Perfil de cliente</h1>
-              <p>NomUsuario Apellido</p>
-              <p>correoUsuario123.@ejemplo.com</p>
-              <div class="user-buttons">
-                <a href="{% url 'editar_perfilU' %}" class="user-button">
-                  <button>Editar</button>
                 </a>
               </div>
             </section>

@@ -297,9 +297,16 @@ main {
   transition: 0.4s;
 }
 
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .hamburger-menu {
     display: flex;
+    background: transparent;
   }
 
   .nav-content {
@@ -332,7 +339,8 @@ main {
     transform: rotate(45deg) translate(-5px, -6px);
   }
 
-  .center, .right {
+  .center,
+  .right {
     flex-direction: column;
     width: 100%;
     align-items: center;
@@ -358,5 +366,6 @@ main {
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 300px;
+    height: 380px;
   }
 }

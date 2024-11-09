@@ -17,31 +17,6 @@
     <h1 class="menu-title">Bienvenidos a la Clínica Veterinaria SONRISAS Y PATITAS</h1>
     <p class="menu-subtitle">Nos dedicamos a cuidar a tus mascotas con mucho amor y profesionalismo.</p>
   </section>
-
-  <div class="carrusel-container">
-    <div class="carrusel-inner">
-        <div class="carrusel-item">
-            <img src="{% static '/images/xd1webp.webp' %}" alt="Imagen 1">
-        </div>
-        <div class="carrusel-item">
-            <img src="{% static '/images/xd2.jfif' %}" alt="Imagen 2">
-        </div>
-        <div class="carrusel-item">
-            <img src="{% static '/images/xd3.jfif' %}" alt="Imagen 3">
-        </div>
-    </div>
-    
-    <!-- Botones de navegación -->
-    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="next" onclick="moveSlide(1)">&#10095;</button>
-
-    <!-- Puntos de navegación (opcional) -->
-    <div class="dots">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
-  </div>
 </div>
 {% endblock %} 
 {% block extra_js %}
