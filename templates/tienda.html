@@ -1,135 +1,175 @@
 {% extends 'base.html' %} {% load static %} {% block extra_css %}
-<link rel="stylesheet" href="{% static '/css/tienda.css' %}" />
-<link rel="stylesheet" href="{% static '/css/globals.css' %}" />
+<link rel="stylesheet" href="/static/css/tienda.css" />
+
 {% endblock %} {%block content%}
-<div class="container">
-  <header>
-    <img
-      src="/static/images/dog-face-logo-free-vector.jpg"
-      alt="logo de la tienda"
-      class="logo"
-    />
-    <h1>Tienda de Mascotas</h1>
-    <a href="{% url 'carrito' %}" class="carrito">
-      <img src="/static/images/petscar_3.png" alt="Carrito de Compras" />
-    </a>
-    <select id="categoria-select">
-      <option value="todas">Todas</option>
-      <option value="perros">Perros</option>
-      <option value="gatos">Gatos</option>
-    </select>
+
+<div>
+  <header id="header" class="header">
+    <h1 class="title">Tienda</h1>
+    <div class="row">
+      <div class="two columns u-pull-right">
+        <ul>
+          <li class="submenu">
+            <a href="{% url 'carrito' %}">
+              <img
+                src="/static/images/cart.png"
+                id="img-carrito"
+                alt="carrito"
+              />
+            </a>
+
+            <div id="carrito">
+              <table id="lista-carrito" class="u-full-width">
+                <thead>
+                  <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+
+              <a href="#" id="vaciar-carrito" class="button u-full-width"
+                >Vaciar Carrito</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </header>
-  <h2>Productos Disponibles</h2>
-  <div class="product" data-categoria="perros">
-    <img
-      src="{% static '/images/cepillo-para-perros-grandes-de-pelo-largo_1_g.jpeg' %}"
-      alt="Producto 1"
-    />
-    <h3>Cepillo para perros</h3>
-    <p>$16.00</p>
-    <button
-      class="add-to-cart"
-      data-id="1"
-      data-name="Cepillo para perros"
-      data-price="16.00"
-    >
-      Comprar Ahora
-    </button>
-  </div>
-  <div class="product" data-categoria="gatos">
-    <img src="{% static '/images/comida_gatos.jfif' %}" alt="Producto 2" />
-    <h3>Comida para gato</h3>
-    <p>$15.00</p>
-    <button
-      class="add-to-cart"
-      data-id="2"
-      data-name="Comida para gato"
-      data-price="15.00"
-    >
-      Comprar Ahora
-    </button>
-  </div>
-  <div class="product" data-categoria="perros">
-    <img src="{% static '/images/comida_perros.jfif' %}" alt="Producto 3" />
-    <h3>Comida para perro</h3>
-    <p>$18.00</p>
-    <button
-      class="add-to-cart"
-      data-id="3"
-      data-name="Comida para perro"
-      data-price="18.00"
-    >
-      Comprar Ahora
-    </button>
-  </div>
-  <div class="product" data-categoria="perros">
-    <img src="{% static '/images/juguete_perros.jfif' %}" alt="Producto 4" />
-    <h3>Juguete para perros</h3>
-    <p>$18.00</p>
-    <button
-      class="add-to-cart"
-      data-id="4"
-      data-name="Juguete para perros"
-      data-price="18.00"
-    >
-      Comprar Ahora
-    </button>
-  </div>
-  <div class="product" data-categoria="gatos">
-    <img src="{% static '/images/juguete_gatos.jpg' %}" alt="Producto 5" />
-    <h3>Juguete para gatos</h3>
-    <p>$12.00</p>
-    <button
-      class="add-to-cart"
-      data-id="5"
-      data-name="Juguete para gatos"
-      data-price="12.00"
-    >
-      Comprar Ahora
-    </button>
-  </div>
-  <div class="product" data-categoria="gatos">
-    <img src="{% static '/images/cepillo_gatos.jfif' %}" alt="Producto 6" />
-    <h3>cepillo para gato</h3>
-    <p>$10.00</p>
-    <button
-      class="add-to-cart"
-      data-id="6"
-      data-name="Cepillo para gato"
-      data-price="10.00"
-    >
-      Comprar Ahora
-    </button>
-  </div>
-  <div class="product" data-categoria="gatos">
-    <img src="{% static '/images/arenero_gatos.jfif' %}" alt="Producto 7" />
-    <h3>Arenero para gato </h3>
-    <p>$20.00</p>
-    <button
-      class="add-to-cart"
-      data-id="7"
-      data-name="Arenero para gato"
-      data-price="20.00"
-    >
-      Comprar Ahora
-    </button>
-  </div>
-  <div class="product" data-categoria="perros">
-    <img src="{% static '/images/shampoo_perros.jfif' %}" alt="Producto 8" />
-    <h3>Shampoo para perros</h3>
-    <p>$11.00</p>
-    <button
-      class="add-to-cart"
-      data-id="8"
-      data-name="Shampoo para perros"
-      data-price="11.00"
-    >
-      Comprar Ahora
-    </button>
+
+  <div id="lista-productos" class="container">
+    <div class="card">
+      <img src="img/curso1.jpg" class="imagen u-full-width" />
+      <div class="info-card">
+        <h4>HTML5, CSS3, JS</h4>
+        <p>Lestradamus</p>
+
+        <p class="precio">$200</p>
+        <a
+          href="#"
+          class="u-full-width button-primary button input agregar-carrito"
+          data-id="1"
+          >Agregar Al Carrito</a
+        >
+      </div>
+    </div>
+    <div class="card">
+      <img src="img/curso2.jpg" class="imagen u-full-width" />
+      <div class="info-card">
+        <h4>Comida Vegetariana</h4>
+        <p>Lestradamus</p>
+
+        <p class="precio">$200</p>
+        <a
+          href="#"
+          class="u-full-width button-primary button input agregar-carrito"
+          data-id="2"
+          >Agregar Al Carrito</a
+        >
+      </div>
+    </div>
+    <div class="card">
+      <img src="img/curso3.jpg" class="imagen u-full-width" />
+      <div class="info-card">
+        <h4>Curso Guitarra</h4>
+        <p>Lestradamus</p>
+
+        <p class="precio">$200</p>
+        <a
+          href="#"
+          class="u-full-width button-primary button input agregar-carrito"
+          data-id="3"
+          >Agregar Al Carrito</a
+        >
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="img/curso4.jpg" class="imagen u-full-width" />
+      <div class="info-card">
+        <h4>Huerto en casa</h4>
+        <p>Lestradamus</p>
+
+        <p class="precio">$200</p>
+        <a
+          href="#"
+          class="u-full-width button-primary button input agregar-carrito"
+          data-id="4"
+          >Agregar Al Carrito</a
+        >
+      </div>
+    </div>
+    <!--.card-->
+    <div class="card">
+      <img src="img/curso5.jpg" class="imagen u-full-width" />
+      <div class="info-card">
+        <h4>Decora tu hogar</h4>
+        <p>Lestradamus</p>
+
+        <p class="precio">$200</p>
+        <a
+          href="#"
+          class="u-full-width button-primary button input agregar-carrito"
+          data-id="5"
+          >Agregar Al Carrito</a
+        >
+      </div>
+    </div>
+    <div class="card">
+      <img src="img/curso1.jpg" class="imagen u-full-width" />
+      <div class="info-card">
+        <h4>Diseño Web</h4>
+        <p>Lestradamus</p>
+
+        <p class="precio">$200</p>
+        <a
+          href="#"
+          class="u-full-width button-primary button input agregar-carrito"
+          data-id="6"
+          >Agregar Al Carrito</a
+        >
+      </div>
+    </div>
+    <!--.card-->
+    <div class="card">
+      <img src="img/curso2.jpg" class="imagen u-full-width" />
+      <div class="info-card">
+        <h4>Comida Mexicana</h4>
+        <p>Lestradamus</p>
+
+        <p class="precio">$200</p>
+        <a
+          href="#"
+          class="u-full-width button-primary button input agregar-carrito"
+          data-id="7"
+          >Agregar Al Carrito</a
+        >
+      </div>
+    </div>
+    <div class="card">
+      <img src="img/curso3.jpg" class="imagen u-full-width" />
+      <div class="info-card">
+        <h4>Estudio Musical</h4>
+        <p>Lestradamus</p>
+
+        <p class="precio">$200</p>
+        <a
+          href="#"
+          class="u-full-width button-primary button input agregar-carrito"
+          data-id="8"
+          >Agregar Al Carrito</a
+        >
+      </div>
+    </div>
   </div>
 </div>
-
 {% endblock %} {% block extra_js %}
-<script src="{% static '/js/tienda.js' %}"></script>
 
-{% endblock %}
+<script src="/static/js/tienda2.js"></script>
+
+{% endblock %}
