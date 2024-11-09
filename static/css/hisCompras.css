@@ -1,9 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
 
 .container {
     width: 90%;
@@ -105,4 +99,50 @@ table th {
 }
 .btn-regresar:hover {
     background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    /* Estilo de card para cada fila de la tabla */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+
+    tbody tr td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    tbody tr td:last-child {
+        border-bottom: none;
+    }
+
+    tbody tr td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #333;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+        
+    }
 }

@@ -1,12 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 h1 {
     color: #2c3e50;
@@ -111,4 +102,13 @@ tbody tr:nth-child(odd) {
 
 .boton-volver button:hover {
     background-color: #1c6f93;
+}
+
+@media (max-width: 768px) {
+    .contenedor {
+        flex-direction: column;
+    }
+    table, th, td {
+        font-size: 12px;
+    }
 }
