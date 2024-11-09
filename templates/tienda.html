@@ -6,38 +6,49 @@
 <div>
   <header id="header" class="header">
     <h1 class="title">Tienda</h1>
-    <div class="row">
-      <div class="two columns u-pull-right">
-        <ul>
-          <li class="submenu">
-            <a href="{% url 'carrito' %}">
-              <img
-                src="/static/images/cart.png"
-                id="img-carrito"
-                alt="carrito"
-              />
-            </a>
+    <div class="category">
+      <label for="categoria-select">Filtrar por categoría:</label>
+      <select id="categoria-select">
+        <option value="todas">Todas</option>
+        <option value="categoria1">Categoría 1</option>
+        <option value="categoria2">Categoría 2</option>
+        <option value="categoria3">Categoría 3</option>
+      </select>
+    </div>
+    <div class="carrito-container">
+      <div class="row">
+        <div class="two columns u-pull-right">
+          <ul>
+            <li class="submenu">
+              <a href="{% url 'carrito' %}">
+                <img
+                  src="/static/images/cart.png"
+                  id="img-carrito"
+                  alt="carrito"
+                />
+              </a>
 
-            <div id="carrito">
-              <table id="lista-carrito" class="u-full-width">
-                <thead>
-                  <tr>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+              <div id="carrito">
+                <table id="lista-carrito" class="u-full-width">
+                  <thead>
+                    <tr>
+                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Precio</th>
+                      <th>Cantidad</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
 
-              <a href="#" id="vaciar-carrito" class="button u-full-width"
-                >Vaciar Carrito</a
-              >
-            </div>
-          </li>
-        </ul>
+                <a href="#" id="vaciar-carrito" class="button u-full-width"
+                  >Vaciar Carrito</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
@@ -170,6 +181,6 @@
 </div>
 {% endblock %} {% block extra_js %}
 
-<script src="{% static '/js/tienda2.js' %}"></script>
+<script src="{% static '/js/tienda.js' %}"></script>
 
 {% endblock %}
