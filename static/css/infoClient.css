@@ -1,9 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
+
 .container {
     width: 90%;
     margin: 20px auto;
@@ -44,4 +39,45 @@ table th {
 }
 .action-buttons a:hover {
     background-color: #218838;
+}
+
+
+@media (max-width: 768px) {
+    /* Ajuste del contenedor y reducción de fuentes */
+    .container {
+        padding: 10px;
+    }
+
+    table {
+        border: 0;
+    }
+
+    /* Convertir cada fila en una "tarjeta" */
+    table thead {
+        display: none; /* Ocultar encabezados de la tabla en dispositivos pequeños */
+    }
+
+    table tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        font-size: 0.9em;
+    }
+
+    /* Etiquetas de las filas */
+    table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #333;
+        text-transform: capitalize;
+    }
 }
