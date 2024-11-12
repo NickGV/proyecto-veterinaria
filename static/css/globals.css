@@ -10,8 +10,8 @@ body {
   height: 100vh;
   background: linear-gradient(
     to bottom right,
-    rgb(23, 23, 23),
-    rgb(20, 20, 20)
+    rgb(230, 200, 255),
+    rgb(70, 173, 130)
   );
 }
 
