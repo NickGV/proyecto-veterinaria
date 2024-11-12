@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from .templates import views
 
 urlpatterns = [
   path("modAdmin/", views.moduloadmin_view, name='modulo_admin'),
