@@ -2,26 +2,7 @@
 <link rel="stylesheet" href="{% static '/css/moduloadmin.css' %}" />
 {% endblock %} {%block content%}
 <div>
-  <header>
-    <h1>dashboard administrativo</h1>
-  </header>
-  <div class="container">
-    <a href="" class="admin-buttons">
-      <button>inventario</button>
-    </a>
-    <a href="{% url 'hisVentas' %}" class="admin-buttons">
-      <button>historial de ventas</button>
-    </a>
-    <a href="{% url 'hisCompras' %}" class="admin-buttons">
-      <button>historial de compras</button>
-    </a>
-    <a href="{% url 'infoClientes' %}" class="admin-buttons">
-      <button>info clientes</button>
-    </a>
-    <a href="{% url 'GestionUsuarios' %}" class="admin-buttons">
-      <button>gestion de usuarios</button>
-    </a>
-  </div>
+  <h1>bienvenido Admin</h1>
 </div>
 
 {% endblock %} {% block extra_js %} {% endblock %}
