@@ -46,8 +46,8 @@
           <a href="#"><i class="fa fa-users"></i> Administración</a>
         </li>
         <li>
-          <a href="{% url 'inventario' %}"
-            ><i class="fa fa-warehouse"></i> Bodega</a
+          <a href="{% url 'GestionUsuarios' %}"
+            ><i class="fa fa-user-cog"></i> Gestión de Usuarios</a
           >
         </li>
         <li>
@@ -57,28 +57,35 @@
           <a href="#"><i class="fa fa-chart-pie"></i> Reportes</a>
         </li>
         <li>
-          <a href="#"><i class="fa fa-user-edit"></i> Editar Perfil</a>
-        </li>
-        <li>
-          <a href="{% url 'GestionUsuarios' %}"
-            ><i class="fa fa-user-cog"></i> Gestión de Usuarios</a
-          >
-        </li>
-        <li>
           <a
-            href="#submenu"
+            href="#submenu-bodega"
             class="nav-link dropdown-toggle"
             data-bs-toggle="collapse"
             aria-expanded="false"
-            aria-controls="submenu"
+            aria-controls="submenu-bodega"
+          >
+            Bodega
+          </a>
+          <ul class="collapse list-unstyled" id="submenu-bodega">
+            <li><a href="#" class="dropdown-item">Compras</a></li>
+            <li><a href="#" class="dropdown-item">Productos</a></li>
+            <li><a href="#" class="dropdown-item">Proveedores</a></li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="#submenu-web"
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="collapse"
+            aria-expanded="false"
+            aria-controls="submenu-web"
           >
             Web
           </a>
-          <ul class="collapse list-unstyled" id="submenu">
+          <ul class="collapse list-unstyled" id="submenu-web">
             <li><a href="#" class="dropdown-item">Menu</a></li>
             <li><a href="#" class="dropdown-item">Acerca</a></li>
             <li><a href="#" class="dropdown-item">Tienda</a></li>
-            <li><a href="#" class="dropdown-item"></a></li>
           </ul>
         </li>
       </ul>
