@@ -19,6 +19,9 @@ def gestionUsusarios_view(request):
 def infoClientes_view(request):
      return render(request, 'infoClient.html')
 
+def proovedores_view(request):
+     return render(request, 'proovedores.html')
+
 def add_product(request):
      return
 
