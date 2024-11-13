@@ -61,8 +61,8 @@
           <a href="#"><i class="fa fa-users"></i> Administración</a>
         </li>
         <li>
-          <a href="{% url 'GestionUsuarios' %}"
-            ><i class="fa fa-user-cog"></i> Gestión de Usuarios</a
+          <a href="{% url 'gestionUsuarios' %}"
+            ><i class="fa fa-user-cog"></i>Usuarios</a
           >
         </li>
         <li>
@@ -82,8 +82,13 @@
             Bodega
           </a>
           <ul class="collapse list-unstyled" id="submenu-bodega">
-            <li><a href="#" class="dropdown-item">Compras</a></li>
-            <li><a href="#" class="dropdown-item">Productos</a></li>
+            <li>
+              <a href="{% url 'hisCompras' %}" class="dropdown-item">Compras</a>
+            </li>
+            <li>
+              <a href="{% url 'hisVentas' %}" class="dropdown-item">Ventas</a>
+            </li>
+            <li><a href="{% url 'inventario' %}" class="dropdown-item">Inventario</a></li>
             <li><a href="#" class="dropdown-item">Proveedores</a></li>
           </ul>
         </li>
@@ -146,8 +151,8 @@
             <a href="#"><i class="fa fa-users"></i> Administración</a>
           </li>
           <li>
-            <a href="{% url 'GestionUsuarios' %}"
-              ><i class="fa fa-user-cog"></i> Gestión de Usuarios</a
+            <a href="{% url 'gestionUsuarios' %}"
+              ><i class="fa fa-user-cog"></i>Usuarios</a
             >
           </li>
           <li>
@@ -166,8 +171,15 @@
               >Bodega</a
             >
             <ul class="collapse list-unstyled" id="submenu-bodega">
-              <li><a href="#" class="dropdown-item">Compras</a></li>
-              <li><a href="#" class="dropdown-item">Productos</a></li>
+              <li>
+                <a href="{% url 'hisCompras' %}" class="dropdown-item"
+                  >Compras</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'hisVentas' %}" class="dropdown-item">Ventas</a>
+              </li>
+              <li><a href="{% url 'inventario' %}" class="dropdown-item">Inventario</a></li>
               <li><a href="#" class="dropdown-item">Proveedores</a></li>
             </ul>
           </li>

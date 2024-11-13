@@ -1,65 +1,149 @@
 {% extends 'adminDashboard.html' %} {% load static %} {% block extra_css %}
-<link rel="stylesheet" href="{% static '/css/Inventario.css' %}" />'
-{%endblock%} {%block content%}
-<div>
-  <h1>Gestión de Inventario</h1>
+{% endblock %} {%block content%}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Gestión de Productos</h1>
 
-  <section class="contenedor">
-    <!-- Registro de productos -->
-    <div class="registro">
-      <h2 class="titulo-seccion">Registro de Producto</h2>
-      <form id="form-productos">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required />
-
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion" required></textarea>
-
-        <label for="precio">Precio:</label>
-        <input type="number" id="precio" name="precio" required />
-
-        <label for="cantidad">Cantidad Disponible:</label>
-        <input type="number" id="cantidad" name="cantidad" required />
-
-        <label for="categoria">Categoría:</label>
-        <input type="text" id="categoria" name="categoria" required />
-
-        <label for="imagen">Imagen del Producto:</label>
-        <input type="file" id="imagen" name="imagen" accept="image/*" />
-
-        <button type="submit">Registrar Producto</button>
-      </form>
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+            Agregar Producto
+        </button>
     </div>
 
-    <!-- Tabla de productos disponibles -->
-    <div class="productos">
-      <h2 class="titulo-seccion">Productos Disponibles</h2>
-      <table id="tabla-productos">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Categoría</th>
-            <th>Imagen</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Filas de productos se insertarán aquí -->
-        </tbody>
-      </table>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td><img src="{% static 'path/to/image.jpg' %}" alt="Producto" class="img-fluid" style="width: 50px;"></td>
+                <td>Nombre del Producto</td>
+                <td>Descripción breve</td>
+                <td>$ Precio</td>
+                <td>Cantidad</td>
+                <td>Categoría</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal">Editar</button>
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-  </section>
+</div>
 
-  <!-- Botón de Volver al menú administrativo -->
-  <div class="boton-volver">
-    <button onclick="history.back()">Volver al Menú Administrativo</button>
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="{% url 'add_product' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Agregar Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="productName" class="form-label">Nombre del Producto</label>
+                            <input type="text" class="form-control" id="productName" name="name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="productCategory" class="form-label">Categoría</label>
+                            <select class="form-select" id="productCategory" name="category" required>
+                                <option value="Alimentos">Alimentos</option>
+                                <option value="Medicamentos">Medicamentos</option>
+                                <option value="Accesorios">Accesorios</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="productDescription" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="productDescription" name="description" rows="2" required></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="productPrice" class="form-label">Precio</label>
+                            <input type="number" class="form-control" id="productPrice" name="price" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="productQuantity" class="form-label">Cantidad Disponible</label>
+                            <input type="number" class="form-control" id="productQuantity" name="quantity" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="productImage" class="form-label">Imagen del Producto</label>
+                            <input type="file" class="form-control" id="productImage" name="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <form action="{% url 'edit_product' product.id %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="modal-header">
+                  <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="row g-3">
+                      <div class="col-md-6">
+                          <label for="editProductName" class="form-label">Nombre del Producto</label>
+                          <input type="text" class="form-control" id="editProductName" name="name" value="{{ product.name }}" required>
+                      </div>
+                      <div class="col-md-6">
+                          <label for="editProductCategory" class="form-label">Categoría</label>
+                          <select class="form-select" id="editProductCategory" name="category" required>
+                              <option value="Alimentos" {% if product.category == 'Alimentos' %}selected{% endif %}>Alimentos</option>
+                              <option value="Medicamentos" {% if product.category == 'Medicamentos' %}selected{% endif %}>Medicamentos</option>
+                              <option value="Accesorios" {% if product.category == 'Accesorios' %}selected{% endif %}>Accesorios</option>
+                          </select>
+                      </div>
+                      <div class="col-md-12">
+                          <label for="editProductDescription" class="form-label">Descripción</label>
+                          <textarea class="form-control" id="editProductDescription" name="description" rows="2" required>{{ product.description }}</textarea>
+                      </div>
+                      <div class="col-md-6">
+                          <label for="editProductPrice" class="form-label">Precio</label>
+                          <input type="number" class="form-control" id="editProductPrice" name="price" value="{{ product.price }}" required>
+                      </div>
+                      <div class="col-md-6">
+                          <label for="editProductQuantity" class="form-label">Cantidad Disponible</label>
+                          <input type="number" class="form-control" id="editProductQuantity" name="quantity" value="{{ product.quantity }}" required>
+                      </div>
+                      <div class="col-md-12">
+                          <label for="editProductImage" class="form-label">Imagen del Producto</label>
+                          <input type="file" class="form-control" id="editProductImage" name="image">
+                          {% if product.image %}
+                          <img src="{{ product.image.url }}" alt="Imagen actual" class="img-fluid mt-2" style="max-width: 100px;">
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+              </div>
+          </form>
+      </div>
   </div>
 </div>
 
-{% endblock %} {% block extra_js %}
-<script src="{'% static '/js/Inventario.js' %}"></script>
 
-{% endblock %}
+{% endblock %} {% block extra_js %} {% endblock %}
