@@ -24,9 +24,19 @@
           <a href="{% url 'menu' %}" class="nav-link">Inicio</a>
           <a href="{% url 'tienda' %}" class="nav-link">Tienda</a>
           <a href="{% url 'acercaC' %}" class="nav-link">Acerca de</a>
+          {% if user.is_superuser%}
+          <a href="{% url 'modulo_admin' %}">Admin</a>
+          {% endif %}
         </div>
         <div class="right">
+          {% if user.is_authenticated %}
+          <div class="usuario">
+            <span>{{ user.username }}</span>
+            <span>{{user.email}}</span>
+          </div>
+          {% else %}
           <a href="{% url 'auth' %}" class="nav-link">Login</a>
+          {% endif %}
           <div id="infusuario" class="infusuario">
             <button onclick="toggleInfo()" class="btn-togleus">
               <img
@@ -45,11 +55,8 @@
                   </a>
                   <button class="user-button">compras</button>
                 </div>
-                <a href="{% url 'menu' %}">
+                <a href="{% url 'logout' %}">
                   <button class="logout-btn">Cerrar Sesión</button>
-                </a>
-                <a href="{% url 'modulo_admin' %}">
-                  <button class="admin-btn">modulo admin</button>
                 </a>
                 <button class="close-btn">✖</button>
               </div>

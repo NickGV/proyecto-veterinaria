@@ -53,4 +53,4 @@ def recuperar_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('auth')
+    return redirect('menu')
