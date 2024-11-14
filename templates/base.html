@@ -25,7 +25,7 @@
           <a href="{% url 'tienda' %}" class="nav-link">Tienda</a>
           <a href="{% url 'acercaC' %}" class="nav-link">Acerca de</a>
           {% if user.is_superuser%}
-          <a href="{% url 'modulo_admin' %}">Admin</a>
+          <a href="{% url 'modulo_admin' %}" class="nav-link">Admin</a>
           {% endif %}
         </div>
         <div class="right">
@@ -34,17 +34,25 @@
             <span>{{ user.username }}</span>
             <span>{{user.email}}</span>
           </div>
-          {% else %}
-          <a href="{% url 'auth' %}" class="nav-link">Login</a>
-          {% endif %}
           <div id="infusuario" class="infusuario">
-            <button onclick="toggleInfo()" class="btn-togleus">
+            <a href="{% url 'perfil_usuario' %}">
+              <button class="btn-togleus">
+                <img
+                  src="{% static '/images/icono-usuario-con-mascotas.png' %}"
+                  alt="Perfil Usuario"
+                />
+              </button>
+            </a>
+            {% else %}
+            <a href="{% url 'auth' %}" class="nav-link">Login</a>
+            <button class="btn-togleus">
               <img
                 src="{% static '/images/icono-usuario-con-mascotas.png' %}"
                 alt="Perfil Usuario"
               />
             </button>
-            <section id="inf-user" class="seccion-perfilU hidden">
+            {% endif %}
+            <!-- <section id="inf-user" class="seccion-perfilU hidden">
               <div id="info" class="seccion-perfilU-info">
                 <h1>Perfil de cliente</h1>
                 <p>NomUsuario Apellido</p>
@@ -60,7 +68,7 @@
                 </a>
                 <button class="close-btn">✖</button>
               </div>
-            </section>
+            </section> -->
           </div>
         </div>
       </div>

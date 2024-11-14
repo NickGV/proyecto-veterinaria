@@ -14,28 +14,23 @@
       />
     </div>
 
-    <form>
-      <label for="nombre_completo">Cambiar nombre</label>
-      <input type="text" id="nombre_completo" name="nombre_completo" required />
+    <form action="{% url 'editar_perfilU' %}" method="POST">
+      {% csrf_token %}
+      <label for="username">Cambiar nombre</label>
+      {{ form.username }}
 
-      <label for="telefono">Cambiar teléfono</label>
-      <input type="tel" id="telefono" name="telefono" required />
+      <label for="email">Cambiar correo electrónico</label>
+      {{ form.email }}
 
-      <label for="password">cambiar contraseña</label>
-      <input type="password" id="Contraseña" name="Contraseña" required />
-
-      <label for="repetir_password">Confirmar nueva contraseña</label>
-      <input
-        type="password"
-        id="repetir_password"
-        name="repetir_password"
-        required
-      />
+      <label for="new_password">Cambiar contraseña</label>
+      {{ form.new_password }}
 
       <button type="submit" class="boton-editar">EDITAR</button>
     </form>
 
-    <a href="{% url 'menu' %}"><button class="boton-cerrar">✖</button></a>
+    <a href="{% url 'perfil_usuario' %}"
+      ><button class="boton-cerrar">✖</button></a
+    >
   </div>
 </div>
 {% endblock %}

@@ -1,20 +1,18 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from .forms import RegistroForm, LoginForm
+from django.contrib.auth import update_session_auth_hash
+from .forms import RegistroForm, LoginForm, EditarPerfilForm
 from django.contrib.auth.models import User
-
 
 def auth_view(request):
     registro_form = RegistroForm()
     login_form = LoginForm()
 
     if request.method == 'POST':
-        # Verificar si el formulario enviado es de registro
         if 'registro_submit' in request.POST:
             registro_form = RegistroForm(request.POST)
             if registro_form.is_valid():
-                # Aquí puedes crear el usuario
                 user = User.objects.create_user(
                     username=registro_form.cleaned_data['username'],
                     email=registro_form.cleaned_data['email'],
@@ -26,7 +24,6 @@ def auth_view(request):
             else:
                 messages.error(request, 'Por favor corrige los errores a continuación.')
 
-        # Verificar si el formulario enviado es de inicio de sesión
         elif 'login_submit' in request.POST:
             login_form = LoginForm(request.POST)
             if login_form.is_valid():
@@ -44,13 +41,41 @@ def auth_view(request):
 
     return render(request, 'auth.html', {'registro_form': registro_form, 'login_form': login_form})
 
+def logout_view(request):
+    logout(request)
+    return redirect('menu')
+
+@login_required
 def editar_view(request):
-    return render(request, 'editar_perfilU.html')
+    user = request.user
+    if request.method == 'POST':
+        form = EditarPerfilForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Perfil actualizado exitosamente.')
+            return redirect('perfil_usuario')
+        else:
+            messages.error(request, 'Por favor corrige los errores a continuación.')
+    else:
+        form = EditarPerfilForm(instance=user)
+    return render(request, 'editar_perfilU.html', {'form': form})
 
 def recuperar_view(request):
     return render(request, 'recuperar.html')
 
+@login_required
+def perfil_usuario(request):
+    user = request.user
+   
 
-def logout_view(request):
-    logout(request)
-    return redirect('menu')
+    return render(request, 'perfil_usuario.html', {
+        'user': user,
+    })
+
+@login_required
+def eliminar_usuario(request):
+    usuario = request.user
+    usuario.delete()
+    messages.success(request, 'Tu cuenta ha sido eliminada.')
+    return redirect('auth')  # Redirigir al login después de eliminar la cuenta
