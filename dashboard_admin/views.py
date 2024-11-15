@@ -4,8 +4,8 @@ from django.shortcuts import render
 def moduloadmin_view(request):
      return render(request, 'modAdmin.html')
 
-def Inventario_view(request):
-     return render(request, 'Inventario.html')
+def inventario_view(request):
+     return render(request, 'inventario.html')
 
 def hisVentas_view(request):
      return render(request, 'hisVentas.html')
@@ -13,7 +13,20 @@ def hisVentas_view(request):
 def hisCompras_view(request):
      return render(request, 'hisCompras.html')
 
-def GestionUsusarios_view(request):
-     return render(request, 'GestionUsuarios.html')
+def gestionUsusarios_view(request):
+     return render(request, 'gestionUsuarios.html')
+
 def infoClientes_view(request):
      return render(request, 'infoClient.html')
+
+def proveedores_view(request):
+     return render(request, 'proveedores.html')
+
+def add_product(request):
+     return
+
+def edit_product(request):
+     return
+
+def add_provider(request):
+     return

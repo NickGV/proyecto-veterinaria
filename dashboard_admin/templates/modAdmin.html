@@ -1,31 +1,8 @@
-{% extends 'base.html' %} {% load static %} {% block extra_css %}
+{% extends 'adminDashboard.html' %} {% load static %} {% block extra_css %}
 <link rel="stylesheet" href="{% static '/css/moduloadmin.css' %}" />
-<link rel="stylesheet" href="{% static '/css/globals.css' %}" />
 {% endblock %} {%block content%}
 <div>
-  <header>
-    <h1>dashboard administrativo</h1>
-  </header>
-  <div class="container">
-    <a href="{% url 'inventario' %}" class="admin-buttons">
-      <button>inventario</button>
-    </a>
-    <a href="{% url 'hisVentas' %}" class="admin-buttons">
-      <button>historial de ventas</button>
-    </a>
-    <a href="{% url 'hisCompras' %}" class="admin-buttons">
-      <button>historial de compras</button>
-    </a>
-    <a href="{% url 'infoClientes' %}" class="admin-buttons">
-      <button>info clientes</button>
-    </a>
-    <a href="{% url 'GestionUsuarios' %}" class="admin-buttons">
-      <button>gestion de usuarios</button>
-    </a>
-  </div>
+  <h1>bienvenido Admin</h1>
 </div>
 
-{% endblock %} {% block extra_js %}
-<script src="{% static '/js/moduloadmin.js' %}"></script>
-
-{% endblock %}
+{% endblock %} {% block extra_js %} {% endblock %}
