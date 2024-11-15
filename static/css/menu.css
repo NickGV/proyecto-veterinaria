@@ -160,3 +160,18 @@
 .active {
   background-color: rgba(0, 0, 0, 0.8);
   }
+
+}
+
+.servicios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul{
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
