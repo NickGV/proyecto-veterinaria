@@ -382,11 +382,12 @@ main {
   }
 }
 
-.usuario {
+.usuario-text {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   color: white;
   font-weight: bold;
+  text-align: right;
 }

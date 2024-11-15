@@ -30,7 +30,7 @@
         </div>
         <div class="right">
           {% if user.is_authenticated %}
-          <div class="usuario">
+          <div class="usuario-text">
             <span>{{ user.username }}</span>
             <span>{{user.email}}</span>
           </div>
@@ -52,23 +52,6 @@
               />
             </button>
             {% endif %}
-            <!-- <section id="inf-user" class="seccion-perfilU hidden">
-              <div id="info" class="seccion-perfilU-info">
-                <h1>Perfil de cliente</h1>
-                <p>NomUsuario Apellido</p>
-                <p>correoUsuario123.@ejemplo.com</p>
-                <div class="user-buttons">
-                  <a href="{% url 'editar_perfilU' %}" class="user-button">
-                    <button>Editar</button>
-                  </a>
-                  <button class="user-button">compras</button>
-                </div>
-                <a href="{% url 'logout' %}">
-                  <button class="logout-btn">Cerrar Sesión</button>
-                </a>
-                <button class="close-btn">✖</button>
-              </div>
-            </section> -->
           </div>
         </div>
       </div>

@@ -3,12 +3,12 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 />
-<link rel="stylesheet" href="{% static 'css/perfil_usuario.css'}" />
+<link rel="stylesheet" href="{% static '/css/perfil_usuario.css' %}" />
 {% endblock %} {% block content %}
 <div class="container">
   <div class="profile-header">
     <img
-      src="% static 'images/Sonrisas y patitas logo.jfif' %"
+      src="{% static '/images/Sonrisas y patitas logo.jfif' %}"
       alt="Foto de perfil"
     />
     <h1>{{ user.username }}</h1>

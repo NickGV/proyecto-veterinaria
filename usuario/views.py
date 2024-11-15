@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from .forms import RegistroForm, LoginForm, EditarPerfilForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 def auth_view(request):
     registro_form = RegistroForm()
