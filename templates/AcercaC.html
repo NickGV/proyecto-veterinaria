@@ -16,23 +16,37 @@
   <hr />
   <h2>Misión</h2>
   <p>
+    {% if acerca_de %}
+    {{ acerca_de.mision }}
+    {% else %}
     Somos una tienda veterinaria encargada de ofrecer los mejores productos para
     el cuidado y la diversión de nuestros queridos amigos peludos. Nuestro
     conocimiento sobre animales nos permite saber sus gustos y necesidades para
     así ofrecer servicios de calidad a nuestros clientes y darles la
     tranquilidad de tener una mascota feliz y sana.
+    {% endif %}
   </p>
   <hr />
   <h2>¿Dónde nos encontramos?</h2>
-  <p>Nos encontramos en el poblado calle 87 sur avenida 12</p>
-  <hr />
-  <h2>¿Cómo puedes contactarnos?</h2>
   <p>
-    En Instagram como: @Sonrisas y patitas_oficial <br />
-    En Facebook como: @Sonrisas y patitasofi<br />
-    Teléfono: 2786757<br />
-    WhatsApp: 3145756798
+    {% if acerca_de %}
+    {{ acerca_de.ubicacion }}
+    {% else %}
+    Dirección no disponible.
+    {% endif %}
   </p>
+  <hr />
+<h2>¿Cómo puedes contactarnos?</h2>
+<p>
+  {% if acerca_de %}
+  {{ acerca_de.instagram }}
+  {{ acerca_de.facebook }}
+  {{ acerca_de.telefono }}
+  {{ acerca_de.whatsapp }}
+  {% else %}
+  Información de contacto no disponible.
+  {% endif %}
+</p>
 </div>
 {% endblock %} {% block extra_js %}
 <scrip src="/static/js/AcercaC.js"></scrip>

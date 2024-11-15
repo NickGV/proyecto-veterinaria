@@ -88,8 +88,16 @@
             <li>
               <a href="{% url 'hisVentas' %}" class="dropdown-item">Ventas</a>
             </li>
-            <li><a href="{% url 'inventario' %}" class="dropdown-item">Inventario</a></li>
-            <li><a href="{% url 'proveedores' %}" class="dropdown-item">Proveedores</a></li>
+            <li>
+              <a href="{% url 'inventario' %}" class="dropdown-item"
+                >Inventario</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'proveedores' %}" class="dropdown-item"
+                >Proveedores</a
+              >
+            </li>
           </ul>
         </li>
         <li>
@@ -104,7 +112,11 @@
           </a>
           <ul class="collapse list-unstyled" id="submenu-web">
             <li><a href="#" class="dropdown-item">Menu</a></li>
-            <li><a href="#" class="dropdown-item">Acerca</a></li>
+            <li>
+              <a href="{% url 'editar_acerca_de' %}" class="dropdown-item"
+                >Acerca</a
+              >
+            </li>
             <li><a href="#" class="dropdown-item">Tienda</a></li>
           </ul>
         </li>
@@ -179,8 +191,16 @@
               <li>
                 <a href="{% url 'hisVentas' %}" class="dropdown-item">Ventas</a>
               </li>
-              <li><a href="{% url 'inventario' %}" class="dropdown-item">Inventario</a></li>
-              <li><a href="{% url 'proveedores' %}" class="dropdown-item">Proveedores</a></li>
+              <li>
+                <a href="{% url 'inventario' %}" class="dropdown-item"
+                  >Inventario</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'proveedores' %}" class="dropdown-item"
+                  >Proveedores</a
+                >
+              </li>
             </ul>
           </li>
           <li>
