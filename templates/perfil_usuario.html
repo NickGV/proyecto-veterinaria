@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+<link rel="stylesheet" href="{% static '/css/perfil_usuario.css' %}" />
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="profile-header">
+    <img
+      src="{% static '/images/Sonrisas y patitas logo.jfif' %}"
+      alt="Foto de perfil"
+    />
+    <h1>{{ user.username }}</h1>
+    <p>{{ user.email }}</p>
+  </div>
+
+  <div class="profile-details">
+    <div>
+      <h3>Nombre de Usuario</h3>
+      <p>{{ user.username }}</p>
+    </div>
+    <div>
+      <h3>Fecha de Creación</h3>
+      <p>{{ user.date_joined }}</p>
+    </div>
+    <div>
+      <h3>Última Conexión</h3>
+      <p>{{ user.last_login }}</p>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <a href="{% url 'editar_perfilU' %}"
+      ><i class="fas fa-edit"></i> Editar Perfil</a
+    >
+    <a href="{% url 'eliminar_usuario' %}" class="delete"
+      ><i class="fas fa-trash-alt"></i> Eliminar Cuenta</a
+    >
+  </div>
+</div>
+{% endblock %}
