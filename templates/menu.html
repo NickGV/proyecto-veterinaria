@@ -5,21 +5,18 @@
 <link rel="stylesheet" href="{% static '/css/globals.css' %}">
 {% endblock %} 
 {% block content %}
-<div>
+<div class="main-content">
   <section class="info">
     <div class="logo-container">
-      <img
-        src="{% static '/images/Sonrisas y patitas logo.jfif' %}"
-        alt="Logo de la Veterinaria"
-        class="logo"
-      />
+      <img src="{% static '/images/Sonrisas y patitas logo.jfif' %}" alt="Logo de la Veterinaria" class="logo" />
     </div>
     <h1 class="menu-title">Bienvenidos a la Clínica Veterinaria SONRISAS Y PATITAS</h1>
     <p class="menu-subtitle">Nos dedicamos a cuidar a tus mascotas con mucho amor y profesionalismo.</p>
   </section>
+
   <section class="servicios">
-    <div class="servicios_caninos">
-      <h2>Servicios para caninos</h2>
+    <div class="servicios-caninos">
+      <h2>Servicios para Caninos</h2>
       <ul>
         <li> * Consultas Veterinarias</li>
         <li> * Cuidados de mascotas</li>
@@ -28,8 +25,8 @@
         <li> * Consultas de salud</li>
       </ul>
     </div>
-    <div class="servicios felinos">
-      <h2>Servicios para felinos</h2>
+    <div class="servicios-felinos">
+      <h2>Servicios para Felinos</h2>
       <ul>
         <li> * Consultas Veterinarias</li>
         <li> * Cuidados de mascotas</li>
@@ -39,6 +36,32 @@
       </ul>
     </div>
   </section>
+
+  <!-- Carrusel -->
+  <div class="carrusel-container">
+    <div class="carrusel-inner">
+      <div class="carrusel-item">
+        <img src="{% static '/images/Perro siendo atendido.jfif' %}" alt="Imagen 1" />
+      </div>
+      <div class="carrusel-item">
+        <img src="{% static '/images/Promocion gato.jpg' %}" alt="Imagen 2" />
+      </div>
+      <div class="carrusel-item">
+        <img src="{% static '/images/Promocion peluqueria.jpg' %}" alt="Imagen 3" />
+      </div>
+      <div class="carrusel-item">
+        <img src="{% static '/images/gatos ultima.png' %}" alt="Imagen 4" />
+      </div>
+      <div class="carrusel-item">
+        <img src="{% static '/images/Perro ultima 2.png' %}" alt="Imagen 5" />
+      </div>
+    </div>
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+  </div>
+  <footer>
+    <p>&copy; 2024 Clínica Veterinaria Sonrisas y Patitas. Todos los derechos reservados.</p>
+  </footer>
 </div>
 {% endblock %} 
 {% block extra_js %}
