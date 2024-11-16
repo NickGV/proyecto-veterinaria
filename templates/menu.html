@@ -1,38 +1,43 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{%block extra_css %}
+{% extends 'base.html' %} {% load static %} {%block extra_css %}
 <link rel="stylesheet" href="{% static '/css/menu.css' %}" />
-<link rel="stylesheet" href="{% static '/css/globals.css' %}">
-{% endblock %} 
-{% block content %}
+<link rel="stylesheet" href="{% static '/css/globals.css' %}" />
+{% endblock %} {% block content %}
 <div class="main-content">
   <section class="info">
     <div class="logo-container">
-      <img src="{% static '/images/Sonrisas y patitas logo.jfif' %}" alt="Logo de la Veterinaria" class="logo" />
+      <img
+        src="{% static '/images/Sonrisas y patitas logo.jfif' %}"
+        alt="Logo de la Veterinaria"
+        class="logo"
+      />
     </div>
-    <h1 class="menu-title">Bienvenidos a la Clínica Veterinaria SONRISAS Y PATITAS</h1>
-    <p class="menu-subtitle">Nos dedicamos a cuidar a tus mascotas con mucho amor y profesionalismo.</p>
+    <h1 class="menu-title">
+      Bienvenidos a la Clínica Veterinaria SONRISAS Y PATITAS
+    </h1>
+    <p class="menu-subtitle">
+      Nos dedicamos a cuidar a tus mascotas con mucho amor y profesionalismo.
+    </p>
   </section>
 
   <section class="servicios">
     <div class="servicios-caninos">
       <h2>Servicios para Caninos</h2>
       <ul>
-        <li> * Consultas Veterinarias</li>
-        <li> * Cuidados de mascotas</li>
-        <li> * Servicios de grooming</li>
-        <li> * Medicamentos y alimentos</li>
-        <li> * Consultas de salud</li>
+        <li>* Consultas Veterinarias</li>
+        <li>* Cuidados de mascotas</li>
+        <li>* Servicios de grooming</li>
+        <li>* Medicamentos y alimentos</li>
+        <li>* Consultas de salud</li>
       </ul>
     </div>
     <div class="servicios-felinos">
       <h2>Servicios para Felinos</h2>
       <ul>
-        <li> * Consultas Veterinarias</li>
-        <li> * Cuidados de mascotas</li>
-        <li> * Servicios de grooming</li>
-        <li> * Medicamentos y alimentos</li>
-        <li> * Consultas de salud</li>
+        <li>* Consultas Veterinarias</li>
+        <li>* Cuidados de mascotas</li>
+        <li>* Servicios de grooming</li>
+        <li>* Medicamentos y alimentos</li>
+        <li>* Consultas de salud</li>
       </ul>
     </div>
   </section>
@@ -41,29 +46,37 @@
   <div class="carrusel-container">
     <div class="carrusel-inner">
       <div class="carrusel-item">
-        <img src="{% static '/images/Perro siendo atendido.jfif' %}" alt="Imagen 1" />
+        <img
+          src="{% static '/images/Perro_siendo_atendido.jfif' %}"
+          alt="Imagen 1"
+        />
       </div>
       <div class="carrusel-item">
-        <img src="{% static '/images/Promocion gato.jpg' %}" alt="Imagen 2" />
+        <img src="{% static '/images/Promocion_gato.jpg' %}" alt="Imagen 2" />
       </div>
       <div class="carrusel-item">
-        <img src="{% static '/images/Promocion peluqueria.jpg' %}" alt="Imagen 3" />
+        <img
+          src="{% static '/images/Promocion_peluqueria.jpg' %}"
+          alt="Imagen 3"
+        />
       </div>
       <div class="carrusel-item">
-        <img src="{% static '/images/gatos ultima.png' %}" alt="Imagen 4" />
+        <img src="{% static '/images/gatos_ultima.png' %}" alt="Imagen 4" />
       </div>
       <div class="carrusel-item">
-        <img src="{% static '/images/Perro ultima 2.png' %}" alt="Imagen 5" />
+        <img src="{% static '/images/perros_ultima_2.png' %}" alt="Imagen 5" />
       </div>
     </div>
     <button class="prev">❮</button>
     <button class="next">❯</button>
   </div>
   <footer>
-    <p>&copy; 2024 Clínica Veterinaria Sonrisas y Patitas. Todos los derechos reservados.</p>
+    <p>
+      &copy; 2024 Clínica Veterinaria Sonrisas y Patitas. Todos los derechos
+      reservados.
+    </p>
   </footer>
 </div>
-{% endblock %} 
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script src="{% static '/js/menu.js' %}"></script>
 {% endblock %}
