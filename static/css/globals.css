@@ -316,7 +316,11 @@ main {
   color: red;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  .usuario-text {
+    margin: auto;
+  }
+
   .hamburger-menu {
     display: flex;
     background: transparent;
@@ -370,7 +374,6 @@ main {
     display: flex;
     justify-content: center;
   }
-
   .seccion-perfilU {
     position: fixed;
     top: 50%;
