@@ -109,7 +109,7 @@ button.next {
 }
 .carrusel-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .prev, .next {
@@ -180,4 +180,36 @@ footer {
   .servicios li {
     font-size: 1.1em;
   }
+}
+
+.testimonios {
+  background-color: #f8f8f8;
+  padding: 50px 0;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+.testimonios h2 {
+  font-size: 2em;
+  color: #333;
+}
+
+.testimonio {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 15px;
+  background-color: #f3efef;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.testimonio p {
+  color: #555;
+  font-size: 1.1em;
+}
+
+.testimonio p:nth-child(2) {
+  font-style: italic;
+  color: #777;
 }
