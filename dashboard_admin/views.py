@@ -1,12 +1,14 @@
-from django.shortcuts import render, redirect
-from .models import AcercaDe
-from .forms import AcercaDeForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import AcercaDe, Producto
+from .forms import AcercaDeForm, ProductoForm
 # Create your views here.
 def moduloadmin_view(request):
      return render(request, 'modAdmin.html')
 
 def inventario_view(request):
-     return render(request, 'inventario.html')
+    productos = Producto.objects.all()
+    form = ProductoForm()
+    return render(request, 'inventario.html', {'productos': productos, 'form': form})
 
 def hisVentas_view(request):
      return render(request, 'hisVentas.html')
@@ -24,10 +26,28 @@ def proveedores_view(request):
      return render(request, 'proveedores.html')
 
 def add_product(request):
-     return
+    if request.method == 'POST':
+        form = ProductoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('inventario')
+    return redirect('inventario')
 
-def edit_product(request):
-     return
+def edit_product(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    if request.method == 'POST':
+        form = ProductoForm(request.POST, request.FILES, instance=producto)
+        if form.is_valid():
+            form.save()
+            return redirect('inventario')
+    return redirect('inventario')
+
+def delete_product(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    if request.method == 'POST':
+        producto.delete()
+        return redirect('inventario')
+    return redirect('inventario')
 
 def add_provider(request):
      return

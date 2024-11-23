@@ -1,5 +1,8 @@
-{% extends 'adminDashboard.html' %} {% load static %} {% block extra_css %}
-{% endblock %} {%block content%}
+{% extends 'adminDashboard.html' %}
+{% load static %}
+{% block extra_css %}
+{% endblock %}
+{% block content %}
 <div class="container mt-5">
     <h1 class="text-center mb-4">Gestión de Productos</h1>
 
@@ -24,24 +27,103 @@
             </tr>
             </thead>
             <tbody>
+            {% for producto in productos %}
             <tr>
-                <th scope="row">1</th>
-                <td><img src="{% static 'path/to/image.jpg' %}" alt="Producto" class="img-fluid" style="width: 50px;"></td>
-                <td>Nombre del Producto</td>
-                <td>Descripción breve</td>
-                <td>$ Precio</td>
-                <td>Cantidad</td>
-                <td>Categoría</td>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-fluid" style="width: 50px;"></td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.cantidad_disponible }}</td>
+                <td>{{ producto.categoria }}</td>
                 <td>
-                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal">Editar</button>
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal{{ producto.pk }}">Editar</button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal{{ producto.pk }}">Eliminar</button>
                 </td>
             </tr>
+
+            <!-- Edit Product Modal -->
+            <div class="modal fade" id="editProductModal{{ producto.pk }}" tabindex="-1" aria-labelledby="editProductModalLabel{{ producto.pk }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form action="{% url 'edit_product' producto.pk %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editProductModalLabel{{ producto.pk }}">Editar Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="editProductName{{ producto.pk }}" class="form-label">Nombre del Producto</label>
+                                        <input type="text" class="form-control" id="editProductName{{ producto.pk }}" name="nombre" value="{{ producto.nombre }}" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editProductCategory{{ producto.pk }}" class="form-label">Categoría</label>
+                                        <select class="form-select" id="editProductCategory{{ producto.pk }}" name="categoria" required>
+                                            <option value="Alimentos" {% if producto.categoria == 'Alimentos' %}selected{% endif %}>Alimentos</option>
+                                            <option value="Medicamentos" {% if producto.categoria == 'Medicamentos' %}selected{% endif %}>Medicamentos</option>
+                                            <option value="Accesorios" {% if producto.categoria == 'Accesorios' %}selected{% endif %}>Accesorios</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="editProductDescription{{ producto.pk }}" class="form-label">Descripción</label>
+                                        <textarea class="form-control" id="editProductDescription{{ producto.pk }}" name="descripcion" rows="2" required>{{ producto.descripcion }}</textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editProductPrice{{ producto.pk }}" class="form-label">Precio</label>
+                                        <input type="number" class="form-control" id="editProductPrice{{ producto.pk }}" name="precio" value="{{ producto.precio }}" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editProductQuantity{{ producto.pk }}" class="form-label">Cantidad Disponible</label>
+                                        <input type="number" class="form-control" id="editProductQuantity{{ producto.pk }}" name="cantidad_disponible" value="{{ producto.cantidad_disponible }}" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="editProductImage{{ producto.pk }}" class="form-label">Imagen del Producto</label>
+                                        <input type="file" class="form-control" id="editProductImage{{ producto.pk }}" name="imagen">
+                                        {% if producto.imagen %}
+                                        <img src="{{ producto.imagen.url }}" alt="Imagen actual" class="img-fluid mt-2" style="max-width: 100px;">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Product Modal -->
+            <div class="modal fade" id="deleteProductModal{{ producto.pk }}" tabindex="-1" aria-labelledby="deleteProductModalLabel{{ producto.pk }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteProductModalLabel{{ producto.pk }}">Eliminar Producto</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro de que deseas eliminar el producto "{{ producto.nombre }}"?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{% url 'delete_product' producto.pk %}" method="post">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
 
+<!-- Add Product Modal -->
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -55,11 +137,11 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="productName" class="form-label">Nombre del Producto</label>
-                            <input type="text" class="form-control" id="productName" name="name" required>
+                            <input type="text" class="form-control" id="productName" name="nombre" required>
                         </div>
                         <div class="col-md-6">
                             <label for="productCategory" class="form-label">Categoría</label>
-                            <select class="form-select" id="productCategory" name="category" required>
+                            <select class="form-select" id="productCategory" name="categoria" required>
                                 <option value="Alimentos">Alimentos</option>
                                 <option value="Medicamentos">Medicamentos</option>
                                 <option value="Accesorios">Accesorios</option>
@@ -67,19 +149,19 @@
                         </div>
                         <div class="col-md-12">
                             <label for="productDescription" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="productDescription" name="description" rows="2" required></textarea>
+                            <textarea class="form-control" id="productDescription" name="descripcion" rows="2" required></textarea>
                         </div>
                         <div class="col-md-6">
                             <label for="productPrice" class="form-label">Precio</label>
-                            <input type="number" class="form-control" id="productPrice" name="price" required>
+                            <input type="number" class="form-control" id="productPrice" name="precio" required>
                         </div>
                         <div class="col-md-6">
                             <label for="productQuantity" class="form-label">Cantidad Disponible</label>
-                            <input type="number" class="form-control" id="productQuantity" name="quantity" required>
+                            <input type="number" class="form-control" id="productQuantity" name="cantidad_disponible" required>
                         </div>
                         <div class="col-md-12">
                             <label for="productImage" class="form-label">Imagen del Producto</label>
-                            <input type="file" class="form-control" id="productImage" name="image">
+                            <input type="file" class="form-control" id="productImage" name="imagen">
                         </div>
                     </div>
                 </div>
@@ -91,59 +173,6 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-          <form action="" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="modal-header">
-                  <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div class="row g-3">
-                      <div class="col-md-6">
-                          <label for="editProductName" class="form-label">Nombre del Producto</label>
-                          <input type="text" class="form-control" id="editProductName" name="name" value="{{ product.name }}" required>
-                      </div>
-                      <div class="col-md-6">
-                          <label for="editProductCategory" class="form-label">Categoría</label>
-                          <select class="form-select" id="editProductCategory" name="category" required>
-                              <option value="Alimentos" {% if product.category == 'Alimentos' %}selected{% endif %}>Alimentos</option>
-                              <option value="Medicamentos" {% if product.category == 'Medicamentos' %}selected{% endif %}>Medicamentos</option>
-                              <option value="Accesorios" {% if product.category == 'Accesorios' %}selected{% endif %}>Accesorios</option>
-                          </select>
-                      </div>
-                      <div class="col-md-12">
-                          <label for="editProductDescription" class="form-label">Descripción</label>
-                          <textarea class="form-control" id="editProductDescription" name="description" rows="2" required>{{ product.description }}</textarea>
-                      </div>
-                      <div class="col-md-6">
-                          <label for="editProductPrice" class="form-label">Precio</label>
-                          <input type="number" class="form-control" id="editProductPrice" name="price" value="{{ product.price }}" required>
-                      </div>
-                      <div class="col-md-6">
-                          <label for="editProductQuantity" class="form-label">Cantidad Disponible</label>
-                          <input type="number" class="form-control" id="editProductQuantity" name="quantity" value="{{ product.quantity }}" required>
-                      </div>
-                      <div class="col-md-12">
-                          <label for="editProductImage" class="form-label">Imagen del Producto</label>
-                          <input type="file" class="form-control" id="editProductImage" name="image">
-                          {% if product.image %}
-                          <img src="{{ product.image.url }}" alt="Imagen actual" class="img-fluid mt-2" style="max-width: 100px;">
-                          {% endif %}
-                      </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-              </div>
-          </form>
-      </div>
-  </div>
-</div>
-
-
-{% endblock %} {% block extra_js %} {% endblock %}
+{% endblock %}
+{% block extra_js %}
+{% endblock %}
