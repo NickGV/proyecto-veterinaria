@@ -76,25 +76,7 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
  cd veterinaria
 ```
 
-2.**Crear un entorno virtual:**
-
-```bash
-  python -m venv venv
-```
-
-3.**Activa el entorno virtual:**
-
-```bash
-  venv\Scripts\activate
-```
-
-4. **Intalar las dependencias:**
-
-```bash
-  pip install -r requirements.txt
-```
-
-5. **Configurar la base de datos:**
+2. **Configurar la base de datos:**
 - crea un archivo .env en la raiz del proyecto. Este archivo debe contener las siguientes variables:
 
 ```bash
@@ -107,10 +89,11 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
 
 - Remplaza con tus datos
 
-6. **Crea las migraciones:** 
+
+3.**Inicia el proyecto el proyecto:**
+
 ```bash
-  python manage.py makemigrations
-  python manage.py migrate
+  python -m venv venv
 ```
 
 7. **Ejecutar el servidor:**
