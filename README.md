@@ -1,10 +1,5 @@
 # Task:
 
-2. **Alertas de Stock**:
-    
-    - [ ] Implementar una función que verifique los niveles de stock y envíe notificaciones cuando un producto esté bajo.
-    - [ ] Crear una lógica para generar automáticamente órdenes de compra a proveedores cuando los niveles de stock sean bajos.
-
 ### 2.2. Módulo de Compras
 
 4. **Orden de Compra**:
