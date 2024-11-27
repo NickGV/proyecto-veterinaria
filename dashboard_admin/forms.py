@@ -1,5 +1,5 @@
 from django import forms
-from .models import AcercaDe, Producto, Proveedor, Compra, Venta
+from .models import AcercaDe, Producto, Proveedor, Compra
 
 class AcercaDeForm(forms.ModelForm):
     mision = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
@@ -28,7 +28,3 @@ class CompraForm(forms.ModelForm):
         model = Compra
         fields = ['proveedor', 'producto', 'cantidad']
 
-class VentaForm(forms.ModelForm):
-    class Meta:
-        model = Venta
-        fields = ['producto', 'cantidad', 'cliente', 'telefono', 'correo']

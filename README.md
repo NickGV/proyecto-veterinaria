@@ -1,15 +1,5 @@
 # Task:
-### 2.1. Módulo de Inventario
 
-1. **Gestión de Productos**:
-    
-    - [ ] Crear un modelo de Producto en `models.py` con campos: nombre, descripción, precio, cantidad disponible, categoría e imágenes.
-    - [ ] Crear un formulario para registrar productos en `forms.py`.
-    - [ ] Implementar una vista para registrar productos (POST) y mostrar el formulario (GET).
-    - [ ] Crear una vista para listar productos con opciones de búsqueda y filtrado.
-    - [ ] Implementar funcionalidad para actualizar productos (editar) con su respectivo formulario.
-    - [ ] Implementar funcionalidad para eliminar productos con confirmación.
-    - [ ] Crear una vista para mostrar los detalles de un producto específico.
 2. **Alertas de Stock**:
     
     - [ ] Implementar una función que verifique los niveles de stock y envíe notificaciones cuando un producto esté bajo.
@@ -17,14 +7,11 @@
 
 ### 2.2. Módulo de Compras
 
-3. **Gestión de Proveedores**:
-    
-    - [ ] Asegurarte de que el módulo para gestionar proveedores esté completo (registro, actualización, eliminación y consulta).
-    - [ ] Crear un modelo de Proveedor si no existe, con campos necesarios.
 4. **Orden de Compra**:
     
     - [ ] Crear un formulario para generar órdenes de compra, seleccionando productos y especificando cantidades.
     - [ ] Implementar una vista que maneje la creación de órdenes de compra y actualice el inventario al recibir mercancía.
+
 5. **Historial de Compras**:
     
     - [ ] Crear una vista para mostrar el historial de compras con filtros por fecha y proveedor.
@@ -37,9 +24,7 @@
     - [ ] Crear un modelo de Cliente en `models.py` con campos: nombre, contacto, historial de compras.
     - [ ] Crear un formulario para registrar clientes en `forms.py`.
     - [ ] Implementar una vista para listar y editar información de clientes.
-7. **Catálogo de Productos**:
-    
-    - [ ] Asegurarte de que el catálogo de productos esté bien implementado, con opciones de búsqueda y filtrado.
+
 8. **Carrito de Compras**:
     
     - [ ] Mejorar la funcionalidad del carrito para permitir agregar productos, modificar cantidades y proceder al pago.
@@ -76,16 +61,7 @@
 15. **Perfil de Cliente**:
     
     - [ ] Implementar una sección donde los clientes puedan gestionar su información personal y consultar su historial de compras.
-
-### Acciones Generales
-
-16. **Integración y Pruebas**:
     
-    - [ ] Realizar pruebas exhaustivas de cada funcionalidad implementada para asegurar que todo funcione correctamente.
-    - [ ] Probar la experiencia del usuario para asegurar que sea fluida y sin errores.
-17. **Documentación**:
-    
-    - [ ] Mantener una buena documentación de cada módulo y funcionalidad implementada para facilitar el mantenimiento y futuras mejoras.
 # Clínica Veterinaria - Sonrisas y Patitas
 
 Este es un proyecto de gestión para una clínica veterinaria, que permite a los usuarios gestionar sus mascotas, realizar compras y acceder a información sobre productos y servicios.
@@ -136,7 +112,13 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
 
 - Remplaza con tus datos
 
-6. **Ejecutar el servidor:**
+6. **Crea las migraciones:** 
+```bash
+  python manage.py makemigrations
+  python manage.py migrate
+```
+
+7. **Ejecutar el servidor:**
 
 ```bash
   python manage.py runserver
