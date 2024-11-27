@@ -1,6 +1,6 @@
 header {
   background: linear-gradient(135deg, #6f42c1, #007bff);
-  color: white;
+  color: rgb(101, 152, 194);
   padding: 30px;
   border-radius: 10px;
   text-align: center;
@@ -14,7 +14,7 @@ header h1 {
   font-size: 32px;
   font-weight: bold;
   text-transform: uppercase;
-  color: white;
+  color: rgb(101, 152, 194);
 }
 
 .container {

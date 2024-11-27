@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Configurar el carrusel para que avance automáticamente cada 5 segundos
     setInterval(() => {
         moveSlide(1); // Avanza una imagen cada 5 segundos
-    }, 5000);
+    }, 3000);
 
     // Función para el botón "anterior"
     const prevButton = document.querySelector('.prev');
