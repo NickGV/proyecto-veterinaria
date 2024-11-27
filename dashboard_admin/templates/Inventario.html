@@ -40,8 +40,13 @@
                     <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProductModal{{ producto.pk }}">Editar</button>
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProductModal{{ producto.pk }}">Eliminar</button>
                 </td>
+                {% if producto.cantidad_disponible <= 5 %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <strong>Stock bajo!</strong> El producto {{ producto.nombre }} tiene {{ producto.cantidad_disponible }} unidades disponibles.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
             </tr>
-
             <!-- Edit Product Modal -->
             <div class="modal fade" id="editProductModal{{ producto.pk }}" tabindex="-1" aria-labelledby="editProductModalLabel{{ producto.pk }}" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
