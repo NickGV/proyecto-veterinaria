@@ -55,153 +55,26 @@
   </header>
 
   <div id="lista-productos" class="container">
-    <div class="card" data-categoria="herramientas">
+    {% for producto in productos %}
+    <div class="card" data-categoria="{{producto.categoria}}">
       <img
-        src="{% static '/images/arenero_gatos.jfif' %}"
+        src="../../media/{{producto.imagen}}"
         class="imagen u-full-width"
       />
       <div class="info-card">
-        <h4>Arenero para gatos</h4>
-        <p>Arenero grande para gatos</p>
-        <p class="precio">$20.00</p>
+        <h4>{{producto.nombre}}</h4>
+        <p>{{producto.descripcion}}</p>
+        <p class="precio">${{producto.precio}}</p>
         <a
           href="#"
           class="u-full-width button-primary button input agregar-carrito"
-          data-id="1"
+          data-id="{{producto.id}}"
           >Agregar Al Carrito</a
         >
       </div>
+      {% endfor %}
     </div>
-
-    <div class="card" data-categoria="herramienta">
-      <img
-        src="{% static '/images/cepillo_gatos.jfif' %}"
-        class="imagen u-full-width"
-      />
-      <div class="info-card">
-        <h4>Cepillo para gatos</h4>
-        <p>Cepillo mediano para gatos</p>
-        <p class="precio">$12.00</p>
-        <a
-          href="#"
-          class="u-full-width button-primary button input agregar-carrito"
-          data-id="2"
-          >Agregar Al Carrito</a
-        >
-      </div>
     </div>
-
-    <div class="card" data-categoria="comida">
-      <img
-        src="{% static '/images/comida_gatos.jfif' %}"
-        class="imagen u-full-width"
-      />
-      <div class="info-card">
-        <h4>Comida para gatos</h4>
-        <p>Comida para gatos en lata marca Ricocat</p>
-        <p class="precio">$10.00</p>
-        <a
-          href="#"
-          class="u-full-width button-primary button input agregar-carrito"
-          data-id="3"
-          >Agregar Al Carrito</a
-        >
-      </div>
-    </div>
-
-    <div class="card" data-categoria="juguetes">
-      <img
-        src="{% static '/images/juguete_gatos.jpg' %}"
-        class="imagen u-full-width"
-      />
-      <div class="info-card">
-        <h4>Juguete para gatos</h4>
-        <p>Juguete pequeño en forma de Ratón</p>
-
-        <p class="precio">$5.00</p>
-        <a
-          href="#"
-          class="u-full-width button-primary button input agregar-carrito"
-          data-id="4"
-          >Agregar Al Carrito</a
-        >
-      </div>
-    </div>
-    <!--.card-->
-    <div class="card" data-categoria="herramientas">
-      <img
-        src="{% static '/images/cepillo-para-perros-grandes-de-pelo-largo_1_g.jpeg' %}"
-        class="imagen u-full-width"
-      />
-      <div class="info-card">
-        <h4>Cepillo para perro</h4>
-        <p>Cepillo grande para perro</p>
-
-        <p class="precio">$15.00</p>
-        <a
-          href="#"
-          class="u-full-width button-primary button input agregar-carrito"
-          data-id="5"
-          >Agregar Al Carrito</a
-        >
-      </div>
-    </div>
-    <div class="card" data-categoria="comida">
-      <img
-        src="{% static '/images/comida_perros.jfif' %}"
-        class="imagen u-full-width"
-      />
-      <div class="info-card">
-        <h4>Comida para perros</h4>
-        <p>Comida para perros marca pedigree</p>
-
-        <p class="precio">$12.00</p>
-        <a
-          href="#"
-          class="u-full-width button-primary button input agregar-carrito"
-          data-id="6"
-          >Agregar Al Carrito</a
-        >
-      </div>
-    </div>
-    <!--.card-->
-    <div class="card" data-categoria="juguetes">
-      <img
-        src="{% static '/images/juguete_perros.jfif' %}"
-        class="imagen u-full-width"
-      />
-      <div class="info-card">
-        <h4>Juguete para perros</h4>
-        <p>Juguete mediano para perros</p>
-
-        <p class="precio">$17.00</p>
-        <a
-          href="#"
-          class="u-full-width button-primary button input agregar-carrito"
-          data-id="7"
-          >Agregar Al Carrito</a
-        >
-      </div>
-    </div>
-    <div class="card" data-categoria="aseo">
-      <img
-        src="{% static '/images/shampoo_perros.jfif' %}"
-        class="imagen u-full-width"
-      />
-      <div class="info-card">
-        <h4>Shampoo para perros</h4>
-        <p>Shampoo marca Tankful dogs</p>
-
-        <p class="precio">$22.00</p>
-        <a
-          href="#"
-          class="u-full-width button-primary button input agregar-carrito"
-          data-id="8"
-          >Agregar Al Carrito</a
-        >
-      </div>
-    </div>
-  </div>
 </div>
 {% endblock %} {% block extra_js %}
 
