@@ -1,8 +1,4 @@
-
-### requirements.txt
-
-```plaintext
-Django==5.1.3
-mysqlclient==2.1.1
-python-dotenv==1.0.0
+Django
+mysqlclient
+python-dotenv
 Pillow
