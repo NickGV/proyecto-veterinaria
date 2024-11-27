@@ -1,104 +1,85 @@
 {% extends 'adminDashboard.html' %}
 {% load static %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static '/css/hisCompras.css' %}">
 {% endblock %}
-{%block content%}
-<div>
-    <div class="container">
-        <h1>Historial de Compras</h1>
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Historial de Compras</h1>
 
-        <!-- Filtros de búsqueda -->
-        <div class="search-section">
-            <input type="text" id="search-client" placeholder="Buscar por proveedor" oninput="filterTable()">
-            <input type="text" id="search-product" placeholder="Buscar por Producto" oninput="filterTable()">
-            <input type="date" id="search-date" oninput="filterTable()">
-            <select id="search-category" onchange="filterTable()">
-                <option value="">Seleccionar Categoría</option>
-                <option value="alimentos">Alimentos</option>
-                <option value="medicamentos">Medicamentos</option>
-                <option value="accesorios">Accesorios</option>
-            </select>
-            <button onclick="clearFilters()">Limpiar Filtros</button>
-        </div>
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCompraModal">
+            Registrar Compra
+        </button>
+    </div>
 
-        <!-- Resumen del Cliente -->
-        <div class="client-info">
-            <p><strong>Proveedor:</strong> Juan Pérez</p>
-            <p><strong>Teléfono:</strong> 123-456-789</p>
-            <p><strong>Correo:</strong> juan@example.com</p>
-            <p><strong>Mascota(s):</strong> Rocky (Perro)</p>
-        </div>
-
-        <!-- Historial de compras -->
-        <table id="purchase-history">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Número de Orden</th>
-                    <th>Producto(s)</th>
-                    <th>Cantidad</th>
-                    <th>Total</th>
-                    <th>Método de Pago</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Proveedor</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Fecha</th>
+            </tr>
             </thead>
             <tbody>
-                <tr data-category="alimentos">
-                    <td>01/11/2024</td>
-                    <td>12345</td>
-                    <td>Alimento para perros</td>
-                    <td>2</td>
-                    <td>$50.00</td>
-                    <td>Tarjeta de crédito</td>
-                    <td>Completado</td>
-                    <td class="action-buttons">
-                        <a href="#" onclick="viewDetails(12345)">Ver Detalles</a>
-                        <a href="#" onclick="repeatPurchase(12345)">Repetir Compra</a>
-                        <a href="#" onclick="printReceipt(12345)">Imprimir Recibo</a>
-                    </td>
-                </tr>
-                <tr data-category="accesorios">
-                    <td>20/10/2024</td>
-                    <td>12344</td>
-                    <td>Juguete para gatos</td>
-                    <td>1</td>
-                    <td>$15.00</td>
-                    <td>Efectivo</td>
-                    <td>Completado</td>
-                    <td class="action-buttons">
-                        <a href="#" onclick="viewDetails(12344)">Ver Detalles</a>
-                        <a href="#" onclick="repeatPurchase(12344)">Repetir Compra</a>
-                        <a href="#" onclick="printReceipt(12344)">Imprimir Recibo</a>
-                    </td>
-                </tr>
-                <tr data-category="medicamentos">
-                    <td>15/09/2024</td>
-                    <td>12343</td>
-                    <td>Medicamento para perros</td>
-                    <td>3</td>
-                    <td>$90.00</td>
-                    <td>Transferencia</td>
-                    <td>Pendiente</td>
-                    <td class="action-buttons">
-                        <a href="#" onclick="viewDetails(12343)">Ver Detalles</a>
-                        <a href="#" onclick="repeatPurchase(12343)">Repetir Compra</a>
-                        <a href="#" onclick="printReceipt(12343)">Imprimir Recibo</a>
-                    </td>
-                </tr>
+            {% for compra in compras %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ compra.proveedor.nombre }}</td>
+                <td>{{ compra.producto.nombre }}</td>
+                <td>{{ compra.cantidad }}</td>
+                <td>{{ compra.fecha }}</td>
+            </tr>
+            {% endfor %}
             </tbody>
         </table>
-
-        <!-- Pie de página -->
-        <div class="footer">
-            <p>Resumen de compras: 3 órdenes, Total gastado: $155.00</p>
-            <button class="btn-regresar" onclick="history.back()">Regresar</button>
-        </div>
     </div>
 </div>
 
-{% endblock %} 
+<!-- Add Compra Modal -->
+<div class="modal fade" id="addCompraModal" tabindex="-1" aria-labelledby="addCompraModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form action="{% url 'add_compra' %}" method="post">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCompraModalLabel">Registrar Compra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="compraProveedor" class="form-label">Proveedor</label>
+                            <select class="form-select" id="compraProveedor" name="proveedor" required>
+                                {% for proveedor in proveedores %}
+                                <option value="{{ proveedor.pk }}">{{ proveedor.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="compraProducto" class="form-label">Producto</label>
+                            <select class="form-select" id="compraProducto" name="producto" required>
+                                {% for producto in productos %}
+                                <option value="{{ producto.pk }}">{{ producto.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="compraCantidad" class="form-label">Cantidad</label>
+                            <input type="number" class="form-control" id="compraCantidad" name="cantidad" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Registrar Compra</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
 {% block extra_js %}
-<script src="{% static '/js/hisCompras.js' %}"></script>
 {% endblock %}

@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import AcercaDe, Producto
-from .forms import AcercaDeForm, ProductoForm
-# Create your views here.
+from .models import AcercaDe, Producto, Proveedor, Compra
+from .forms import AcercaDeForm, ProductoForm, ProveedorForm, CompraForm
+
 def moduloadmin_view(request):
-     return render(request, 'modAdmin.html')
+    return render(request, 'modAdmin.html')
 
 def inventario_view(request):
     productos = Producto.objects.all()
@@ -11,19 +11,49 @@ def inventario_view(request):
     return render(request, 'inventario.html', {'productos': productos, 'form': form})
 
 def hisVentas_view(request):
-     return render(request, 'hisVentas.html')
+    ventas = Venta.objects.all()
+    return render(request, 'hisVentas.html', {'ventas': ventas})
 
 def hisCompras_view(request):
-     return render(request, 'hisCompras.html')
+    compras = Compra.objects.all()
+    proveedores = Proveedor.objects.all()
+    productos = Producto.objects.all()
+    return render(request, 'hisCompras.html', {'compras': compras, 'proveedores': proveedores, 'productos': productos})
 
 def gestionUsusarios_view(request):
-     return render(request, 'gestionUsuarios.html')
+    return render(request, 'gestionUsuarios.html')
 
 def infoClientes_view(request):
-     return render(request, 'infoClient.html')
+    return render(request, 'infoClient.html')
 
 def proveedores_view(request):
-     return render(request, 'proveedores.html')
+    proveedores = Proveedor.objects.all()
+    form = ProveedorForm()
+    return render(request, 'proveedores.html', {'proveedores': proveedores, 'form': form})
+
+def add_provider(request):
+    if request.method == 'POST':
+        form = ProveedorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('proveedores')
+    return redirect('proveedores')
+
+def edit_provider(request, pk):
+    proveedor = get_object_or_404(Proveedor, pk=pk)
+    if request.method == 'POST':
+        form = ProveedorForm(request.POST, instance=proveedor)
+        if form.is_valid():
+            form.save()
+            return redirect('proveedores')
+    return redirect('proveedores')
+
+def delete_provider(request, pk):
+    proveedor = get_object_or_404(Proveedor, pk=pk)
+    if request.method == 'POST':
+        proveedor.delete()
+        return redirect('proveedores')
+    return redirect('proveedores')
 
 def add_product(request):
     if request.method == 'POST':
@@ -49,8 +79,27 @@ def delete_product(request, pk):
         return redirect('inventario')
     return redirect('inventario')
 
-def add_provider(request):
-     return
+def add_compra(request):
+    if request.method == 'POST':
+        form = CompraForm(request.POST)
+        if form.is_valid():
+            compra = form.save()
+            producto = compra.producto
+            producto.cantidad_disponible += compra.cantidad
+            producto.save()
+            return redirect('hisCompras')
+    return redirect('hisCompras')
+
+def add_venta(request):
+    if request.method == 'POST':
+        form = VentaForm(request.POST)
+        if form.is_valid():
+            venta = form.save()
+            producto = venta.producto
+            producto.cantidad_disponible -= venta.cantidad
+            producto.save()
+            return redirect('hisVentas')
+    return redirect('hisVentas')
 
 def editar_acerca_de(request):
     acerca_de, created = AcercaDe.objects.get_or_create(id=1)

@@ -1,15 +1,14 @@
-{% extends 'adminDashboard.html' %} {% load static %} {% block extra_css %}
-{%endblock %} {% block content %}
+{% extends 'adminDashboard.html' %}
+{% load static %}
+{% block extra_css %}
+{% endblock %}
+{% block content %}
 
 <div class="container mt-5">
   <h1 class="text-center mb-4">Gestión de Proveedores</h1>
 
   <div class="d-flex justify-content-end mb-3">
-    <button
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#addProviderModal"
-    >
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProviderModal">
       Agregar Proveedor
     </button>
   </div>
@@ -28,227 +27,132 @@
         </tr>
       </thead>
       <tbody>
+        {% for proveedor in proveedores %}
         <tr>
-          <th scope="row">1</th>
-          <td>Nombre del Proveedor</td>
-          <td>correo@ejemplo.com</td>
-          <td>Dirección del Proveedor</td>
-          <td>(+00) 123-456-7890</td>
-          <td><a href="#" class="btn btn-info btn-sm">Ver Catálogo</a></td>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ proveedor.nombre }}</td>
+          <td>{{ proveedor.contacto }}</td>
+          <td>{{ proveedor.direccion }}</td>
+          <td>{{ proveedor.telefono }}</td>
+          <td><a href="{{ proveedor.catalogo }}" class="btn btn-info btn-sm" target="_blank">Ver Catálogo</a></td>
           <td>
-            <button
-              class="btn btn-warning btn-sm"
-              data-bs-toggle="modal"
-              data-bs-target="#editProviderModal"
-            >
-              Editar
-            </button>
-            <button class="btn btn-danger btn-sm">Eliminar</button>
+            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editProviderModal{{ proveedor.pk }}">Editar</button>
+            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteProviderModal{{ proveedor.pk }}">Eliminar</button>
           </td>
         </tr>
+
+        <!-- Edit Provider Modal -->
+        <div class="modal fade" id="editProviderModal{{ proveedor.pk }}" tabindex="-1" aria-labelledby="editProviderModalLabel{{ proveedor.pk }}" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <form action="{% url 'edit_provider' proveedor.pk %}" method="post">
+                {% csrf_token %}
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editProviderModalLabel{{ proveedor.pk }}">Editar Proveedor</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="editProviderName{{ proveedor.pk }}" class="form-label">Nombre del Proveedor</label>
+                      <input type="text" class="form-control" id="editProviderName{{ proveedor.pk }}" name="nombre" value="{{ proveedor.nombre }}" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="editProviderContact{{ proveedor.pk }}" class="form-label">Correo de Contacto</label>
+                      <input type="email" class="form-control" id="editProviderContact{{ proveedor.pk }}" name="contacto" value="{{ proveedor.contacto }}" required>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="editProviderAddress{{ proveedor.pk }}" class="form-label">Dirección</label>
+                      <input type="text" class="form-control" id="editProviderAddress{{ proveedor.pk }}" name="direccion" value="{{ proveedor.direccion }}" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="editProviderPhone{{ proveedor.pk }}" class="form-label">Teléfono</label>
+                      <input type="tel" class="form-control" id="editProviderPhone{{ proveedor.pk }}" name="telefono" value="{{ proveedor.telefono }}" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="editProviderCatalog{{ proveedor.pk }}" class="form-label">URL del Catálogo</label>
+                      <input type="url" class="form-control" id="editProviderCatalog{{ proveedor.pk }}" name="catalogo" value="{{ proveedor.catalogo }}">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delete Provider Modal -->
+        <div class="modal fade" id="deleteProviderModal{{ proveedor.pk }}" tabindex="-1" aria-labelledby="deleteProviderModalLabel{{ proveedor.pk }}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteProviderModalLabel{{ proveedor.pk }}">Eliminar Proveedor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar el proveedor "{{ proveedor.nombre }}"?</p>
+              </div>
+              <div class="modal-footer">
+                <form action="{% url 'delete_provider' proveedor.pk %}" method="post">
+                  {% csrf_token %}
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
       </tbody>
     </table>
   </div>
 </div>
 
-<div
-  class="modal fade"
-  id="addProviderModal"
-  tabindex="-1"
-  aria-labelledby="addProviderModalLabel"
-  aria-hidden="true"
->
+<!-- Add Provider Modal -->
+<div class="modal fade" id="addProviderModal" tabindex="-1" aria-labelledby="addProviderModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <form action="{% url 'add_provider' %}" method="post">
         {% csrf_token %}
         <div class="modal-header">
-          <h5 class="modal-title" id="addProviderModalLabel">
-            Agregar Proveedor
-          </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <h5 class="modal-title" id="addProviderModalLabel">Agregar Proveedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="row g-3">
             <div class="col-md-6">
-              <label for="providerName" class="form-label"
-                >Nombre del Proveedor</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="providerName"
-                name="name"
-                required
-              />
+              <label for="providerName" class="form-label">Nombre del Proveedor</label>
+              <input type="text" class="form-control" id="providerName" name="nombre" required>
             </div>
             <div class="col-md-6">
-              <label for="providerContact" class="form-label"
-                >Correo de Contacto</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                id="providerContact"
-                name="contact"
-                required
-              />
+              <label for="providerContact" class="form-label">Correo de Contacto</label>
+              <input type="email" class="form-control" id="providerContact" name="contacto" required>
             </div>
             <div class="col-md-12">
               <label for="providerAddress" class="form-label">Dirección</label>
-              <input
-                type="text"
-                class="form-control"
-                id="providerAddress"
-                name="address"
-                required
-              />
+              <input type="text" class="form-control" id="providerAddress" name="direccion" required>
             </div>
             <div class="col-md-6">
               <label for="providerPhone" class="form-label">Teléfono</label>
-              <input
-                type="tel"
-                class="form-control"
-                id="providerPhone"
-                name="phone"
-                required
-              />
+              <input type="tel" class="form-control" id="providerPhone" name="telefono" required>
             </div>
             <div class="col-md-6">
-              <label for="providerCatalog" class="form-label"
-                >URL del Catálogo</label
-              >
-              <input
-                type="url"
-                class="form-control"
-                id="providerCatalog"
-                name="catalog"
-              />
+              <label for="providerCatalog" class="form-label">URL del Catálogo</label>
+              <input type="url" class="form-control" id="providerCatalog" name="catalogo">
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Cerrar
-          </button>
-          <button type="submit" class="btn btn-primary">
-            Guardar Proveedor
-          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar Proveedor</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-
-<div
-  class="modal fade"
-  id="editProviderModal"
-  tabindex="-1"
-  aria-labelledby="editProviderModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <form action="" method="post">
-        {% csrf_token %}
-        <div class="modal-header">
-          <h5 class="modal-title" id="editProviderModalLabel">
-            Editar Proveedor
-          </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="editProviderName" class="form-label"
-                >Nombre del Proveedor</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="editProviderName"
-                name="name"
-                value="{{ provider.name }}"
-                required
-              />
-            </div>
-            <div class="col-md-6">
-              <label for="editProviderContact" class="form-label"
-                >Correo de Contacto</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                id="editProviderContact"
-                name="contact"
-                value="{{ provider.contact }}"
-                required
-              />
-            </div>
-            <div class="col-md-12">
-              <label for="editProviderAddress" class="form-label"
-                >Dirección</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="editProviderAddress"
-                name="address"
-                value="{{ provider.address }}"
-                required
-              />
-            </div>
-            <div class="col-md-6">
-              <label for="editProviderPhone" class="form-label">Teléfono</label>
-              <input
-                type="tel"
-                class="form-control"
-                id="editProviderPhone"
-                name="phone"
-                value="{{ provider.phone }}"
-                required
-              />
-            </div>
-            <div class="col-md-6">
-              <label for="editProviderCatalog" class="form-label"
-                >URL del Catálogo</label
-              >
-              <input
-                type="url"
-                class="form-control"
-                id="editProviderCatalog"
-                name="catalog"
-                value="{{ provider.catalog }}"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Cerrar
-          </button>
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-{% endblock %} {% block extra_js %} {% endblock %}
+{% endblock %}
+{% block extra_js %}
+{% endblock %}
