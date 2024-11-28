@@ -1,5 +1,6 @@
 from django import forms
 from .models import AcercaDe, Producto, Proveedor, Compra
+from django.contrib.auth.models import User
 
 class AcercaDeForm(forms.ModelForm):
     mision = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
@@ -28,3 +29,8 @@ class CompraForm(forms.ModelForm):
         model = Compra
         fields = ['proveedor', 'producto', 'cantidad']
 
+class Userform(forms.ModelForm):
+    class Meta: 
+        model = User
+        fields = ['username', 'email', 'password', 'is_superuser']
+    
