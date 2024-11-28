@@ -11,6 +11,16 @@ class AcercaDe(models.Model):
     def __str__(self):
         return "Acerca de nosotros"
 
+class Menu(models.Model):
+    titulo = models.CharField(max_length=255)
+    subtitulo = models.CharField(max_length=255)
+    servCaninos = models.CharField(max_length=255)
+    servFelinos = models.CharField(max_length=255)
+    testimonios = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return "Menu Principal"
+
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField()

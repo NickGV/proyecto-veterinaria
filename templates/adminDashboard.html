@@ -112,11 +112,10 @@
             Web
           </a>
           <ul class="collapse list-unstyled" id="submenu-web">
-            <li><a href="#" class="dropdown-item">Menu</a></li>
+            <li><a href="{% url 'editar_menu' %}" class="dropdown-item">Menu</a></li>
             <li>
               <a href="{% url 'editar_acerca_de' %}" class="dropdown-item"
-                >Acerca</a
-              >
+                >Acerca</a>
             </li>
             <li><a href="#" class="dropdown-item">Tienda</a></li>
           </ul>
@@ -214,7 +213,7 @@
               >Web</a
             >
             <ul class="collapse list-unstyled" id="submenu-web">
-              <li><a href="#" class="dropdown-item">Menu</a></li>
+              <li><a href="{% url 'editar_menu' %}" class="dropdown-item">Menu</a></li>
               <li><a href="{% url 'editar_acerca_de' %}" class="dropdown-item">Acerca</a></li>
               <li><a href="#" class="dropdown-item">Tienda</a></li>
             </ul>

@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from dashboard_admin.models import AcercaDe
+from dashboard_admin.models import AcercaDe, Menu
 
 def menu_view(request):
-    return render(request, 'menu.html')
+    menu = Menu.objects.first()
+    return render(request, 'menu.html', {'menu': menu})
 
 def acercaC_view(request):
     acerca_de = AcercaDe.objects.first()
