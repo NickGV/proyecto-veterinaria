@@ -1,4 +1,6 @@
-{% extends 'adminDashboard.html' %} {% block content %}
+{% extends 'adminDashboard.html' %} {% load static %} {% block extra_css %} 
+<link rel="stylesheet" href="{% static '/css/globals.css' %}" />
+{% endblock %} {% block content %}
 <div class="container mt-5">
   <h2>Editar Acerca de Nosotros</h2>
   <form method="post" class="needs-validation" novalidate>

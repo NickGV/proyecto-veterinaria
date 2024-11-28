@@ -79,7 +79,8 @@
 }
 
 .carrusel-container {
-  position: relative;
+  position:relative;
+  max-height: 400px;
   width: 100%;
   max-width: 800px;
   margin: auto;
