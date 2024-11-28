@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import AcercaDe, Producto, Proveedor, Compra
-from .forms import AcercaDeForm, ProductoForm, ProveedorForm, CompraForm
+from .models import AcercaDe, Producto, Proveedor, Compra, Menu
+from .forms import AcercaDeForm, ProductoForm, ProveedorForm, CompraForm, MenuForm
 
 def moduloadmin_view(request):
     return render(request, 'modAdmin.html')
@@ -111,3 +111,16 @@ def editar_acerca_de(request):
     else:
         form = AcercaDeForm(instance=acerca_de)
     return render(request, 'editar_acerca_de.html', {'form': form})
+
+def editar_menu(request):
+    menu, created = Menu.objects.get_or_create(id=1)
+    if request.method == 'POST':
+        form = MenuForm(request.POST, instance=menu)
+        if form.is_valid():
+            cadenaCaninos = form.cleaned_data['servCaninos']
+            elementosCaninos = cadenaCaninos.split(',')
+            form.save()
+            return render(request, 'editar_menu.html', {'form': form, 'elementosCaninos': elementosCaninos})
+    else:
+        form = MenuForm(instance=menu)
+    return render(request, 'editar_menu.html', {'form': form})

@@ -1,5 +1,5 @@
 from django import forms
-from .models import AcercaDe, Producto, Proveedor, Compra
+from .models import AcercaDe, Producto, Proveedor, Compra, Menu
 
 class AcercaDeForm(forms.ModelForm):
     mision = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
@@ -13,6 +13,16 @@ class AcercaDeForm(forms.ModelForm):
         model = AcercaDe
         fields = ['mision', 'ubicacion', 'instagram', 'facebook', 'telefono', 'whatsapp']
 
+class MenuForm(forms.ModelForm):
+    titulo = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    subtitulo = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    servCaninos = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
+    servFelinos = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
+    testimonios = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
+    class Meta:
+        model = Menu
+        fields = ['titulo', 'subtitulo', 'servCaninos', 'servFelinos', 'testimonios']
+        
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
