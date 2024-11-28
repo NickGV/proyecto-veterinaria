@@ -1,10 +1,5 @@
 # Task:
 
-2. **Alertas de Stock**:
-    
-    - [ ] Implementar una función que verifique los niveles de stock y envíe notificaciones cuando un producto esté bajo.
-    - [ ] Crear una lógica para generar automáticamente órdenes de compra a proveedores cuando los niveles de stock sean bajos.
-
 ### 2.2. Módulo de Compras
 
 4. **Orden de Compra**:
@@ -81,25 +76,7 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
  cd veterinaria
 ```
 
-2.**Crear un entorno virtual:**
-
-```bash
-  python -m venv venv
-```
-
-3.**Activa el entorno virtual:**
-
-```bash
-  venv\Scripts\activate
-```
-
-4. **Intalar las dependencias:**
-
-```bash
-  pip install -r requirements.txt
-```
-
-5. **Configurar la base de datos:**
+2. **Configurar la base de datos:**
 - crea un archivo .env en la raiz del proyecto. Este archivo debe contener las siguientes variables:
 
 ```bash
@@ -112,13 +89,14 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
 
 - Remplaza con tus datos
 
-6. **Crea las migraciones:** 
+
+3.**Inicia el proyecto el proyecto:**
+
 ```bash
-  python manage.py makemigrations
-  python manage.py migrate
+  python -m venv venv
 ```
 
-7. **Ejecutar el servidor:**
+4. **Ejecutar el servidor:**
 
 ```bash
   python manage.py runserver

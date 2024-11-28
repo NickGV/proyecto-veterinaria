@@ -38,3 +38,8 @@ class CompraForm(forms.ModelForm):
         model = Compra
         fields = ['proveedor', 'producto', 'cantidad']
 
+class Userform(forms.ModelForm):
+    class Meta: 
+        model = User
+        fields = ['username', 'email', 'password', 'is_superuser']
+    

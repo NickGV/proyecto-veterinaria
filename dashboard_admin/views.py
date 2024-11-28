@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import AcercaDe, Producto, Proveedor, Compra, Menu
-from .forms import AcercaDeForm, ProductoForm, ProveedorForm, CompraForm, MenuForm
+from .forms import AcercaDeForm, ProductoForm, ProveedorForm, CompraForm, Userform, MenuForm
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 def moduloadmin_view(request):
     return render(request, 'modAdmin.html')
@@ -11,7 +13,6 @@ def inventario_view(request):
     return render(request, 'inventario.html', {'productos': productos, 'form': form})
 
 def hisVentas_view(request):
-    ventas = Venta.objects.all()
     return render(request, 'hisVentas.html', {'ventas': ventas})
 
 def hisCompras_view(request):
@@ -21,7 +22,8 @@ def hisCompras_view(request):
     return render(request, 'hisCompras.html', {'compras': compras, 'proveedores': proveedores, 'productos': productos})
 
 def gestionUsusarios_view(request):
-    return render(request, 'gestionUsuarios.html')
+    usuarios = User.objects.all()
+    return render(request, 'GestionUsuarios.html', {'Users': usuarios, 'form': Userform})
 
 def infoClientes_view(request):
     return render(request, 'infoClient.html')
@@ -30,6 +32,33 @@ def proveedores_view(request):
     proveedores = Proveedor.objects.all()
     form = ProveedorForm()
     return render(request, 'proveedores.html', {'proveedores': proveedores, 'form': form})
+
+def edit_user(request,pk):
+    user = get_object_or_404(User, pk=pk)
+    if request.method == 'POST':
+        form = Userform(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('gestionUsuarios')
+    return redirect('gestionUsuarios')
+
+def delete_user(request,pk):
+    user = get_object_or_404(User, pk=pk)
+    if request.method == 'POST':
+        user.delete()
+        return redirect('gestionUsuarios')
+    return redirect('gestionUsuarios')
+
+
+def add_user(request):
+    if request.method == 'POST':
+        form = Userform(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('gestionUsuarios')
+    return redirect('gestionUsuarios')
+
+
 
 def add_provider(request):
     if request.method == 'POST':
