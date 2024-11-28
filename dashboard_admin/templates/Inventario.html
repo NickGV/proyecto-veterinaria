@@ -30,7 +30,7 @@
             {% for producto in productos %}
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td><img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-fluid" style="width: 50px;"></td>
+                <td><img src="../../media/{{producto.imagen }}" alt="{{ producto.nombre }}" class="img-fluid" style="width: 50px;"></td>
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.descripcion }}</td>
                 <td>{{ producto.precio }}</td>
@@ -87,7 +87,7 @@
                                         <label for="editProductImage{{ producto.pk }}" class="form-label">Imagen del Producto</label>
                                         <input type="file" class="form-control" id="editProductImage{{ producto.pk }}" name="imagen">
                                         {% if producto.imagen %}
-                                        <img src="{{ producto.imagen.url }}" alt="Imagen actual" class="img-fluid mt-2" style="max-width: 100px;">
+                                        <img src="{{ producto.imagen }}" alt="Imagen actual" class="img-fluid mt-2" style="max-width: 100px;">
                                         {% endif %}
                                     </div>
                                 </div>

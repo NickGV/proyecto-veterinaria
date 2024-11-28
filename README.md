@@ -96,7 +96,7 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
   python -m venv venv
 ```
 
-7. **Ejecutar el servidor:**
+4. **Ejecutar el servidor:**
 
 ```bash
   python manage.py runserver

@@ -5,9 +5,7 @@ from django.conf import settings
 from django.core.management import call_command
 
 subprocess.run(['python', '-m', 'venv', 'venv'])
-
-activate_script = os.path.join('venv', 'Scripts', 'activate')
-subprocess.run([activate_script], shell=True)
+subprocess.run('venv\Scripts\activate', shell=True)
 
 subprocess.run(['pip', 'install', '-r', 'requirements.txt'])
 
@@ -30,7 +28,7 @@ productos = [
         'precio': 20.00,
         'cantidad_disponible': 100,
         'categoria': 'herramientas',
-        'imagen': 'medida/productos/producto1.jfif'
+        'imagen': 'productos/producto1.jfif'
     },
     {
         'nombre': 'Cepillo para gatos',
@@ -38,7 +36,7 @@ productos = [
         'precio': 12.00,
         'cantidad_disponible': 100,
         'categoria': 'herramientas',
-        'imagen': 'medida/productos/producto2.jfif'
+        'imagen': 'productos/producto2.jfif'
     },
     {
         'nombre': 'Comida para gatos',
@@ -46,7 +44,7 @@ productos = [
         'precio': 10.00,
         'cantidad_disponible': 100,
         'categoria': 'comida',
-        'imagen': 'medida/productos/producto3.jfif'
+        'imagen': 'productos/producto3.jfif'
     },
     {
         'nombre': 'Juguete para gatos',
@@ -54,7 +52,7 @@ productos = [
         'precio': 5.00,
         'cantidad_disponible': 100,
         'categoria': 'juguetes',
-        'imagen': 'medida/productos/producto4.jpg'
+        'imagen': 'productos/producto4.jpg'
     },
     {
         'nombre': 'Cepillo para perro',
@@ -62,7 +60,7 @@ productos = [
         'precio': 15.00,
         'cantidad_disponible': 100,
         'categoria': 'herramientas',
-        'imagen': '/media/productos/producto5.jpeg'
+        'imagen': 'productos/producto5.jpeg'
     },
     {
         'nombre': 'Comida para perros',
@@ -70,7 +68,7 @@ productos = [
         'precio': 12.00,
         'cantidad_disponible': 100,
         'categoria': 'comida',
-        'imagen': 'media/productos/producto6.jfif'
+        'imagen': 'productos/producto6.jfif'
     },
     {
         'nombre': 'Juguete para perros',
@@ -78,7 +76,7 @@ productos = [
         'precio': 17.00,
         'cantidad_disponible': 100,
         'categoria': 'juguetes',
-        'imagen': 'media/productos/producto7.jfif'
+        'imagen': 'productos/producto7.jfif'
     },
     {
         'nombre': 'Shampoo para perros',
@@ -86,7 +84,7 @@ productos = [
         'precio': 22.00,
         'cantidad_disponible': 100,
         'categoria': 'aseo',
-        'imagen': 'media/productos/producto8.jfif'
+        'imagen': 'productos/producto8.jfif'
     },
 ]
 
