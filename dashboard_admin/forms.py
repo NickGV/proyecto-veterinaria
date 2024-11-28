@@ -1,5 +1,6 @@
 from django import forms
 from .models import AcercaDe, Producto, Proveedor, Compra, Menu
+from django.contrib.auth.models import User
 
 class AcercaDeForm(forms.ModelForm):
     mision = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
@@ -18,10 +19,13 @@ class MenuForm(forms.ModelForm):
     subtitulo = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     servCaninos = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
     servFelinos = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
-    testimonios = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
+    testimonio1 = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
+    testimonio2 = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
+    testimonio3 = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
+    
     class Meta:
         model = Menu
-        fields = ['titulo', 'subtitulo', 'servCaninos', 'servFelinos', 'testimonios']
+        fields = ['titulo', 'subtitulo', 'servCaninos', 'servFelinos', 'testimonio1', 'testimonio2', 'testimonio3']
         
 class ProductoForm(forms.ModelForm):
     class Meta:
@@ -39,7 +43,8 @@ class CompraForm(forms.ModelForm):
         fields = ['proveedor', 'producto', 'cantidad']
 
 class Userform(forms.ModelForm):
-    class Meta: 
+    password = forms.CharField(widget=forms.PasswordInput(), required=False)
+
+    class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'is_superuser']
-    
+        fields = ['username', 'email', 'password', 'is_staff']

@@ -3,7 +3,9 @@ from dashboard_admin.models import AcercaDe, Menu
 
 def menu_view(request):
     menu = Menu.objects.first()
-    return render(request, 'menu.html', {'menu': menu})
+    elementosCaninos = menu.servCaninos.split(',') if menu and menu.servCaninos else []
+    elementosFelinos = menu.servFelinos.split(',') if menu and menu.servFelinos else []
+    return render(request, 'menu.html', {'menu': menu, 'elementosCaninos': elementosCaninos, 'elementosFelinos': elementosFelinos})
 
 def acercaC_view(request):
     acerca_de = AcercaDe.objects.first()

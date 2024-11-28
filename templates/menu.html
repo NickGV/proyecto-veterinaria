@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {%block extra_css %}
+{% extends 'base.html' %} {% load static %} {% block extra_css %}
 <link rel="stylesheet" href="{% static '/css/menu.css' %}" />
 <link rel="stylesheet" href="{% static '/css/globals.css' %}" />
 {% endblock %} {% block content %}
@@ -31,11 +31,11 @@
     <div class="servicios-caninos">
       <h2>Servicios para Caninos</h2>
       {% if elementosCaninos %}
-          <ul>
-            {% for elemento in elementosCaninos%}
-              <li>{{elemento}}</li>
-            {% endfor %}
-          </ul>
+        <ul>
+          {% for elemento in elementosCaninos %}
+            <li>{{ elemento }}</li>
+          {% endfor %}
+        </ul>
       {% else %}
         <ul>
           <li>* Consultas Veterinarias</li>
@@ -50,13 +50,13 @@
       <h2>Servicios para Felinos</h2>
       {% if elementosFelinos %}
         <ul>
-          {%for elemento in elementosFelinos%}
-            <li>{{elemento}}</li>
-          {%endfor%}
+          {% for elemento in elementosFelinos %}
+            <li>{{ elemento }}</li>
+          {% endfor %}
         </ul>
       {% else %}
         <ul>
-          <li>Consultas Veterinarias</li>
+          <li>* Consultas Veterinarias</li>
           <li>* Cuidados de mascotas</li>
           <li>* Servicios de grooming</li>
           <li>* Medicamentos y alimentos</li>
@@ -96,23 +96,31 @@
   </div>
   <section id="testimonios" class="testimonios">
     <h2>Testimonios!!!</h2>
-    {%if menu%}
-      {{menu.testimonios}}
-    {%else%}
+    {% if menu %}
       <div class="testimonio">
-          <p>"Excelente servicio, mi perro siempre está en buenas manos. Los veterinarios son muy atentos y profesionales. ¡Muy recomendados!"</p>
-          <p>- Laura G.</p>
+        <p>{{ menu.testimonio1 }}</p>
       </div>
       <div class="testimonio">
-          <p>"Llevé a mi perro Logan stiven para una consulta y me dieron un trato increíble. Además, su tienda tiene todo lo necesario para su bienestar. ¡Volveré!"</p>
-          <p>- Carlos V.</p>
+        <p>{{ menu.testimonio2 }}</p>
       </div>
       <div class="testimonio">
-          <p>"Un lugar confiable para la salud de mis mascotas. El equipo siempre está dispuesto a ayudar y aconsejar. ¡Gracias por su dedicación!"</p>
-          <p>- Ana P.</p>
+        <p>{{ menu.testimonio3 }}</p>
       </div>
-    {%endif%}
-</section>
+    {% else %}
+      <div class="testimonio">
+        <p>"Excelente servicio, mi perro siempre está en buenas manos. Los veterinarios son muy atentos y profesionales. ¡Muy recomendados!"</p>
+        <p>- Laura G.</p>
+      </div>
+      <div class="testimonio">
+        <p>"Llevé a mi gato para una consulta y me dieron un trato increíble. Además, su tienda tiene todo lo necesario para su bienestar. ¡Volveré!"</p>
+        <p>- Carlos V.</p>
+      </div>
+      <div class="testimonio">
+        <p>"Un lugar confiable para la salud de mis mascotas. El equipo siempre está dispuesto a ayudar y aconsejar. ¡Gracias por su dedicación!"</p>
+        <p>- Ana P.</p>
+      </div>
+    {% endif %}
+  </section>
   <footer>
     <p>
       &copy; 2024 Clínica Veterinaria Sonrisas y Patitas. Todos los derechos

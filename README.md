@@ -35,10 +35,6 @@
 
 ### 2.4. Módulo Administrativo
 
-11. **Dashboard Administrativo**:
-    
-    - [ ] Crear un panel de control que muestre indicadores clave sobre inventario, ventas y compras.
-    - [ ] Implementar gráficos y tablas que resuman la información más relevante.
 12. **Gestión de Usuarios**:
     
     - [ ] Implementar un sistema para gestionar roles y permisos de usuarios.
@@ -50,9 +46,6 @@
 
 ### 2.5. Módulo para Clientes
 
-14. **Vista del Catálogo**:
-    
-    - [ ] Asegurarte de que los clientes puedan explorar el catálogo de productos, agregar productos al carrito y proceder a la compra.
 15. **Perfil de Cliente**:
     
     - [ ] Implementar una sección donde los clientes puedan gestionar su información personal y consultar su historial de compras.

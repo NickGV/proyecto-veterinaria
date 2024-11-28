@@ -3,6 +3,7 @@ from .models import AcercaDe, Producto, Proveedor, Compra, Menu
 from .forms import AcercaDeForm, ProductoForm, ProveedorForm, CompraForm, Userform, MenuForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
 
 def moduloadmin_view(request):
     return render(request, 'modAdmin.html')
@@ -38,7 +39,10 @@ def edit_user(request,pk):
     if request.method == 'POST':
         form = Userform(request.POST, instance=user)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            if 'password' in form.cleaned_data and form.cleaned_data['password']:
+                user.password = make_password(form.cleaned_data['password'])
+            user.save()
             return redirect('gestionUsuarios')
     return redirect('gestionUsuarios')
 
@@ -57,8 +61,6 @@ def add_user(request):
             user = form.save()
             return redirect('gestionUsuarios')
     return redirect('gestionUsuarios')
-
-
 
 def add_provider(request):
     if request.method == 'POST':
@@ -146,10 +148,8 @@ def editar_menu(request):
     if request.method == 'POST':
         form = MenuForm(request.POST, instance=menu)
         if form.is_valid():
-            cadenaCaninos = form.cleaned_data['servCaninos']
-            elementosCaninos = cadenaCaninos.split(',')
             form.save()
-            return render(request, 'editar_menu.html', {'form': form, 'elementosCaninos': elementosCaninos})
+            return redirect('editar_menu')
     else:
         form = MenuForm(instance=menu)
     return render(request, 'editar_menu.html', {'form': form})
