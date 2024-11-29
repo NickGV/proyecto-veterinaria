@@ -8,6 +8,10 @@ from django.contrib.auth.hashers import make_password
 def moduloadmin_view(request):
     return render(request, 'modAdmin.html')
 
+
+def reportes_view(request):
+    return render(request, 'Reportes.html')
+
 def inventario_view(request):
     productos = Producto.objects.all()
     form = ProductoForm()
