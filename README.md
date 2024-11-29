@@ -14,12 +14,6 @@
 
 ### 2.3. Módulo de Ventas por Catálogo
 
-6. **Gestión de Clientes**:
-    
-    - [ ] Crear un modelo de Cliente en `models.py` con campos: nombre, contacto, historial de compras.
-    - [ ] Crear un formulario para registrar clientes en `forms.py`.
-    - [ ] Implementar una vista para listar y editar información de clientes.
-
 8. **Carrito de Compras**:
     
     - [ ] Mejorar la funcionalidad del carrito para permitir agregar productos, modificar cantidades y proceder al pago.
@@ -35,21 +29,11 @@
 
 ### 2.4. Módulo Administrativo
 
-12. **Gestión de Usuarios**:
-    
-    - [ ] Implementar un sistema para gestionar roles y permisos de usuarios.
-    - [ ] Asegurarte de que solo los usuarios autorizados tengan acceso a ciertas funciones.
 13. **Reportes**:
     
     - [ ] Desarrollar una funcionalidad que permita generar reportes sobre inventario, ventas y compras.
     - [ ] Investigar bibliotecas como ReportLab o pandas para generar PDFs o archivos de Excel.
 
-### 2.5. Módulo para Clientes
-
-15. **Perfil de Cliente**:
-    
-    - [ ] Implementar una sección donde los clientes puedan gestionar su información personal y consultar su historial de compras.
-    
 # Clínica Veterinaria - Sonrisas y Patitas
 
 Este es un proyecto de gestión para una clínica veterinaria, que permite a los usuarios gestionar sus mascotas, realizar compras y acceder a información sobre productos y servicios.
@@ -78,6 +62,12 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
   DB_PASSWORD=contraseña_de_mysql
   DB_HOST=localhost
   DB_PORT=3306
+  
+  MONGO_DB_NAME=nombre_de_tu_base_de_datos
+  MONGO_DB_USER=tu_usuario
+  MONGO_DB_PASSWORD=tu_contraseña
+  MONGO_DB_HOST=localhost
+  MONGO_DB_PORT=27017
 ```
 
 - Remplaza con tus datos

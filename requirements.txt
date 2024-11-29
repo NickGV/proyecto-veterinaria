@@ -1,5 +1,6 @@
-Django
+django
 mysqlclient
 python-dotenv
-Pillow
+pillow
 djongo
+pymongo
