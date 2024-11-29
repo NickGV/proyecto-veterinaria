@@ -52,3 +52,5 @@ class Compra(models.Model):
 
     def __str__(self):
         return f"Compra de {self.cantidad} unidades de {self.producto.nombre} de {self.proveedor.nombre}"
+    
+# TODO: modelo para almacenar el historial de ventas de productos (producto, cantidad, fecha, total)

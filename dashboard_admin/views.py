@@ -5,6 +5,12 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 
+# TODO: metodos para obtener y mostrar todas las ventas realizadas
+
+# TODO: Metodos para generar reportes de inventario, ventas y compras
+
+# Usando librerias como panda para generar archivos PDF o Excel, crear tambien una template de reporte con las opciones de geneerar y descargar reportes
+
 def moduloadmin_view(request):
     return render(request, 'modAdmin.html')
 

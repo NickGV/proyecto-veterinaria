@@ -6,6 +6,11 @@ from .forms import RegistroForm, LoginForm, EditarPerfilForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
+#  TODO: Implementar metodos para agregar, eliminar y modificar cantidades de productos den el carrito
+
+# - Implementar logica para procesar pagos, servicios como stripe o paypal
+
+
 def auth_view(request):
     registro_form = RegistroForm()
     login_form = LoginForm()
