@@ -1,0 +1,26 @@
+{% extends 'adminDashboard.html' %} {% load static %} 
+{% block content %}
+    <div id="reportes_content">
+        <h1>Reporte de Ventas</h1>
+        
+        <!-- Zona de Reportes -->
+        <div class="zona-reportes">
+            <h2>Gráfico de Ventas Mensuales</h2>
+            
+            <!-- Canvas para el gráfico -->
+            <canvas id="salesChart" width="400" height="200"></canvas>
+        </div>
+        
+        <!-- Puedes agregar más zonas de reportes si es necesario -->
+        <div class="zona-reportes">
+            <h2>Gráfico de Categorías de Productos</h2>
+            <canvas id="categoryChart" width="400" height="200"></canvas>
+            
+        </div>
+        
+    </div>
+
+    <!-- Incluir Chart.js desde CDN -->
+    
+
+{% endblock %}

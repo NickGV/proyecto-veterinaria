@@ -15,6 +15,10 @@ from db_connection import catalogos_collection
 def moduloadmin_view(request):
     return render(request, 'modAdmin.html')
 
+
+def reportes_view(request):
+    return render(request, 'Reportes.html')
+
 def inventario_view(request):
     productos = Producto.objects.all()
     form = ProductoForm()
