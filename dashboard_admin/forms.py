@@ -35,7 +35,7 @@ class ProductoForm(forms.ModelForm):
 class ProveedorForm(forms.ModelForm):
     class Meta:
         model = Proveedor
-        fields = ['nombre', 'contacto', 'direccion', 'telefono', 'catalogo']
+        fields = ['nombre', 'contacto', 'direccion', 'telefono']  
 
 class CompraForm(forms.ModelForm):
     class Meta:
@@ -48,3 +48,9 @@ class Userform(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password', 'is_staff']
+
+class CatalogoProductoForm(forms.Form):
+    nombre = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    descripcion = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
+    precio = forms.DecimalField(max_digits=10, decimal_places=2, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    cantidad_disponible = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))

@@ -39,7 +39,7 @@ class Proveedor(models.Model):
     contacto = models.EmailField()
     direccion = models.CharField(max_length=255)
     telefono = models.CharField(max_length=20)
-    catalogo = models.URLField(blank=True, null=True)
+    catalogo_id = models.CharField(max_length=255, blank=True, null=True)  # Referencia al catálogo en MongoDB
 
     def __str__(self):
         return self.nombre
@@ -52,3 +52,5 @@ class Compra(models.Model):
 
     def __str__(self):
         return f"Compra de {self.cantidad} unidades de {self.producto.nombre} de {self.proveedor.nombre}"
+    
+# TODO: modelo para almacenar el historial de ventas de productos (producto, cantidad, fecha, total)
