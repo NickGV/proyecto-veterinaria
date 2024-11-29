@@ -5,6 +5,10 @@ from django.contrib.auth import update_session_auth_hash
 from .forms import RegistroForm, LoginForm, EditarPerfilForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from .models import carritos_collection
+from dashboard_admin.models import Producto
+from django.http import HttpRequest
+from django.http import JsonResponse
 
 #  TODO: Implementar metodos para agregar, eliminar y modificar cantidades de productos den el carrito
 
@@ -85,3 +89,72 @@ def eliminar_usuario(request):
     usuario.delete()
     messages.success(request, 'Tu cuenta ha sido eliminada.')
     return redirect('auth')  # Redirigir al login después de eliminar la cuenta
+
+@login_required
+def agregar_al_carrito(request, producto_id):
+    user = request.user
+    producto = Producto.objects.get(id=producto_id)
+    cantidad = int(request.POST.get('cantidad', 1))
+    
+    carrito = carritos_collection.find_one({'user_id': user.id})
+    if carrito:
+        for item in carrito['items']:
+            if item['producto_id'] == producto_id:
+                item['cantidad'] += cantidad
+                break
+        else:
+            carrito['items'].append({
+                'producto_id': producto_id,
+                'nombre': producto.nombre,
+                'precio': float(producto.precio),
+                'cantidad': cantidad
+            })
+        carritos_collection.update_one({'user_id': user.id}, {'$set': {'items': carrito['items']}})
+    else:
+        carritos_collection.insert_one({
+            'user_id': user.id,
+            'items': [{
+                'producto_id': producto_id,
+                'nombre': producto.nombre,
+                'precio': float(producto.precio),
+                'cantidad': cantidad,
+                'imagen': producto.imagen
+            }]
+        })
+    
+    return redirect('tienda')  
+
+@login_required
+def eliminar_del_carrito(request, producto_id):
+    user = request.user
+    carrito = carritos_collection.find_one({'user_id': user.id})
+    if carrito:
+        carrito['items'] = [item for item in carrito['items'] if item['producto_id'] != producto_id]
+        carritos_collection.update_one({'user_id': user.id}, {'$set': {'items': carrito['items']}})
+    
+    return redirect('carrito') 
+
+@login_required
+def ver_carrito(request):
+    user = request.user
+    carrito = carritos_collection.find_one({'user_id': user.id})
+    total = 0
+    if carrito:
+        for item in carrito['items']:
+            total += item['precio'] * item['cantidad']
+    return render(request, 'carrito.html', {'carrito': carrito, 'total': total})
+
+@login_required
+def modificar_cantidad(request, producto_id):
+    user = request.user
+    nueva_cantidad = int(request.POST.get('cantidad', 1))
+    
+    carrito = carritos_collection.find_one({'user_id': user.id})
+    if carrito:
+        for item in carrito['items']:
+            if item['producto_id'] == producto_id:
+                item['cantidad'] = nueva_cantidad
+                break
+        carritos_collection.update_one({'user_id': user.id}, {'$set': {'items': carrito['items']}})
+    
+    return redirect('carrito')  # Redirigir al carrito después de modificar la cantidad

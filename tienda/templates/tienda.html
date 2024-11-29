@@ -1,9 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% block extra_css %}
-<link rel="stylesheet" href="/static/css/tienda.css" />
-
-{% endblock %} {%block content%}
-
-<!-- TODO: Modificar el carrito que se muestra en la tienda para mostrar los productos -->
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tienda.css' %}" />
+{% endblock %}
+{% block content %}
 
 <div>
   <header id="header" class="header">
@@ -25,7 +25,7 @@
             <li class="submenu">
               <a href="{% url 'carrito' %}">
                 <img
-                  src="/static/images/cart.png"
+                  src="{% static 'images/cart.png' %}"
                   id="img-carrito"
                   alt="carrito"
                 />
@@ -42,12 +42,31 @@
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody></tbody>
+                  <tbody>
+                    {% for item in carrito.items %}
+                    <tr>
+                      <td><img src="{{ item.imagen }}" width="100"></td>
+                      <td>{{ item.nombre }}</td>
+                      <td>${{ item.precio }}</td>
+                      <td>
+                        <form method="post" action="{% url 'modificar_cantidad' item.producto_id %}">
+                          {% csrf_token %}
+                          <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1">
+                          <button type="submit">Modificar</button>
+                        </form>
+                      </td>
+                      <td>
+                        <form method="post" action="{% url 'eliminar_del_carrito' item.producto_id %}">
+                          {% csrf_token %}
+                          <button type="submit">Eliminar</button>
+                        </form>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
                 </table>
 
-                <a href="#" id="vaciar-carrito" class="button u-full-width"
-                  >Vaciar Carrito</a
-                >
+                <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
               </div>
             </li>
           </ul>
@@ -58,29 +77,29 @@
 
   <div id="lista-productos" class="container">
     {% for producto in productos %}
-    <div class="card" data-categoria="{{producto.categoria}}">
+    <div class="card" data-categoria="{{ producto.categoria }}">
       <img
-        src="../../media/{{producto.imagen}}"
+        src="{{ producto.imagen.url }}"
         class="imagen u-full-width"
+        alt="{{ producto.nombre }}"
       />
       <div class="info-card">
-        <h4>{{producto.nombre}}</h4>
-        <p>{{producto.descripcion}}</p>
-        <p class="precio">${{producto.precio}}</p>
-        <a
-          href="#"
-          class="u-full-width button-primary button input agregar-carrito"
-          data-id="{{producto.id}}"
-          >Agregar Al Carrito</a
-        >
+        <h4>{{ producto.nombre }}</h4>
+        <p>{{ producto.descripcion }}</p>
+        <p class="precio">${{ producto.precio }}</p>
+        <form method="post" action="{% url 'agregar_al_carrito' producto.id %}">
+          {% csrf_token %}
+          <input type="number" name="cantidad" value="1" min="1" />
+          <button type="submit" class="u-full-width button-primary button input agregar-carrito">
+            Agregar Al Carrito
+          </button>
+        </form>
       </div>
-      </div>
-      {% endfor %}
     </div>
-    </div>
+    {% endfor %}
+  </div>
 </div>
-{% endblock %} {% block extra_js %}
 
-<script src="{% static '/js/tienda.js' %}"></script>
-
-{% endblock %}
+{% endblock %}
+{% block extra_js %}
+{% endblock %}

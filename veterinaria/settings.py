@@ -77,7 +77,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'veterinaria.wsgi.application'
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -87,19 +86,6 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
     },
-    'mongodb': {
-        'ENGINE': 'djongo',
-        'NAME': os.getenv('MONGO_DB_NAME'),
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': os.getenv('MONGO_DB_HOST'),
-            'port': int(os.getenv('MONGO_DB_PORT')),
-            'username': os.getenv('MONGO_DB_USER'),
-            'password': os.getenv('MONGO_DB_PASSWORD'),
-            'authSource': 'admin',
-            'authMechanism': 'SCRAM-SHA-1',
-        }
-    }
 }
 
 
