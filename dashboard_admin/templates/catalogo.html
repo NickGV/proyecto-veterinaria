@@ -20,6 +20,7 @@
           <th scope="col">Descripción</th>
           <th scope="col">Precio</th>
           <th scope="col">Cantidad Disponible</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +30,45 @@
           <td>{{ producto.descripcion }}</td>
           <td>${{ producto.precio }}</td>
           <td>{{ producto.cantidad_disponible }}</td>
+          <td>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProductModal{{ forloop.counter0 }}">Editar</button>
+            <a href="{% url 'eliminar_producto_catalogo' proveedor.id forloop.counter0 %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">Eliminar</a>
+          </td>
         </tr>
+
+        <!-- Modal para editar producto -->
+        <div class="modal fade" id="editProductModal{{ forloop.counter0 }}" tabindex="-1" aria-labelledby="editProductModalLabel{{ forloop.counter0 }}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel{{ forloop.counter0 }}">Editar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="{% url 'editar_producto_catalogo' proveedor.id forloop.counter0 %}">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ producto.nombre }}" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required>{{ producto.descripcion }}</textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="precio" name="precio" step="0.01" value="{{ producto.precio }}" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="cantidad_disponible" class="form-label">Cantidad Disponible</label>
+                    <input type="number" class="form-control" id="cantidad_disponible" name="cantidad_disponible" value="{{ producto.cantidad_disponible }}" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </tbody>
     </table>

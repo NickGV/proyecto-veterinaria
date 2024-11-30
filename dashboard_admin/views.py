@@ -295,3 +295,25 @@ def get_productos_proveedor(request, proveedor_id):
     else:
         productos_data = []
     return JsonResponse(productos_data, safe=False)
+
+def editar_producto_catalogo(request, proveedor_id, producto_id):
+    proveedor = get_object_or_404(Proveedor, id=proveedor_id)
+    catalogo = catalogos_collection.find_one({'proveedor_id': proveedor_id})
+    producto = catalogo['productos'][producto_id]
+
+    if request.method == 'POST':
+        producto['nombre'] = request.POST.get('nombre')
+        producto['descripcion'] = request.POST.get('descripcion')
+        producto['precio'] = float(request.POST.get('precio'))
+        producto['cantidad_disponible'] = int(request.POST.get('cantidad_disponible'))
+
+        catalogos_collection.update_one({'proveedor_id': proveedor_id}, {'$set': {f'productos.{producto_id}': producto}})
+        return redirect('ver_catalogo', proveedor_id=proveedor_id)
+
+    return render(request, 'editar_producto_catalogo.html', {'proveedor': proveedor, 'producto': producto, 'producto_id': producto_id})
+
+def eliminar_producto_catalogo(request, proveedor_id, producto_id):
+    proveedor = get_object_or_404(Proveedor, id=proveedor_id)
+    catalogos_collection.update_one({'proveedor_id': proveedor_id}, {'$unset': {f'productos.{producto_id}': 1}})
+    catalogos_collection.update_one({'proveedor_id': proveedor_id}, {'$pull': {'productos': None}})
+    return redirect('ver_catalogo', proveedor_id=proveedor_id)
