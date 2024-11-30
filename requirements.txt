@@ -5,3 +5,4 @@ pillow
 djongo
 pymongo
 pytz
+reportlab
