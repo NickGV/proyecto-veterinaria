@@ -64,6 +64,15 @@ header h1 {
   border: 1px solid #ffffff;
 }
 
+.imagen_report{
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin-top: 20px;
+}
+
+
+
 @media (max-width: 768px) {
   section {
     padding: 20px;

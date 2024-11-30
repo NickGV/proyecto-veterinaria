@@ -1,8 +1,25 @@
-{% extends 'adminDashboard.html' %} {% load static %} {% block extra_css %}
-<link rel="stylesheet" href="{% static '/css/moduloadmin.css' %}" />
-{% endblock %} {%block content%}
-<div>
-  <h1>bienvenido Admin</h1>
-</div>
+{% extends 'adminDashboard.html' %}
+{% load static %}
+{% block content %}
+    <div id="reportes_content">
+        <h1>Reporte de Ventas</h1>
+        
+        <div class="zona-reportes">
+            <h2>Gráfico de Ventas Mensuales</h2>
+            <div class="imagen_report">
+              <img src="{% static 'images/grafica ventas.png' %}" alt="Imagen de Ventas" width="400" height="auto">
+            </div>
+        </div>
+        
+        <div class="zona-reportes">
+            <h2>Gráfico de Categorías de Productos</h2>
+            <div class="imagen_report">
+              <img src="{% static 'images/grafico compras.jpeg' %}" alt="Imagen de Categorías" width="400" height="auto">
+            </div>
+        </div>
+            
 
-{% endblock %} {% block extra_js %} {% endblock %}
+    </div>
+{% endblock %}
+
+
