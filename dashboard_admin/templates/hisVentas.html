@@ -30,15 +30,15 @@
                 {% for venta in ventas %}
                 <tr>
                     <td>{{ venta.fecha }}</td>
-                    <td>{{ venta.user.username }}</td>
                     <td>
-                        <ul>
-                            {% for item in venta.items %}
-                            <li>{{ item.nombre }} ({{ item.cantidad }}) - ${{ item.precio }}</li>
-                            {% endfor %}
-                        </ul>
+                        {% if venta.user %}
+                            {{ venta.user.username }}
+                        {% else %}
+                            Usuario no encontrado
+                        {% endif %}
                     </td>
-                    <td>${{ venta.total }}</td>
+                    <td>{{ venta.total }}</td>
+                    <!-- Otros campos de la venta -->
                 </tr>
                 {% endfor %}
             </tbody>

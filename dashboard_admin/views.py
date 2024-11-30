@@ -20,7 +20,10 @@ def inventario_view(request):
 def hisVentas_view(request):
     ventas = list(ventas_collection.find())
     for venta in ventas:
-        venta['user'] = get_object_or_404(User, id=venta['user_id'])
+        try:
+            venta['user'] = get_object_or_404(User, id=venta['user_id'])
+        except Http404:
+            venta['user'] = None  # O cualquier valor por defecto que desees usar
     return render(request, 'hisVentas.html', {'ventas': ventas})
 
 def hisCompras_view(request):
