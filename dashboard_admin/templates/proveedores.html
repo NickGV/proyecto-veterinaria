@@ -1,15 +1,16 @@
-{% extends 'adminDashboard.html' %}
-{% load static %}
-{% block extra_css %}
+{% extends 'adminDashboard.html' %} {% load static %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/proveedores.css' %}" />
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 
 <div class="container mt-5">
   <h1 class="text-center mb-4">Gestión de Proveedores</h1>
 
   <div class="d-flex justify-content-end mb-3">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProviderModal">
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#addProviderModal"
+    >
       Agregar Proveedor
     </button>
   </div>
@@ -35,9 +36,21 @@
           <td>{{ proveedor.direccion }}</td>
           <td>{{ proveedor.telefono }}</td>
           <td>
-            <a href="{% url 'ver_catalogo' proveedor.id %}" class="btn btn-info">Ver Catálogo</a>
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProviderModal{{ proveedor.id }}">Editar</button>
-            <form method="post" action="{% url 'delete_provider' proveedor.id %}" style="display:inline;">
+            <a href="{% url 'ver_catalogo' proveedor.id %}" class="btn btn-info"
+              >Ver Catálogo</a
+            >
+            <button
+              class="btn btn-warning"
+              data-bs-toggle="modal"
+              data-bs-target="#editProviderModal{{ proveedor.id }}"
+            >
+              Editar
+            </button>
+            <form
+              method="post"
+              action="{% url 'delete_provider' proveedor.id %}"
+              style="display: inline"
+            >
               {% csrf_token %}
               <button type="submit" class="btn btn-danger">Eliminar</button>
             </form>
@@ -45,31 +58,78 @@
         </tr>
 
         <!-- Modal para editar proveedor -->
-        <div class="modal fade" id="editProviderModal{{ proveedor.id }}" tabindex="-1" aria-labelledby="editProviderModalLabel{{ proveedor.id }}" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="editProviderModal{{ proveedor.id }}"
+          tabindex="-1"
+          aria-labelledby="editProviderModalLabel{{ proveedor.id }}"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="editProviderModalLabel{{ proveedor.id }}">Editar Proveedor</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5
+                  class="modal-title"
+                  id="editProviderModalLabel{{ proveedor.id }}"
+                >
+                  Editar Proveedor
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
               </div>
               <div class="modal-body">
-                <form method="post" action="{% url 'edit_provider' proveedor.id %}">
+                <form
+                  method="post"
+                  action="{% url 'edit_provider' proveedor.id %}"
+                >
                   {% csrf_token %}
                   <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ proveedor.nombre }}" required>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      name="nombre"
+                      value="{{ proveedor.nombre }}"
+                      required
+                    />
                   </div>
                   <div class="mb-3">
                     <label for="contacto" class="form-label">Contacto</label>
-                    <input type="email" class="form-control" id="contacto" name="contacto" value="{{ proveedor.contacto }}" required>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="contacto"
+                      name="contacto"
+                      value="{{ proveedor.contacto }}"
+                      required
+                    />
                   </div>
                   <div class="mb-3">
                     <label for="direccion" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion" value="{{ proveedor.direccion }}" required>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="direccion"
+                      name="direccion"
+                      value="{{ proveedor.direccion }}"
+                      required
+                    />
                   </div>
                   <div class="mb-3">
                     <label for="telefono" class="form-label">Teléfono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{ proveedor.telefono }}" required>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="telefono"
+                      name="telefono"
+                      value="{{ proveedor.telefono }}"
+                      required
+                    />
                   </div>
                   <div class="mb-3">
                     <label for="productos" class="form-label">Productos</label>
@@ -77,17 +137,39 @@
                       {% for producto in productos %}
                       <div class="row mb-2">
                         <div class="col">
-                          <input type="text" class="form-control" name="producto_nombre" placeholder="Nombre del producto" value="{{ producto.nombre }}" required>
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="producto_nombre"
+                            placeholder="Nombre del producto"
+                            value="{{ producto.nombre }}"
+                            required
+                          />
                         </div>
                         <div class="col">
-                          <input type="number" class="form-control" name="producto_precio" placeholder="Precio del producto" value="{{ producto.precio }}" required>
+                          <input
+                            type="number"
+                            class="form-control"
+                            name="producto_precio"
+                            placeholder="Precio del producto"
+                            value="{{ producto.precio }}"
+                            required
+                          />
                         </div>
                       </div>
                       {% endfor %}
                     </div>
-                    <button type="button" class="btn btn-secondary" id="add-producto">Agregar Producto</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      id="add-producto-editar-{{ proveedor.id }}"
+                    >
+                      Agregar Producto
+                    </button>
                   </div>
-                  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                  <button type="submit" class="btn btn-primary">
+                    Guardar Cambios
+                  </button>
                 </form>
               </div>
             </div>
@@ -100,47 +182,104 @@
 </div>
 
 <!-- Modal para agregar proveedor -->
-<div class="modal fade" id="addProviderModal" tabindex="-1" aria-labelledby="addProviderModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="addProviderModal"
+  tabindex="-1"
+  aria-labelledby="addProviderModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addProviderModalLabel">Agregar Proveedor</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="addProviderModalLabel">
+          Agregar Proveedor
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form method="post" action="{% url 'add_provider' %}">
           {% csrf_token %}
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="contacto" class="form-label">Contacto</label>
-            <input type="email" class="form-control" id="contacto" name="contacto" required>
+            <input
+              type="email"
+              class="form-control"
+              id="contacto"
+              name="contacto"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="direccion" class="form-label">Dirección</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" required>
+            <input
+              type="text"
+              class="form-control"
+              id="direccion"
+              name="direccion"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="telefono" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" required>
+            <input
+              type="text"
+              class="form-control"
+              id="telefono"
+              name="telefono"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="productos" class="form-label">Productos</label>
             <div id="productos-container">
               <div class="row mb-2">
                 <div class="col">
-                  <input type="text" class="form-control" name="producto_nombre" placeholder="Nombre del producto" required>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="producto_nombre"
+                    placeholder="Nombre del producto"
+                    required
+                  />
                 </div>
                 <div class="col">
-                  <input type="number" class="form-control" name="producto_precio" placeholder="Precio del producto" required>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="producto_precio"
+                    placeholder="Precio del producto"
+                    required
+                  />
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-secondary" id="add-producto">Agregar Producto</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="add-producto-agregar"
+            >
+              Agregar Producto
+            </button>
           </div>
-          <button type="submit" class="btn btn-primary">Agregar Proveedor</button>
+          <button type="submit" class="btn btn-primary">
+            Agregar Proveedor
+          </button>
         </form>
       </div>
     </div>
@@ -148,20 +287,24 @@
 </div>
 
 <script>
-document.getElementById('add-producto').addEventListener('click', function() {
-  var container = document.getElementById('productos-container');
-  var row = document.createElement('div');
-  row.className = 'row mb-2';
-  row.innerHTML = `
-    <div class="col">
-      <input type="text" class="form-control" name="producto_nombre" placeholder="Nombre del producto" required>
-    </div>
-    <div class="col">
-      <input type="number" class="form-control" name="producto_precio" placeholder="Precio del producto" required>
-    </div>
-  `;
-  container.appendChild(row);
-});
+  document.querySelectorAll('[id^="add-producto"]').forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var container = this.closest(".modal-body").querySelector(
+        "#productos-container"
+      );
+      var row = document.createElement("div");
+      row.className = "row mb-2";
+      row.innerHTML = `
+      <div class="col">
+        <input type="text" class="form-control" name="producto_nombre" placeholder="Nombre del producto" required>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control" name="producto_precio" placeholder="Precio del producto" required>
+      </div>
+    `;
+      container.appendChild(row);
+    });
+  });
 </script>
 
 {% endblock %}

@@ -66,15 +66,11 @@ def agregar_producto_catalogo(request, proveedor_id):
     proveedor = get_object_or_404(Proveedor, id=proveedor_id)
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
-        descripcion = request.POST.get('descripcion')
         precio = float(request.POST.get('precio'))
-        cantidad_disponible = int(request.POST.get('cantidad_disponible'))
 
         producto = {
             'nombre': nombre,
-            'descripcion': descripcion,
             'precio': precio,
-            'cantidad_disponible': cantidad_disponible
         }
 
         catalogo = catalogos_collection.find_one({'proveedor_id': proveedor_id})
@@ -86,7 +82,7 @@ def agregar_producto_catalogo(request, proveedor_id):
         return redirect('ver_catalogo', proveedor_id=proveedor.id)
     return redirect('ver_catalogo', proveedor_id=proveedor.id)
 
-def edit_user(request,pk):
+def edit_user(request, pk):
     user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
         form = Userform(request.POST, instance=user)
@@ -94,9 +90,12 @@ def edit_user(request,pk):
             user = form.save(commit=False)
             if 'password' in form.cleaned_data and form.cleaned_data['password']:
                 user.password = make_password(form.cleaned_data['password'])
+            user.is_superuser = form.cleaned_data['is_superuser'] == 'True'
             user.save()
             return redirect('gestionUsuarios')
-    return redirect('gestionUsuarios')
+    else:
+        form = Userform(instance=user)
+    return render(request, 'GestionUsuarios.html', {'form': form, 'user': user})
 
 def delete_user(request,pk):
     user = get_object_or_404(User, pk=pk)
@@ -110,9 +109,14 @@ def add_user(request):
     if request.method == 'POST':
         form = Userform(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.password = make_password(form.cleaned_data['password'])
+            user.is_superuser = form.cleaned_data['is_superuser'] == 'True'
+            user.save()
             return redirect('gestionUsuarios')
-    return redirect('gestionUsuarios')
+    else:
+        form = Userform()
+    return render(request, 'GestionUsuarios.html', {'form': form})
 
 def add_provider(request):
     if request.method == 'POST':
@@ -303,9 +307,7 @@ def editar_producto_catalogo(request, proveedor_id, producto_id):
 
     if request.method == 'POST':
         producto['nombre'] = request.POST.get('nombre')
-        producto['descripcion'] = request.POST.get('descripcion')
         producto['precio'] = float(request.POST.get('precio'))
-        producto['cantidad_disponible'] = int(request.POST.get('cantidad_disponible'))
 
         catalogos_collection.update_one({'proveedor_id': proveedor_id}, {'$set': {f'productos.{producto_id}': producto}})
         return redirect('ver_catalogo', proveedor_id=proveedor_id)

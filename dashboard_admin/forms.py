@@ -44,10 +44,11 @@ class CompraForm(forms.ModelForm):
 
 class Userform(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), required=False)
+    is_superuser = forms.ChoiceField(choices=[(True, 'Sí'), (False, 'No')], widget=forms.Select(), required=True)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'is_staff']
+        fields = ['username', 'email', 'password', 'is_superuser']
 
 class CatalogoProductoForm(forms.Form):
     nombre = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
