@@ -26,5 +26,4 @@ urlpatterns = [
     path('Users/eliminar/<int:pk>/', views.delete_user, name='delete_user'),
     path("hisVentas/", views.hisVentas_view, name='hisVentas'),
     path('Reportes/', views.reportes_view, name='reportes'),
-
 ]
