@@ -1,56 +1,20 @@
-# Task:
+# Proyecto Tienda Veterinaria
 
-### 2.2. Módulo de Compras
-
-4. **Orden de Compra**:
-    
-    - [ ] Crear un formulario para generar órdenes de compra, seleccionando productos y especificando cantidades.
-    - [ ] Implementar una vista que maneje la creación de órdenes de compra y actualice el inventario al recibir mercancía.
-
-5. **Historial de Compras**:
-    
-    - [ ] Crear una vista para mostrar el historial de compras con filtros por fecha y proveedor.
-    - [ ] Implementar la lógica para registrar y mostrar el estado de las órdenes de compra.
-
-### 2.3. Módulo de Ventas por Catálogo
-
-8. **Carrito de Compras**:
-    
-    - [ ] Mejorar la funcionalidad del carrito para permitir agregar productos, modificar cantidades y proceder al pago.
-    - [ ] Implementar la lógica para almacenar el carrito en `localStorage` o en la sesión del usuario.
-9. **Proceso de Pago**:
-    
-    - [ ] Investigar e integrar una plataforma de pago (como PayPal o Stripe) para gestionar transacciones.
-    - [ ] Implementar la lógica para redirigir a los usuarios a la plataforma de pago y manejar la respuesta de la transacción.
-10. **Historial de Ventas**:
-    
-    - [ ] Crear una vista para que los clientes revisen su historial de compras.
-    - [ ] Implementar una vista para que la administración consulte las ventas realizadas.
-
-### 2.4. Módulo Administrativo
-
-13. **Reportes**:
-    
-    - [ ] Desarrollar una funcionalidad que permita generar reportes sobre inventario, ventas y compras.
-    - [ ] Investigar bibliotecas como ReportLab o pandas para generar PDFs o archivos de Excel.
-
-# Clínica Veterinaria - Sonrisas y Patitas
-
-Este es un proyecto de gestión para una clínica veterinaria, que permite a los usuarios gestionar sus mascotas, realizar compras y acceder a información sobre productos y servicios.
+Este proyecto es una tienda en línea para una tienda de mascotas. Permite a los usuarios navegar por los productos, agregar productos al carrito, realizar compras y ver el historial de compras.
 
 ## Requisitos
 
-- Python 3.x
-- MySQL
-- pip
+- Python 3.8+
+- Django 3.2+
+- MongoDB 4.4+
 
-## Instalación
+## Configuración del entorno
 
-1.**Clonar el repositorio:**
+1. **Clona el repositorio:**
 
 ```bash
- git clone https://github.com/NickGV/proyecto-veterinaria.git
- cd veterinaria
+git clone https://github.com/tu_usuario/tu_repositorio.git
+cd tu_repositorio
 ```
 
 2. **Configurar la base de datos:**
@@ -62,8 +26,8 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
   DB_PASSWORD=contraseña_de_mysql
   DB_HOST=localhost
   DB_PORT=3306
-  
-  MONGO_DB_NAME=nombre_de_tu_base_de_datos
+
+  MONGO_DB_NAME=tiendaveterinaria
   MONGO_DB_USER=tu_usuario
   MONGO_DB_PASSWORD=tu_contraseña
   MONGO_DB_HOST=localhost
@@ -72,17 +36,26 @@ Este es un proyecto de gestión para una clínica veterinaria, que permite a los
 
 - Remplaza con tus datos
 
-
 3.**Inicia el proyecto el proyecto:**
 
 ```bash
-  python -m venv venv
+  python setup.py
 ```
 
-4. **Ejecutar el servidor:**
+4. **configuracion de mongo ejecuta en la consola de MongoDB:**
 
 ```bash
-  python manage.py runserver
+  use tiendaveterinaria
+  db.createCollection("catalogos")
+  db.createCollection("historial_compras")
+  db.createCollection("historial_ventas")
+  db.createCollection("carrito")
+```
+
+5. **inicia el servidor de desarrollo:**
+
+```bash 
+    python manage.py runserver
 ```
 
 Abre tu navegador y ve a http://127.0.0.1:8000 para acceder a la aplicación.
