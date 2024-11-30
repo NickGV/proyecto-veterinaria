@@ -211,14 +211,13 @@ def add_compra(request):
         compra_productos = []
         for i in range(len(productos)):
             try:
-                producto_id = int(productos[i])
+                nombre_producto = productos[i]
                 cantidad = int(cantidades[i])
                 precio = float(precios[i])
                 total += precio * cantidad
-                compra_productos.append({'producto_id': producto_id, 'cantidad': cantidad, 'precio': precio})
+                compra_productos.append({'nombre': nombre_producto, 'cantidad': cantidad, 'precio': precio})
             except ValueError:
-                # Manejar el error si no se puede convertir a int o float
-                print(f"Error al convertir los valores: producto_id={productos[i]}, cantidad={cantidades[i]}, precio={precios[i]}")
+                print(f"Error al convertir los valores: producto={productos[i]}, cantidad={cantidades[i]}, precio={precios[i]}")
                 continue
 
         compra = {
@@ -230,13 +229,19 @@ def add_compra(request):
 
         # Verificar que los productos existen antes de insertarlos en MongoDB
         for item in compra_productos:
-            try:
-                producto = get_object_or_404(Producto, id=item['producto_id'])
-                producto.cantidad_disponible -= item['cantidad']
+            producto, created = Producto.objects.get_or_create(
+                nombre=item['nombre'],
+                defaults={
+                    'descripcion': '',
+                    'precio': item['precio'],
+                    'cantidad_disponible': item['cantidad'],
+                    'categoria': '',
+                    'imagen': None
+                }
+            )
+            if not created:
+                producto.cantidad_disponible += item['cantidad']
                 producto.save()
-            except Http404:
-                print(f"Producto con ID {item['producto_id']} no encontrado.")
-                # Manejar el error como desees, por ejemplo, puedes redirigir o mostrar un mensaje de error.
 
         compras_collection.insert_one(compra)
 
@@ -295,7 +300,7 @@ def editar_menu(request):
 def get_productos_proveedor(request, proveedor_id):
     catalogo = catalogos_collection.find_one({'proveedor_id': proveedor_id})
     if catalogo:
-        productos_data = [{'id': idx, 'nombre': producto['nombre'], 'precio': producto['precio']} for idx, producto in enumerate(catalogo['productos'])]
+        productos_data = catalogo['productos']
     else:
         productos_data = []
     return JsonResponse(productos_data, safe=False)

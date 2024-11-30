@@ -25,11 +25,11 @@ class Menu(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
-    descripcion = models.TextField()
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
-    cantidad_disponible = models.IntegerField()
-    categoria = models.CharField(max_length=100)
-    imagen = models.ImageField(upload_to='productos/')
+    descripcion = models.TextField(blank=True, null=True)
+    precio = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    cantidad_disponible = models.IntegerField(default=0)
+    categoria = models.CharField(max_length=100, blank=True, null=True)
+    imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
 
     def __str__(self):
         return self.nombre

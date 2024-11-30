@@ -1,31 +1,29 @@
-document
-  .getElementById("compraProveedor")
-  .addEventListener("change", function () {
-    var proveedorId = this.value;
-    console.log(`Proveedor ID seleccionado: ${proveedorId}`);
-    var productosSelects = document.querySelectorAll('select[name="producto"]');
-    productosSelects.forEach(function (select) {
-      select.innerHTML = '<option value="">Seleccione un producto</option>';
-    });
-
-    if (proveedorId) {
-      fetch(`/dashboard_admin/get_productos_proveedor/${proveedorId}/`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Productos recibidos:", data);
-          productosSelects.forEach(function (select) {
-            data.forEach(function (producto) {
-              var option = document.createElement("option");
-              option.value = producto.id;
-              option.textContent = producto.nombre;
-              option.setAttribute("data-precio", producto.precio);
-              select.appendChild(option);
-            });
-          });
-        })
-        .catch((error) => console.error("Error fetching productos:", error));
-    }
+document.getElementById("compraProveedor").addEventListener("change", function () {
+  var proveedorId = this.value;
+  console.log(`Proveedor ID seleccionado: ${proveedorId}`);
+  var productosSelects = document.querySelectorAll('select[name="producto"]');
+  productosSelects.forEach(function (select) {
+    select.innerHTML = '<option value="">Seleccione un producto</option>';
   });
+
+  if (proveedorId) {
+    fetch(`/dashboard_admin/get_productos_proveedor/${proveedorId}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Productos recibidos:", data);
+        productosSelects.forEach(function (select) {
+          data.forEach(function (producto) {
+            var option = document.createElement("option");
+            option.value = producto.nombre;
+            option.textContent = producto.nombre;
+            option.setAttribute("data-precio", producto.precio);
+            select.appendChild(option);
+          });
+        });
+      })
+      .catch((error) => console.error("Error fetching productos:", error));
+  }
+});
 
 document.getElementById("add-producto").addEventListener("click", function () {
   var productosContainer = document.getElementById("productos-container");
@@ -55,7 +53,7 @@ document.getElementById("add-producto").addEventListener("click", function () {
         var select = newRow.querySelector('select[name="producto"]');
         data.forEach(function (producto) {
           var option = document.createElement("option");
-          option.value = producto.id;
+          option.value = producto.nombre;
           option.textContent = producto.nombre;
           option.setAttribute("data-precio", producto.precio);
           select.appendChild(option);
