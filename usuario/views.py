@@ -2,17 +2,24 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from .forms import RegistroForm, LoginForm, EditarPerfilForm
+from .forms import RegistroForm, LoginForm, EditarPerfilForm, PagoForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import carritos_collection
 from dashboard_admin.models import Producto
 from django.http import HttpRequest
 from django.http import JsonResponse
-
-#  TODO: Implementar metodos para agregar, eliminar y modificar cantidades de productos den el carrito
+import json
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from datetime import datetime
+from db_connection import db
 
 # - Implementar logica para procesar pagos, servicios como stripe o paypal
+
+carritos_collection = db['carrito']
+ventas_collection = db['historial_ventas']
 
 
 def auth_view(request):
@@ -107,7 +114,8 @@ def agregar_al_carrito(request, producto_id):
                 'producto_id': producto_id,
                 'nombre': producto.nombre,
                 'precio': float(producto.precio),
-                'cantidad': cantidad
+                'cantidad': cantidad,
+                'imagen': producto.imagen.url
             })
         carritos_collection.update_one({'user_id': user.id}, {'$set': {'items': carrito['items']}})
     else:
@@ -118,7 +126,7 @@ def agregar_al_carrito(request, producto_id):
                 'nombre': producto.nombre,
                 'precio': float(producto.precio),
                 'cantidad': cantidad,
-                'imagen': producto.imagen
+                'imagen': producto.imagen.url
             }]
         })
     
@@ -158,3 +166,38 @@ def modificar_cantidad(request, producto_id):
         carritos_collection.update_one({'user_id': user.id}, {'$set': {'items': carrito['items']}})
     
     return redirect('carrito')  # Redirigir al carrito después de modificar la cantidad
+
+@login_required
+def procesar_pago(request):
+    if request.method == 'POST':
+        user = request.user
+        carrito = carritos_collection.find_one({'user_id': user.id})
+        if carrito:
+            total = sum(item['precio'] * item['cantidad'] for item in carrito['items'])
+            venta = {
+                'user_id': user.id,
+                'fecha': datetime.now(),
+                'items': carrito['items'],
+                'total': total
+            }
+            ventas_collection.insert_one(venta)
+            carritos_collection.delete_one({'user_id': user.id})
+
+            # Generar PDF
+            buffer = io.BytesIO()
+            p = canvas.Canvas(buffer, pagesize=letter)
+            p.drawString(100, 750, "Recibo de Pago")
+            p.drawString(100, 730, f"Usuario: {user.username}")
+            p.drawString(100, 710, f"Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+            p.drawString(100, 690, f"Total: ${total:.2f}")
+            p.drawString(100, 670, "Productos:")
+            y = 650
+            for item in carrito['items']:
+                p.drawString(100, y, f"{item['nombre']} - {item['cantidad']} x ${item['precio']:.2f}")
+                y -= 20
+            p.showPage()
+            p.save()
+            buffer.seek(0)
+            return FileResponse(buffer, as_attachment=True, filename='recibo_pago.pdf')
+
+    return redirect('carrito')
