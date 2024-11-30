@@ -1,85 +1,116 @@
-{% extends 'adminDashboard.html' %}
-{% load static %}
-{% block extra_css %}
-{% endblock %}
-{% block content %}
+{% extends 'adminDashboard.html' %} {% load static %} {% block extra_css %}
+{%endblock %} {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Historial de Compras</h1>
+  <h1 class="text-center mb-4">Historial de Compras</h1>
 
-    <div class="d-flex justify-content-end mb-3">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCompraModal">
-            Registrar Compra
-        </button>
-    </div>
+  <div class="d-flex justify-content-end mb-3">
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#addCompraModal"
+    >
+      Registrar Compra
+    </button>
+  </div>
 
-    <div class="table-responsive">
-        <table class="table table-hover align-middle">
-            <thead class="table-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Proveedor</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Fecha</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for compra in compras %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ compra.proveedor.nombre }}</td>
-                <td>{{ compra.producto.nombre }}</td>
-                <td>{{ compra.cantidad }}</td>
-                <td>{{ compra.fecha }}</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Proveedor</th>
+          <th scope="col">Productos</th>
+          <th scope="col">Total</th>
+          <th scope="col">Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for compra in compras %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ compra.proveedor.nombre }}</td>
+          <td>
+            <ul>
+              {% for producto in compra.productos %}
+              <li>{{ producto.nombre }} - {{ producto.cantidad }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>${{ compra.total }}</td>
+          <td>{{ compra.fecha }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Add Compra Modal -->
 <div class="modal fade" id="addCompraModal" tabindex="-1" aria-labelledby="addCompraModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form action="{% url 'add_compra' %}" method="post">
-                {% csrf_token %}
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addCompraModalLabel">Registrar Compra</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="compraProveedor" class="form-label">Proveedor</label>
-                            <select class="form-select" id="compraProveedor" name="proveedor" required>
-                                {% for proveedor in proveedores %}
-                                <option value="{{ proveedor.pk }}">{{ proveedor.nombre }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="compraProducto" class="form-label">Producto</label>
-                            <select class="form-select" id="compraProducto" name="producto" required>
-                                {% for producto in productos %}
-                                <option value="{{ producto.pk }}">{{ producto.nombre }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="compraCantidad" class="form-label">Cantidad</label>
-                            <input type="number" class="form-control" id="compraCantidad" name="cantidad" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Registrar Compra</button>
-                </div>
-            </form>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form action="{% url 'add_compra' %}" method="post">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCompraModalLabel">Registrar Compra</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="compraProveedor" class="form-label">Proveedor</label>
+              <select class="form-select" id="compraProveedor" name="proveedor" required>
+                <option value="">Seleccione un proveedor</option>
+                {% for proveedor in proveedores %}
+                <option value="{{ proveedor.pk }}">{{ proveedor.nombre }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="compraFecha" class="form-label">Fecha</label>
+              <input type="date" class="form-control" id="compraFecha" name="fecha" required />
+            </div>
+          </div>
+          <div class="row g-3 mt-3">
+            <div class="col-md-12">
+              <label for="compraProductos" class="form-label">Productos</label>
+              <div id="productos-container">
+                <div class="row mb-2">
+                  <div class="col">
+                    <select class="form-select" name="producto" required>
+                      <option value="">Seleccione un producto</option>
+                      {% for producto in productos %}
+                      <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" name="cantidad" placeholder="Cantidad" required />
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" name="precio" placeholder="Precio" readonly />
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary" id="add-producto">Agregar Producto</button>
+            </div>
+          </div>
+          <div class="row g-3 mt-3">
+            <div class="col-md-12">
+              <label for="compraTotal" class="form-label">Total</label>
+              <input type="text" class="form-control" id="compraTotal" name="total" readonly />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Registrar Compra</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
-{% endblock %}
+
 {% block extra_js %}
-{% endblock %}
+<script src="{% static '/js/hisCompras.js' %}"></script>
+{% endblock %} {% endblock %}

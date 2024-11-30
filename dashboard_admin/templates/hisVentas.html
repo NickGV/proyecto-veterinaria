@@ -2,11 +2,10 @@
 {% load static %}
  
 {% block extra_css %}
-<!-- TODO: Modificar para mostrar lista de ventas con detalles -->
-
 <link rel="stylesheet" href="{% static '/css/hisVentas.css' %}">
 {% endblock %}
-{%block content%}
+
+{% block content %}
 <div>
     <div class="container">
         <h1>Historial de Ventas</h1>
@@ -17,75 +16,42 @@
             <button onclick="clearFilters()">Limpiar Filtro</button>
         </div>
 
-        <!-- Resumen del Cliente -->
-        <div class="client-info">
-            <p><strong>Cliente:</strong> Juan Pérez</p>
-            <p><strong>Teléfono:</strong> 123-456-789</p>
-            <p><strong>Correo:</strong> juan@example.com</p>
-            <p><strong>Mascota(s):</strong> Rocky (Perro)</p>
-        </div>
-
-        <!-- Historial de compras -->
+        <!-- Historial de ventas -->
         <table id="purchase-history">
             <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Número de Orden</th>
-                    <th>Producto(s)</th>
-                    <th>Cantidad</th>
+                    <th>Usuario</th>
+                    <th>Productos</th>
                     <th>Total</th>
-                    <th>Método de Pago</th>
-                    <th class="Acciones">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-category="alimentos">
-                    <td>01/11/2024</td>
-                    <td>12345</td>
-                    <td>Alimento para perros</td>
-                    <td>2</td>
-                    <td>$50.00</td>
-                    <td>Tarjeta de crédito</td>
-                    <td class="action-buttons">
-                        <a href="#" onclick="viewDetails(12345)">Ver Detalles</a>
+                {% for venta in ventas %}
+                <tr>
+                    <td>{{ venta.fecha }}</td>
+                    <td>{{ venta.user.username }}</td>
+                    <td>
+                        <ul>
+                            {% for item in venta.items %}
+                            <li>{{ item.nombre }} ({{ item.cantidad }}) - ${{ item.precio }}</li>
+                            {% endfor %}
+                        </ul>
                     </td>
+                    <td>${{ venta.total }}</td>
                 </tr>
-                <tr data-category="accesorios">
-                    <td>20/10/2024</td>
-                    <td>12344</td>
-                    <td>Juguete para gatos</td>
-                    <td>1</td>
-                    <td>$15.00</td>
-                    <td>Efectivo</td>
-                    <td class="action-buttons">
-                        <a href="#" onclick="viewDetails(12344)">Ver Detalles</a>
-                    </td>
-                </tr>
-                <tr data-category="medicamentos">
-                    <td>15/09/2024</td>
-                    <td>12343</td>
-                    <td>Medicamento para perros</td>
-                    <td>3</td>
-                    <td>$90.00</td>
-                    <td>Transferencia</td>
-                    <td class="action-buttons">
-                        <a href="#" onclick="viewDetails(12343)">Ver Detalles</a>
-                    </td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
 
         <!-- Pie de página -->
         <div class="footer">
-            <p>Resumen de compras: 3 órdenes, Total gastado: $155.00</p>
             <button class="btn-regresar" onclick="history.back()">Regresar</button>
         </div>
     </div>
 </div>
-
-{% endblock %} 
+{% endblock %}
 
 {% block extra_js %}
-
 <script src=""></script>
 {% endblock %}

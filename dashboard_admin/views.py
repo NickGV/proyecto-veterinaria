@@ -4,13 +4,10 @@ from .forms import AcercaDeForm, ProductoForm, ProveedorForm, CompraForm, Userfo
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
-from db_connection import catalogos_collection
-
-# TODO: metodos para obtener y mostrar todas las ventas realizadas
-
-# TODO: Metodos para generar reportes de inventario, ventas y compras
-
-# Usando librerias como panda para generar archivos PDF o Excel, crear tambien una template de reporte con las opciones de geneerar y descargar reportes
+from db_connection import catalogos_collection, compras_collection, ventas_collection
+from django.http import JsonResponse
+from django.http import Http404
+from datetime import datetime
 
 def moduloadmin_view(request):
     return render(request, 'modAdmin.html')
@@ -21,12 +18,31 @@ def inventario_view(request):
     return render(request, 'inventario.html', {'productos': productos, 'form': form})
 
 def hisVentas_view(request):
+    ventas = list(ventas_collection.find())
+    for venta in ventas:
+        venta['user'] = get_object_or_404(User, id=venta['user_id'])
     return render(request, 'hisVentas.html', {'ventas': ventas})
 
 def hisCompras_view(request):
-    compras = Compra.objects.all()
+    compras = list(compras_collection.find())
     proveedores = Proveedor.objects.all()
     productos = Producto.objects.all()
+    for compra in compras:
+        compra['proveedor'] = get_object_or_404(Proveedor, id=compra['proveedor_id'])
+        catalogo = catalogos_collection.find_one({'proveedor_id': compra['proveedor_id']})
+        if catalogo:
+            catalogo_productos_nombres = [producto['nombre'] for producto in catalogo['productos']]
+            for producto in compra['productos']:
+                if 'nombre' in producto:
+                    producto_obj = next((p for p in catalogo['productos'] if p['nombre'] == producto['nombre']), None)
+                    if producto_obj:
+                        producto['nombre'] = producto_obj['nombre']
+                    else:
+                        compra['productos'].remove(producto)
+                else:
+                    compra['productos'].remove(producto)
+        else:
+            compra['productos'] = []
     return render(request, 'hisCompras.html', {'compras': compras, 'proveedores': proveedores, 'productos': productos})
 
 def gestionUsusarios_view(request):
@@ -105,23 +121,20 @@ def add_provider(request):
         direccion = request.POST.get('direccion')
         telefono = request.POST.get('telefono')
 
-        # Parsear los productos
         productos_list = []
         nombres_productos = request.POST.getlist('producto_nombre')
         precios_productos = request.POST.getlist('producto_precio')
         for nombre_producto, precio_producto in zip(nombres_productos, precios_productos):
             productos_list.append({
                 'nombre': nombre_producto.strip(),
-                'descripcion': '',  # Puedes agregar un campo de descripción si es necesario
+                'descripcion': '',  
                 'precio': float(precio_producto.strip()),
-                'cantidad_disponible': 0  # Puedes agregar un campo de cantidad disponible si es necesario
+                'cantidad_disponible': 0 
             })
 
-        # Guardar proveedor en MySQL
         proveedor = Proveedor(nombre=nombre, contacto=contacto, direccion=direccion, telefono=telefono)
         proveedor.save()
 
-        # Guardar catálogo en MongoDB
         catalogo_id = catalogos_collection.insert_one({'proveedor_id': proveedor.id, 'productos': productos_list}).inserted_id
 
         return redirect('proveedores')
@@ -140,9 +153,9 @@ def edit_provider(request, pk):
             for nombre_producto, precio_producto in zip(nombres_productos, precios_productos):
                 productos_list.append({
                     'nombre': nombre_producto.strip(),
-                    'descripcion': '',  # Puedes agregar un campo de descripción si es necesario
+                    'descripcion': '',  
                     'precio': float(precio_producto.strip()),
-                    'cantidad_disponible': 0  # Puedes agregar un campo de cantidad disponible si es necesario
+                    'cantidad_disponible': 0  
                 })
             catalogos_collection.update_one({'proveedor_id': proveedor.id}, {'$set': {'productos': productos_list}})
             return redirect('proveedores')
@@ -185,24 +198,72 @@ def delete_product(request, pk):
 
 def add_compra(request):
     if request.method == 'POST':
-        form = CompraForm(request.POST)
-        if form.is_valid():
-            compra = form.save()
-            producto = compra.producto
-            producto.cantidad_disponible += compra.cantidad
-            producto.save()
-            return redirect('hisCompras')
-    return redirect('hisCompras')
+        proveedor_id = request.POST.get('proveedor')
+        productos = request.POST.getlist('producto')
+        cantidades = request.POST.getlist('cantidad')
+        precios = request.POST.getlist('precio')
+        total = 0
 
+        compra_productos = []
+        for i in range(len(productos)):
+            try:
+                producto_id = int(productos[i])
+                cantidad = int(cantidades[i])
+                precio = float(precios[i])
+                total += precio * cantidad
+                compra_productos.append({'producto_id': producto_id, 'cantidad': cantidad, 'precio': precio})
+            except ValueError:
+                # Manejar el error si no se puede convertir a int o float
+                print(f"Error al convertir los valores: producto_id={productos[i]}, cantidad={cantidades[i]}, precio={precios[i]}")
+                continue
+
+        compra = {
+            'proveedor_id': int(proveedor_id),
+            'productos': compra_productos,
+            'total': total,
+            'fecha': request.POST.get('fecha')
+        }
+
+        # Verificar que los productos existen antes de insertarlos en MongoDB
+        for item in compra_productos:
+            try:
+                producto = get_object_or_404(Producto, id=item['producto_id'])
+                producto.cantidad_disponible -= item['cantidad']
+                producto.save()
+            except Http404:
+                print(f"Producto con ID {item['producto_id']} no encontrado.")
+                # Manejar el error como desees, por ejemplo, puedes redirigir o mostrar un mensaje de error.
+
+        compras_collection.insert_one(compra)
+
+        return redirect('hisCompras')
+    else:
+        proveedores = Proveedor.objects.all()
+        productos = Producto.objects.all()
+        return render(request, 'add_compra.html', {'proveedores': proveedores, 'productos': productos})
+    
 def add_venta(request):
     if request.method == 'POST':
-        form = VentaForm(request.POST)
-        if form.is_valid():
-            venta = form.save()
-            producto = venta.producto
-            producto.cantidad_disponible -= venta.cantidad
+        user_id = request.user.id
+        items = request.POST.getlist('items')
+        total = request.POST.get('total')
+
+        venta = {
+            'user_id': user_id,
+            'fecha': datetime.now(),
+            'items': items,
+            'total': total
+        }
+
+        ventas_collection.insert_one(venta)
+
+        # Actualizar la cantidad disponible de los productos
+        for item in items:
+            producto = get_object_or_404(Producto, id=item['producto_id'])
+            producto.cantidad_disponible -= item['cantidad']
             producto.save()
-            return redirect('hisVentas')
+
+        return redirect('hisVentas')
     return redirect('hisVentas')
 
 def editar_acerca_de(request):
@@ -226,130 +287,11 @@ def editar_menu(request):
     else:
         form = MenuForm(instance=menu)
     return render(request, 'editar_menu.html', {'form': form})
-    if request.method == 'POST':
-        nombre = request.POST.get('nombre')
-        contacto = request.POST.get('contacto')
-        direccion = request.POST.get('direccion')
-        telefono = request.POST.get('telefono')
 
-        # Parsear los productos
-        productos_list = []
-        nombres_productos = request.POST.getlist('producto_nombre')
-        precios_productos = request.POST.getlist('producto_precio')
-        for nombre_producto, precio_producto in zip(nombres_productos, precios_productos):
-            productos_list.append({
-                'nombre': nombre_producto.strip(),
-                'descripcion': '',  # Puedes agregar un campo de descripción si es necesario
-                'precio': float(precio_producto.strip()),
-                'cantidad_disponible': 0  # Puedes agregar un campo de cantidad disponible si es necesario
-            })
-
-        # Guardar proveedor en MySQL
-        proveedor = Proveedor(nombre=nombre, contacto=contacto, direccion=direccion, telefono=telefono)
-        proveedor.save()
-
-        # Guardar catálogo en MongoDB
-        catalogo_id = catalogos_collection.insert_one({'proveedor_id': proveedor.id, 'productos': productos_list}).inserted_id
-
-        return redirect('proveedores')
-    return redirect('proveedores')
-
-def edit_provider(request, pk):
-    proveedor = get_object_or_404(Proveedor, pk=pk)
-    if request.method == 'POST':
-        form = ProveedorForm(request.POST, instance=proveedor)
-        if form.is_valid():
-            form.save()
-            # Actualizar productos en MongoDB
-            productos_list = []
-            nombres_productos = request.POST.getlist('producto_nombre')
-            precios_productos = request.POST.getlist('producto_precio')
-            for nombre_producto, precio_producto in zip(nombres_productos, precios_productos):
-                productos_list.append({
-                    'nombre': nombre_producto.strip(),
-                    'descripcion': '',  # Puedes agregar un campo de descripción si es necesario
-                    'precio': float(precio_producto.strip()),
-                    'cantidad_disponible': 0  # Puedes agregar un campo de cantidad disponible si es necesario
-                })
-            catalogos_collection.update_one({'proveedor_id': proveedor.id}, {'$set': {'productos': productos_list}})
-            return redirect('proveedores')
+def get_productos_proveedor(request, proveedor_id):
+    catalogo = catalogos_collection.find_one({'proveedor_id': proveedor_id})
+    if catalogo:
+        productos_data = [{'id': idx, 'nombre': producto['nombre'], 'precio': producto['precio']} for idx, producto in enumerate(catalogo['productos'])]
     else:
-        form = ProveedorForm(instance=proveedor)
-        catalogo = catalogos_collection.find_one({'proveedor_id': proveedor.id})
-        productos = catalogo['productos'] if catalogo else []
-    return render(request, 'editar_proveedor.html', {'form': form, 'proveedor': proveedor, 'productos': productos})
-
-def delete_provider(request, pk):
-    proveedor = get_object_or_404(Proveedor, pk=pk)
-    if request.method == 'POST':
-        proveedor.delete()
-        return redirect('proveedores')
-    return redirect('proveedores')
-
-def add_product(request):
-    if request.method == 'POST':
-        form = ProductoForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('inventario')
-    return redirect('inventario')
-
-def edit_product(request, pk):
-    producto = get_object_or_404(Producto, pk=pk)
-    if request.method == 'POST':
-        form = ProductoForm(request.POST, request.FILES, instance=producto)
-        if form.is_valid():
-            form.save()
-            return redirect('inventario')
-    return redirect('inventario')
-
-def delete_product(request, pk):
-    producto = get_object_or_404(Producto, pk=pk)
-    if request.method == 'POST':
-        producto.delete()
-        return redirect('inventario')
-    return redirect('inventario')
-
-def add_compra(request):
-    if request.method == 'POST':
-        form = CompraForm(request.POST)
-        if form.is_valid():
-            compra = form.save()
-            producto = compra.producto
-            producto.cantidad_disponible += compra.cantidad
-            producto.save()
-            return redirect('hisCompras')
-    return redirect('hisCompras')
-
-def add_venta(request):
-    if request.method == 'POST':
-        form = VentaForm(request.POST)
-        if form.is_valid():
-            venta = form.save()
-            producto = venta.producto
-            producto.cantidad_disponible -= venta.cantidad
-            producto.save()
-            return redirect('hisVentas')
-    return redirect('hisVentas')
-
-def editar_acerca_de(request):
-    acerca_de, created = AcercaDe.objects.get_or_create(id=1)
-    if request.method == 'POST':
-        form = AcercaDeForm(request.POST, instance=acerca_de)
-        if form.is_valid():
-            form.save()
-            return redirect('modulo_admin')
-    else:
-        form = AcercaDeForm(instance=acerca_de)
-    return render(request, 'editar_acerca_de.html', {'form': form})
-
-def editar_menu(request):
-    menu, created = Menu.objects.get_or_create(id=1)
-    if request.method == 'POST':
-        form = MenuForm(request.POST, instance=menu)
-        if form.is_valid():
-            form.save()
-            return redirect('editar_menu')
-    else:
-        form = MenuForm(instance=menu)
-    return render(request, 'editar_menu.html', {'form': form})
+        productos_data = []
+    return JsonResponse(productos_data, safe=False)
