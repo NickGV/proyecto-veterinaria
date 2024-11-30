@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from .forms import RegistroForm, LoginForm, EditarPerfilForm
+from .forms import RegistroForm, LoginForm, EditarPerfilForm, PagoForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import carritos_collection
 from dashboard_admin.models import Producto
 from django.http import HttpRequest
 from django.http import JsonResponse
+import json
 
 #  TODO: Implementar metodos para agregar, eliminar y modificar cantidades de productos den el carrito
 
@@ -107,7 +108,8 @@ def agregar_al_carrito(request, producto_id):
                 'producto_id': producto_id,
                 'nombre': producto.nombre,
                 'precio': float(producto.precio),
-                'cantidad': cantidad
+                'cantidad': cantidad,
+                'imagen': producto.imagen.url
             })
         carritos_collection.update_one({'user_id': user.id}, {'$set': {'items': carrito['items']}})
     else:
@@ -118,7 +120,7 @@ def agregar_al_carrito(request, producto_id):
                 'nombre': producto.nombre,
                 'precio': float(producto.precio),
                 'cantidad': cantidad,
-                'imagen': producto.imagen
+                'imagen': producto.imagen.url
             }]
         })
     
@@ -158,3 +160,16 @@ def modificar_cantidad(request, producto_id):
         carritos_collection.update_one({'user_id': user.id}, {'$set': {'items': carrito['items']}})
     
     return redirect('carrito')  # Redirigir al carrito después de modificar la cantidad
+
+def procesar_pago(request):
+    if request.method == 'POST':
+        form = PagoForm(request.POST)
+        if form.is_valid():
+            # Procesar el pago
+            carrito = carritos_collection.objects.get(id=request.session['carrito_id'])
+            carrito.estado = 'pagado'
+            carrito.save()
+            return redirect('carrito')
+    else:
+        form = PagoForm()
+    return render(request, 'carrito.html', {'form': form})

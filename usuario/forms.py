@@ -37,3 +37,7 @@ class EditarPerfilForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class PagoForm(forms.Form):
+    monto = forms.DecimalField(max_digits=10, decimal_places=2)
+    metodo_pago = forms.CharField(max_length=50)

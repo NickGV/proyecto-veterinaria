@@ -89,7 +89,6 @@
         <p class="precio">${{ producto.precio }}</p>
         <form method="post" action="{% url 'agregar_al_carrito' producto.id %}">
           {% csrf_token %}
-          <input type="number" name="cantidad" value="1" min="1" />
           <button type="submit" class="u-full-width button-primary button input agregar-carrito">
             Agregar Al Carrito
           </button>
